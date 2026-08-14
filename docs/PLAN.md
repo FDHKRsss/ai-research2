@@ -70,7 +70,7 @@ niepoparta źródłem lub poza celem.
   - [ ] M3 -- real
 - [ ] **M4 -- Jakość usług i specjalizacja** — oferta, specjalizacja (IT / transport / inne), PKD,
       ubezpieczenie OC biura, certyfikaty, doświadczenie kadry, kanały kontaktu. (służy celowi: jakość usług)
-  - [ ] M4 -- stub
+  - [x] M4 -- stub
   - [ ] M4 -- real
 - [ ] **M5 -- Stabilność finansowa** — sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy,
       historia zmian, powiązania osobowe/kapitałowe. (służy celowi: stabilność finansowa z OBJECTIVE)

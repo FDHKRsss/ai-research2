@@ -2,9 +2,10 @@
 
 > **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub).
 > Dokument powstaje sekwencyjnie (po jednym kroku milestona). Obecnie wypełnione i kompletne są sekcje:
-> **M1 — Identyfikacja podmiotu i metryka**, **M2 — Status prawny i podatkowy** oraz
-> **M3 — Reputacja**. Pozostałe sekcje (M4–M6) zostaną dopisane w kolejnych krokach pass 1,
-> a w pass 2 (REAL) całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu).
+> **M1 — Identyfikacja podmiotu i metryka**, **M2 — Status prawny i podatkowy**,
+> **M3 — Reputacja** oraz **M4 — Jakość usług i specjalizacja**. Pozostałe sekcje (M5–M6) zostaną
+> dopisane w kolejnych krokach pass 1, a w pass 2 (REAL) całość zostanie zweryfikowana i uziemiona
+> źródłami (URL + data dostępu).
 
 ---
 
@@ -27,8 +28,9 @@
 | M1 — Identyfikacja i metryka | Podmiot zidentyfikowany wstępnie (KRS 0001126380, NIP 7011222044, REGON 529621586); forma prawna sp. z o.o., kapitał zakładowy 5 000 zł, data rejestracji 2024-09-11, PKD 69.20.Z; zarząd/udziałowiec: Katarzyna Pydynowska. Dane do potwierdzenia w KRS. | **Średnie** — dane wstępne (do weryfikacji), brak sprzeczności blokujących |
 | M2 — Status prawny i podatkowy | Biała Lista VAT, VIES, status KRS oraz rejestry dłużników (KRZ/MSiG) do weryfikacji w źródłach urzędowych; komercyjne BIG (KRD/ERIF/InfoMonitor) bez dostępu (jawne ograniczenie). Brak stwierdzonych negatywnych wpisów na etapie DRAFT. | **Średnie** — dane niezweryfikowane (do weryfikacji) i ograniczenie dostępu do BIG |
 | M3 — Reputacja | Opinie z Google Maps, GoWork, Oferteo i Facebooka do zebrania i weryfikacji; merytoryka, oceny i daty (priorytet ostatnich 12 mies.) nieznane na etapie DRAFT. Brak sfabrykowanych ocen ani treści opinii. | **Średnie** — dane nie zebrane (do weryfikacji), brak potwierdzonej reputacji |
+| M4 — Jakość usług i specjalizacja | Oferta, specjalizacja (IT/transport/inne), certyfikaty, doświadczenie kadry, kanały kontaktu oraz OC biura do ustalenia i weryfikacji; PKD 69.20.Z (powiązane z M1). Nieznane na etapie DRAFT. | **Średnie** — dane nie zweryfikowane (do weryfikacji), wzmianka o OC nie znaleziona z braku otwarcia źródeł |
 
-> Pozostałe wiersze (M4–M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
+> Pozostałe wiersze (M5–M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
 
 ---
 
@@ -230,6 +232,105 @@ odnotowano żadnego negatywnego wzorca. Po uziemieniu w pass 2 ocena może zosta
 
 ---
 
+## Sekcja M4 — Jakość usług i specjalizacja
+
+### 4.1. Cel i zakres
+
+Sekcja odpowiada na pytanie o **jakość usług** badanego biura rachunkowego: co oferuje, w czym się
+**specjalizuje**, czy posiada **ubezpieczenie OC**, jakie ma **certyfikaty** i **doświadczenie kadry** oraz
+jakimi **kanałami kontaktu** dysponuje. Uzupełnia obszar „JAKOŚĆ USŁUG" z celu analizy i pomaga ocenić, czy
+biuro jest w stanie obsłużyć konkretny profil klienta (np. spółki IT / transportowe).
+
+**Dezambiguacja podmiotu:** ustalenia M4 dotyczą wyłącznie KR Office sp. z o.o. identyfikowanej przez
+**NIP 7011222044 / KRS 0001126380**, ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa — nie innych firm
+o zbliżonej nazwie `(założenie metodologiczne)`.
+
+> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano** strony WWW biura, opisów oferty,
+> ogłoszeń ani profili branżowych — wszystkie ustalenia M4 mają status `(do weryfikacji)` albo
+> `(brak danych publicznych)`. **Nie fabrykuję** zakresu usług, specjalizacji, certyfikatów ani
+> szczegółów polisy OC.
+
+### 4.2. Oferta i zakres usług
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Zakres oferty | do ustalenia (księgowość pełna/uproszczona, kadry-płace, rozliczenia ZUS/US, doradztwo podatkowe) | (do weryfikacji na stronie WWW / w opisach oferty) |
+| Profil klienta | do ustalenia (JDG / spółki kapitałowe / spółki IT / transportowe) | (do weryfikacji) |
+| Cennik / model rozliczeń | nieznany na etapie DRAFT | (do weryfikacji) |
+| PKD działalności | 69.20.Z — działalność rachunkowo-księgowa; doradztwo podatkowe | (do weryfikacji w KRS — powiązane z M1) |
+
+- **Czego szukam:** publicznego opisu oferty (np. „prowadzenie ksiąg rachunkowych", „obsługa
+  kadrowo-płacowa", „rozliczenia ZUS/US") oraz profilu obsługiwanych klientów. Zakres oferty weryfikuję
+  w pass 2 na podstawie strony WWW i opisów usług `(do weryfikacji)`.
+
+### 4.3. Specjalizacja (IT / transport / inne)
+
+- **Szukana informacja:** czy biuro deklaruje specjalizację branżową — np. obsługa spółek **IT**,
+  **transportowych**, e-commerce, budowlanych lub inną niszę (wymóg celu: „Poszukaj informacji
+  o specjalizacji, np. obsługa spółek IT / transportowych").
+- **Status na etapie DRAFT:** specjalizacja **nieznana** — nie potwierdzono ani nie wykluczono żadnej
+  branży `(do weryfikacji)`. Nie formułuję twierdzenia typu „biuro specjalizuje się w IT/transporcie",
+  dopóki nie znajdę potwierdzenia w materiałach własnych biura `(do weryfikacji)`.
+- **Interpretacja:** brak deklarowanej specjalizacji nie jest sygnałem negatywnym — wiele małych biur
+  obsługuje klientów wielobranżowo `(założenie metodologiczne)`.
+
+### 4.4. Ubezpieczenie OC biura
+
+- **Wymóg celu:** jeśli pojawi się wzmianka o ubezpieczeniu OC biura rachunkowego, należy ją uwzględnić
+  w raporcie.
+- **Status na etapie DRAFT:** **nie znaleziono informacji o OC** — nie otwierano strony WWW, regulaminów
+  ani ogłoszeń, w których taka wzmianka mogłaby wystąpić `(do weryfikacji)`. Brak wzmianki **nie jest
+  równoznaczny** z brakiem polisy — to wyłącznie brak danych na etapie DRAFT `(założenie metodologiczne)`.
+- **Czego NIE robię:** nie wymyślam zakresu ani limitu (sumy gwarancyjnej) polisy OC. Takie dane będzie
+  można podać dopiero po ich faktycznym znalezieniu w pass 2 `(do weryfikacji)`.
+
+### 4.5. Certyfikaty i uprawnienia
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Certyfikat księgowy / licencja doradcy podatkowego | do ustalenia | (do weryfikacji — np. w rejestrach branżowych / materiałach biura) |
+| Członkostwo w organizacjach branżowych | do ustalenia | (do weryfikacji) |
+| Inne uprawnienia (np. pełnomocnictwo, biegły rewident) | do ustalenia | (do weryfikacji) |
+
+- **Czego szukam:** publicznych potwierdzeń uprawnień (np. wpis na listę doradców podatkowych, certyfikat
+  księgowy MF, członkostwo w Stowarzyszeniu Księgowych w Polsce). Na etapie DRAFT **nie stwierdzam** żadnego
+  certyfikatu `(do weryfikacji)`.
+
+### 4.6. Doświadczenie kadry
+
+- **Szukana informacja:** doświadczenie i wykształcenie osób zarządzających/księgowych (np. prezes
+  Katarzyna Pydynowska) — staż w księgowości, uprawnienia, historia zatrudnienia.
+- **Status na etapie DRAFT:** doświadczenie kadry **nieznane** — wymaga weryfikacji w materiałach biura,
+  profilach zawodowych lub opisie firmy `(do weryfikacji)`. Młody wiek spółki (rejestracja 2024-09-11) nie
+  przesądza o braku doświadczenia jej właścicieli — to odrębna kwestia do sprawdzenia
+  `(założenie metodologiczne)`.
+
+### 4.7. Kanały kontaktu
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Telefon | do ustalenia | (do weryfikacji) |
+| E-mail | do ustalenia | (do weryfikacji) |
+| Strona WWW | do ustalenia | (do weryfikacji) |
+| Profil Facebook / inne social media | do ustalenia (powiązane z M3) | (do weryfikacji) |
+| Adres stacjonarny | ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa | (do weryfikacji w KRS) |
+
+- **Czego szukam:** aktualnych, publicznie dostępnych kanałów kontaktu. Brak łatwo dostępnego kontaktu
+  (np. brak telefonu/e-maila w źródłach publicznych) byłby odnotowany jako utrudnienie — na etapie DRAFT
+  nie stwierdzam takiego braku, bo źródeł nie otwierano `(do weryfikacji)`.
+
+### 4.8. Analiza i ocena ryzyka — M4
+
+**Ocena: Średnie.** Na etapie DRAFT jakość usług jest **nieznana**: oferta, specjalizacja, certyfikaty,
+doświadczenie kadry i kanały kontaktu mają status `(do weryfikacji)`, a wzmianka o OC **nie została
+znaleziona** (z braku otwarcia źródeł). Brak danych wynika z nieprzeprowadzenia weryfikacji, a nie ze
+stwierdzonego problemu; nie odnotowano żadnego sygnału negatywnego. Po uziemieniu w pass 2 ocena może zostać
+obniżona do **Niskiej** (jeśli oferta i specjalizacja będą spójne z profilem klienta, potwierdzone i wystąpi
+wzmianka o OC) lub podniesiona do **Wysokiej** (w razie rażąco niekompletnej oferty, braku kontaktu lub
+sprzeczności).
+
+---
+
 ## Czerwone Flagi
 
 - **Nie stwierdzono jednoznacznych czerwonych flag** na etapie M1.
@@ -243,6 +344,9 @@ odnotowano żadnego negatywnego wzorca. Po uziemieniu w pass 2 ocena może zosta
   Facebook) nie zostały jeszcze otwarte — brak negatywnych wpisów ma status `(do weryfikacji)`, a nie
   potwierdzonej „dobrej reputacji". Powtarzający się wzorzec negatywnych recenzji z ostatnich 12 miesięcy
   byłby traktowany jako czerwona flaga — na ten moment takiego wzorca nie odnotowano.
+- **M4 — nie stwierdzono** negatywnych sygnałów jakościowych na etapie DRAFT. Strona WWW, oferta,
+  certyfikaty i kanały kontaktu nie zostały jeszcze otwarte/sprawdzone, a brak wzmianki o OC ma status
+  `(do weryfikacji)` — nie jest to potwierdzony „brak ubezpieczenia".
 
 ---
 
@@ -270,19 +374,31 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 - Oferteo — oferteo.pl — opinie klientów o usługach księgowych.
 - Facebook — facebook.com — profil firmowy, recenzje i oceny (o ile istnieje).
 
+**M4 — Jakość usług i specjalizacja:**
+- Strona WWW biura (adres do ustalenia) — oferta, specjalizacja (IT/transport/inne), cennik, kanały kontaktu, ewentualna wzmianka o OC.
+- KRS / e-KRS — ekrs.ms.gov.pl — PKD 69.20.Z, skład zarządu (kadra) i ewentualne wpisy o uprawnieniach.
+- Rejestry branżowe (np. lista doradców podatkowych, certyfikat księgowy MF) — certyfikaty i uprawnienia kadry.
+- Profile firmy / wizytówki usługowe — Google Maps, Oferteo, Facebook — opis oferty i specjalizacji (pokrywa się z M3).
+- Ogłoszenia / materiały własne biura — ewentualna wzmianka o ubezpieczeniu OC biura.
+
 ---
 
 ## Metodologia i ograniczenia
 
 - **Metoda:** OSINT na źródłach publicznych i urzędowych; priorytet dla źródeł pierwotnych (KRS, Biała Lista,
   VIES, KRZ/MSiG); lustra (rejestr.io, aleo.com itp.) wyłącznie pomocniczo.
-- **Ograniczenia (pass 1):** wszystkie dane M1, M2 i M3 mają status rozpoznania wstępnego i nie zostały
-  jeszcze potwierdzone w rejestrze urzędowym ani w źródłach opinii. Rejestry publiczne (Biała Lista, VIES,
-  KRS, KRZ, MSiG) oraz portale opinii (Google Maps, GoWork, Oferteo, Facebook) zostaną sprawdzone w pass 2.
+- **Ograniczenia (pass 1):** wszystkie dane M1–M4 mają status rozpoznania wstępnego i nie zostały jeszcze
+  potwierdzone w rejestrze urzędowym, w źródłach opinii ani w materiałach o ofercie/jakości usług. Rejestry
+  publiczne (Biała Lista, VIES, KRS, KRZ, MSiG), portale opinii (Google Maps, GoWork, Oferteo, Facebook) oraz
+  strona WWW / materiały o ofercie zostaną sprawdzone w pass 2.
 - **Ograniczenie — komercyjne BIG:** KRD, ERIF i BIG InfoMonitor wymagają logowania/opłat, więc ich zawartość
   jest poza zasięgiem tego raportu — odnotowane jako jawne ograniczenie, bez zgadywania zawartości.
 - **Ograniczenie — reputacja:** młody wiek spółki (rejestracja 2024-09-11) i mała skala działalności mogą
   oznaczać niewielką liczbę opinii lub brak profilu na części portali; brak opinii będzie traktowany jako
   ograniczenie danych, nie jako opinia negatywna.
+- **Ograniczenie — jakość usług i OC:** oferta, specjalizacja i certyfikaty są weryfikowane na podstawie
+  materiałów własnych biura (strona WWW, ogłoszenia), które mogą być niekompletne lub nieaktualne. Wzmianka
+  o ubezpieczeniu OC nie została na etapie DRAFT znaleziona (nie otwierano źródeł) — to brak danych, a nie
+  potwierdzenie braku polisy; zakres/suma OC nie są zgadywane.
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.
