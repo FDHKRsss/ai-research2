@@ -66,7 +66,7 @@ niepoparta źródłem lub poza celem.
   - [ ] M2 -- real
 - [ ] **M3 -- Reputacja** — opinie Google Maps, GoWork, Oferteo, Facebook; merytoryka, oceny, daty,
       priorytet ostatnich 12 mies.; liczba opinii. (służy celowi: reputacja)
-  - [ ] M3 -- stub
+  - [x] M3 -- stub
   - [ ] M3 -- real
 - [ ] **M4 -- Jakość usług i specjalizacja** — oferta, specjalizacja (IT / transport / inne), PKD,
       ubezpieczenie OC biura, certyfikaty, doświadczenie kadry, kanały kontaktu. (służy celowi: jakość usług)

@@ -94,5 +94,11 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
   ograniczeniem `(brak danych publicznych)`. Wszystko oznaczone `(do weryfikacji)`; brak sfabrykowanego
   potwierdzonego statusu; ocena ryzyka M2 = Średnie, spójna między sekcją a podsumowaniem. Dodany wiersz M2
   w podsumowaniu oraz wpisy w Czerwonych Flagach i Źródłach.
-- **M3–M6 -- stub:** do wykonania w kolejnych krokach pass 1 (dopisanie do TEGO SAMEGO pliku), następnie
+- **M3 -- stub:** gotowy i przetestowany (15 testów zielonych: `python -m unittest tests.test_m3_stub -v`).
+  W `raport/KR-OFFICE-OSINT.md` dopisana sekcja M3 (Reputacja): opinie z czterech wymaganych platform
+  (Google Maps, GoWork, Oferteo, Facebook), merytoryka/oceny/daty/liczba opinii, jawne okno priorytetowe
+  ostatnich 12 miesięcy (2025-08-15 → 2026-08-15), dezambiguacja przez NIP/KRS. Wszystko oznaczone
+  `(do weryfikacji)` i bez sfabrykowanych metryk opinii; ocena ryzyka M3 = Średnie, spójna między sekcją
+  a podsumowaniem. Dodany wiersz M3 w podsumowaniu oraz wpisy w Czerwonych Flagach i Źródłach.
+- **M4–M6 -- stub:** do wykonania w kolejnych krokach pass 1 (dopisanie do TEGO SAMEGO pliku), następnie
   pass 2 (real) dla M1 → M6.
