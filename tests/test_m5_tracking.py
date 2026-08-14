@@ -2,14 +2,14 @@
 """Tests for the M5 stub *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
 
 The M5 deliverable section itself is validated by tests/test_m5_stub.py. This file
-validates the bookkeeping that wraps it: PLAN.md must mark `M5 -- stub` done (and
-nothing prematurely beyond M5), and ARCHITECTURE.md "Stan wdrożenia" must record the
-M5 stub as ready while narrowing the remaining stub work to M6.
+validates the M5-specific bookkeeping: PLAN.md must mark `M5 -- stub` done (and it
+must stay done), and ARCHITECTURE.md "Stan wdrożenia" must record the M5 stub as
+ready.
 
-This is the CURRENT milestone's tracking test, so it owns the exact progression
-snapshot (which stubs are done and what remains). Earlier milestones' tracking tests
-(test_m1..m4_tracking) only assert their own invariant plus a "min done / no regress"
-guarantee, so they stay valid as the snapshot advances.
+NOTE: the *progression* snapshot (exactly which stubs are done, and what the
+remaining work is) advances with each milestone and is owned by the current
+milestone's tracking test (see tests/test_m6_tracking.py). Here we only assert the
+M5 invariants plus "at least M1–M5 stubs remain done".
 """
 import re
 import unittest
@@ -23,7 +23,9 @@ ARCH = REPO / "docs" / "ARCHITECTURE.md"
 MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = {f"M{i}" for i in range(1, 7)}
-DONE_STUBS_EXPECTED = {"M1", "M2", "M3", "M4", "M5"}
+# M1–M5 must remain done; later milestones may additionally be done (see the
+# current milestone's tracking test for the exact snapshot).
+MIN_DONE_STUBS = {"M1", "M2", "M3", "M4", "M5"}
 
 
 def _load(path: Path) -> str:
@@ -73,10 +75,12 @@ class TestM5Tracking(unittest.TestCase):
             "PLAN.md must keep M5 -- real as [ ] (only stub is done)",
         )
 
-    def test_03_plan_only_m1_through_m5_stubs_done(self):
+    def test_03_plan_m1_through_m5_stubs_remain_done(self):
         done = {m for (m, p), d in self.statuses.items() if p == "stub" and d}
-        self.assertEqual(done, DONE_STUBS_EXPECTED,
-                         "exactly M1/M2/M3/M4/M5 -- stub may be checked; M6 must stay pending")
+        self.assertTrue(
+            MIN_DONE_STUBS <= done,
+            "M1/M2/M3/M4/M5 -- stub must remain checked (later milestones may also be done)",
+        )
 
     def test_04_plan_no_real_milestone_marked_done(self):
         for (m, p), d in self.statuses.items():
@@ -117,11 +121,12 @@ class TestM5Tracking(unittest.TestCase):
         self.assertIn("sfabrykowanych wielkości finansowych", self.wdrozenie,
                       "ARCH M5 entry must note that financial figures are not fabricated")
 
-    def test_09_arch_remaining_work_narrowed_to_m6(self):
-        self.assertIn("M6 -- stub", self.wdrozenie,
-                      "ARCH remaining-work bullet must be M6 -- stub")
+    def test_09_arch_remaining_work_is_later_than_m5(self):
+        # Remaining work moves forward each milestone; it must never regress to M5.
         self.assertIn("do wykonania", self.wdrozenie,
                       "ARCH remaining-work bullet must say 'do wykonania'")
+        self.assertIn("pass 2", self.wdrozenie,
+                      "ARCH remaining work must be pass 2 (real)")
         # The old too-wide bullets must be gone.
         self.assertNotIn("M5–M6 -- stub", self.wdrozenie)
         self.assertNotIn("M5-M6 -- stub", self.wdrozenie)

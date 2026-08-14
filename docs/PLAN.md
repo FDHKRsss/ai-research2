@@ -79,7 +79,7 @@ niepoparta źródłem lub poza celem.
 - [ ] **M6 -- Synteza ryzyka** — tabela podsumowująca `Sekcja | Znaleziska | Ocena ryzyka`, sekcja
       „Czerwone Flagi" (jeśli są niepokojące sygnały), rekomendacja, pełna lista źródeł z datami dostępu,
       metodologia i ograniczenia. (służy celowi: końcowa ocena ryzyka i użyteczność decyzyjna)
-  - [ ] M6 -- stub
+  - [x] M6 -- stub
   - [ ] M6 -- real
 
 Kolejność: **Pass 1** — wszystkie `-- stub` (kompletny dokument od razu). **Pass 2** — wszystkie `-- real`

@@ -1,11 +1,11 @@
 # Wywiad gospodarczy (OSINT) — KR Office sp. z o.o.
 
-> **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub).
-> Dokument powstaje sekwencyjnie (po jednym kroku milestona). Obecnie wypełnione i kompletne są sekcje:
-> **M1 — Identyfikacja podmiotu i metryka**, **M2 — Status prawny i podatkowy**,
-> **M3 — Reputacja**, **M4 — Jakość usług i specjalizacja** oraz **M5 — Stabilność finansowa**.
-> Pozostała sekcja (M6 — Synteza ryzyka) zostanie dopisana w kolejnym kroku pass 1, a w pass 2 (REAL)
-> całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu).
+> **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub) ZAKOŃCZONA (kompletny dokument).
+> Wypełnione i kompletne są wszystkie sekcje: **M1 — Identyfikacja podmiotu i metryka**,
+> **M2 — Status prawny i podatkowy**, **M3 — Reputacja**, **M4 — Jakość usług i specjalizacja**,
+> **M5 — Stabilność finansowa** oraz **M6 — Synteza ryzyka**.
+> W pass 2 (REAL) całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu); do tego czasu
+> wszystkie dane mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`.
 
 ---
 
@@ -30,8 +30,10 @@
 | M3 — Reputacja | Opinie z Google Maps, GoWork, Oferteo i Facebooka do zebrania i weryfikacji; merytoryka, oceny i daty (priorytet ostatnich 12 mies.) nieznane na etapie DRAFT. Brak sfabrykowanych ocen ani treści opinii. | **Średnie** — dane nie zebrane (do weryfikacji), brak potwierdzonej reputacji |
 | M4 — Jakość usług i specjalizacja | Oferta, specjalizacja (IT/transport/inne), certyfikaty, doświadczenie kadry, kanały kontaktu oraz OC biura do ustalenia i weryfikacji; PKD 69.20.Z (powiązane z M1). Nieznane na etapie DRAFT. | **Średnie** — dane nie zweryfikowane (do weryfikacji), wzmianka o OC nie znaleziona z braku otwarcia źródeł |
 | M5 — Stabilność finansowa | Sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy, historia zmian oraz powiązania osobowe/kapitałowe do ustalenia i weryfikacji. Nieznane na etapie DRAFT; brak sfabrykowanych wielkości finansowych. | **Średnie** — dane nie zweryfikowane (do weryfikacji); młody wiek i minimalny kapitał jako ograniczenie danych |
+| M6 — Synteza ryzyka | Wszystkie obszary (M1–M5) ocenione jako Średnie z powodu danych niezweryfikowanych (do weryfikacji); brak stwierdzonych czerwonych flag; rekomendacja warunkowa — decyzję uzależnić od pass 2 (real). | **Średnie** — końcowa ocena uwarunkowana niezweryfikowanymi danymi (DRAFT) |
 
-> Pozostałe wiersze (M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
+> Powyższa tabela zawiera wszystkie obszary M1–M6. Oceny mają charakter wstępny (DRAFT, dane
+> niezweryfikowane) i zostaną zaktualizowane po uziemieniu źródeł w pass 2 (real).
 
 ---
 
@@ -428,6 +430,63 @@ sprawozdań mimo obowiązku, licznych zmian zarządu lub negatywnych wpisów).
 
 ---
 
+## Sekcja M6 — Synteza ryzyka
+
+### 6.1. Cel i zakres
+
+Sekcja zamyka raport i odpowiada na pytanie z celu analizy: **jakie jest ryzyko nawiązania współpracy
+z KR Office sp. z o.o.** Agreguję tu oceny cząstkowe z obszarów M1–M5 w jedną **końcową ocenę ryzyka**,
+formułuję **rekomendację** dla zleceniodawcy oraz wskazuję otwarte kwestie do rozstrzygnięcia w pass 2
+(REAL). Synteza opiera się wyłącznie na ustaleniach sekcji M1–M5 i jest spójna z sekcjami
+„Podsumowanie tabelaryczne" i „Czerwone Flagi".
+
+> **Uwaga (pass 1 — DRAFT/stub):** żadne źródło urzędowe ani opinia nie zostały jeszcze otwarte, więc
+> wszystkie dane mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`. Końcowa
+> ocena ryzyka ma charakter **warunkowy** i zostanie zaktualizowana po uziemieniu źródeł w pass 2.
+
+### 6.2. Synteza ocen cząstkowych (M1–M5)
+
+| Obszar | Ocena cząstkowa (DRAFT) | Kluczowe zastrzeżenie / status |
+|---|---|---|
+| M1 — Identyfikacja i metryka | Średnie | dane wstępne `(do weryfikacji w KRS)`; rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł |
+| M2 — Status prawny i podatkowy | Średnie | czynny VAT / VIES / status KRS / dłużnicy niezweryfikowane; BIG poza dostępem `(brak danych publicznych)` |
+| M3 — Reputacja | Średnie | opinie nie zebrane `(do weryfikacji)`; brak sfabrykowanych ocen i treści |
+| M4 — Jakość usług i specjalizacja | Średnie | oferta / specjalizacja / OC / kadra nieznane `(do weryfikacji)`; wzmianka o OC nie znaleziona |
+| M5 — Stabilność finansowa | Średnie | sprawozdania / historia zmian / powiązania nieznane `(do weryfikacji)`; młody wiek, minimalny kapitał |
+
+- **Wniosek z syntezy:** wszystkie obszary otrzymały ocenę **Średnie** z tego samego powodu — dane są
+  **niezweryfikowane** (nie otwarto źródeł), a nie dlatego, że stwierdzono problem. To spójny obraz
+  niepewności informacyjnej typowej dla etapu DRAFT `(założenie metodologiczne)`.
+- **Kierunek zmiany w pass 2:** jeśli źródła urzędowe potwierdzą „czysty" status (czynny VAT, brak wpisów
+  w KRZ/MSiG, spójna struktura kapitałowa), a opinie z ostatnich 12 miesięcy będą merytorycznie pozytywne,
+  ocena może spaść do **Niskiej**. Negatywne wpisy w rejestrach, wzorzec negatywnych opinii lub rażące
+  braki (np. deklarowane OC bez potwierdzenia, brak kontaktu) podniosłyby ocenę do **Wysokiej**.
+
+### 6.3. Rekomendacja
+
+- **Na etapie DRAFT rekomendacja ma charakter warunkowy.** Dokument jest użyteczny jako wstępne rozpoznanie
+  (identyfikacja podmiotu, mapa obszarów ryzyka i źródeł), ale **nie może być jedyną podstawą decyzji**
+  o nawiązaniu współpracy — wszystkie kluczowe ustalenia mają status `(do weryfikacji)`.
+- **Przed podjęciem decyzji należy dokończyć pass 2 (REAL):** potwierdzić status czynnego VAT (Biała
+  Lista / API MF), status KRS i brak wpisów w KRZ/MSiG, zebrać opinie z ostatnich 12 miesięcy (Google
+  Maps, GoWork, Oferteo, Facebook), ustalić specjalizację i ewentualne OC biura, sprawdzić sprawozdania
+  finansowe oraz rozstrzygnąć rozbieżność udziałów vs kapitał (pełny odpis KRS).
+- **Wstępnie (DRAFT):** nie stwierdzono jednoznacznych czerwonych flag; identyfikatory są wewnętrznie
+  spójne, a młody wiek spółki i minimalny kapitał zakładowy to ograniczenia danych, a nie dowód
+  nierzetelności. Kontynuacja due diligence jest uzasadniona.
+
+### 6.4. Czerwone Flagi i końcowa ocena ryzyka
+
+- **Czerwone Flagi:** sekcja „Czerwone Flagi" (poniżej) zbiera wszystkie zidentyfikowane sygnały. Na
+  etapie DRAFT nie stwierdzono **potwierdzonych** czerwonych flag; jedyny sygnał do obserwacji to
+  rozbieżność liczby udziałów vs kapitał zakładowy (do rozstrzygnięcia na pełnym odpisie KRS).
+- **Końcowa ocena ryzyka: Średnie.** Uzasadnienie: dane ze wszystkich obszarów (M1–M5) są niezweryfikowane
+  `(do weryfikacji)`, a komercyjne BIG oraz młody wiek spółki dodatkowo ograniczają dostępność informacji.
+  Nie jest to ocena „Wysoka" (brak stwierdzonych negatywnych wpisów) ani „Niska" (brak pozytywnego
+  potwierdzenia danych urzędowych i reputacji). Ocena zostanie zaktualizowana w pass 2 (real).
+
+---
+
 ## Czerwone Flagi
 
 - **Nie stwierdzono jednoznacznych czerwonych flag** na etapie M1.
@@ -449,6 +508,8 @@ sprawozdań mimo obowiązku, licznych zmian zarządu lub negatywnych wpisów).
   brak danych ma status `(do weryfikacji)`, a nie potwierdzonej „stabilności finansowej". Młody wiek
   spółki (rejestracja 2024-09-11) i minimalny kapitał zakładowy (5 000 zł) to sygnał do obserwacji
   (ograniczenie danych / podwyższona uwaga), a nie czerwona flaga sam w sobie.
+
+- **M6 — synteza:** na etapie DRAFT końcowa ocena ryzyka = **Średnie** wynika z danych niezweryfikowanych `(do weryfikacji)` we wszystkich obszarach M1–M5, a nie ze stwierdzonych negatywnych wpisów. Żadna z sekcji nie wykazała **potwierdzonej** czerwonej flagi. Kluczowe do rozstrzygnięcia w pass 2: rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł (M1/M5), status czynnego VAT (M2), obecność i treść opinii z ostatnich 12 mies. (M3), specjalizacja i wzmianka o OC (M4) oraz sprawozdania finansowe (M5).
 
 ---
 
@@ -489,6 +550,11 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 - Rejestr REGON — potwierdzenie daty rejestracji / wieku firmy.
 - Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — ewentualny rachunek rozliczeniowy (powiązane z M2).
 
+**M6 — Synteza ryzyka:**
+- Synteza i rekomendacja opierają się na źródłach wymienionych w blokach M1–M5 powyżej. W pass 2 zostanie
+  dopisana pełna, scalona lista źródeł z datami dostępu (wyłącznie dla faktycznie otwartych stron) oraz
+  jawne rozstrzygnięcie otwartych kwestii (m.in. rozbieżność udziałów vs kapitał, status VAT, opinie, OC).
+
 ---
 
 ## Metodologia i ograniczenia
@@ -516,3 +582,5 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
   odpisu KRS.
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.
+
+- **Ograniczenie — synteza ryzyka (M6):** końcowa ocena ryzyka i rekomendacja na etapie DRAFT są **warunkowe** — opierają się wyłącznie na danych o statusie `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)` i mogą ulec zmianie po uziemieniu źródeł w pass 2. Niniejszy dokument nie stanowi rekomendacji do zawarcia umowy bez dalszej weryfikacji.
