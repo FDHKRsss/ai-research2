@@ -86,4 +86,13 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
   W `raport/KR-OFFICE-OSINT.md` obecne i kompletne: metryka dokumentu, podsumowanie tabelaryczne (wiersz M1),
   sekcja M1 (dane rejestrowe, zarząd/udziałowiec, analiza spójności, ocena ryzyka), Czerwone Flagi, Źródła,
   Metodologia i ograniczenia. Dane mają status `(do weryfikacji)`; rozbieżność udziałów vs kapitał jawnie
-  oznaczona. Sekcje M2–M6 będą dopisywane w kolejnych krokach pass 1 do TEGO SAMEGO pliku.
+  oznaczona.
+- **M2 -- stub:** gotowy i przetestowany (16 testów zielonych: `python -m unittest tests.test_m2_stub -v`).
+  W `raport/KR-OFFICE-OSINT.md` dopisana sekcja M2 (Status prawny i podatkowy): Biała Lista VAT (po NIP
+  7011222044, API MF `wl-api.mf.gov.pl`), VIES (`PL7011222044`), status KRS (aktywny + upadłość/restrukturyzacja/
+  likwidacja), publiczne rejestry dłużników (KRZ, MSiG) oraz komercyjne BIG (KRD/ERIF/InfoMonitor) z jawnym
+  ograniczeniem `(brak danych publicznych)`. Wszystko oznaczone `(do weryfikacji)`; brak sfabrykowanego
+  potwierdzonego statusu; ocena ryzyka M2 = Średnie, spójna między sekcją a podsumowaniem. Dodany wiersz M2
+  w podsumowaniu oraz wpisy w Czerwonych Flagach i Źródłach.
+- **M3–M6 -- stub:** do wykonania w kolejnych krokach pass 1 (dopisanie do TEGO SAMEGO pliku), następnie
+  pass 2 (real) dla M1 → M6.

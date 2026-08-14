@@ -1,9 +1,10 @@
 # Wywiad gospodarczy (OSINT) — KR Office sp. z o.o.
 
 > **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub).
-> Dokument powstaje sekwencyjnie (po jednym kroku milestona). Obecnie wypełniona i kompletna jest
-> sekcja **M1 — Identyfikacja podmiotu i metryka**. Pozostałe sekcje (M2–M6) zostaną dopisane w kolejnych
-> krokach pass 1, a w pass 2 (REAL) całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu).
+> Dokument powstaje sekwencyjnie (po jednym kroku milestona). Obecnie wypełnione i kompletne są sekcje:
+> **M1 — Identyfikacja podmiotu i metryka** oraz **M2 — Status prawny i podatkowy**. Pozostałe sekcje
+> (M3–M6) zostaną dopisane w kolejnych krokach pass 1, a w pass 2 (REAL) całość zostanie zweryfikowana
+> i uziemiona źródłami (URL + data dostępu).
 
 ---
 
@@ -24,8 +25,9 @@
 | Sekcja | Znaleziska | Ocena ryzyka |
 |---|---|---|
 | M1 — Identyfikacja i metryka | Podmiot zidentyfikowany wstępnie (KRS 0001126380, NIP 7011222044, REGON 529621586); forma prawna sp. z o.o., kapitał zakładowy 5 000 zł, data rejestracji 2024-09-11, PKD 69.20.Z; zarząd/udziałowiec: Katarzyna Pydynowska. Dane do potwierdzenia w KRS. | **Średnie** — dane wstępne (do weryfikacji), brak sprzeczności blokujących |
+| M2 — Status prawny i podatkowy | Biała Lista VAT, VIES, status KRS oraz rejestry dłużników (KRZ/MSiG) do weryfikacji w źródłach urzędowych; komercyjne BIG (KRD/ERIF/InfoMonitor) bez dostępu (jawne ograniczenie). Brak stwierdzonych negatywnych wpisów na etapie DRAFT. | **Średnie** — dane niezweryfikowane (do weryfikacji) i ograniczenie dostępu do BIG |
 
-> Pozostałe wiersze (M2–M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
+> Pozostałe wiersze (M3–M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
 
 ---
 
@@ -78,22 +80,110 @@ zakładowego, którą należy rozstrzygnąć w pass 2.
 
 ---
 
+## Sekcja M2 — Status prawny i podatkowy
+
+### 2.1. Cel i zakres
+
+Sekcja odpowiada na pytanie o **status prawny i podatkowy** badanego podmiotu — w szczególności, czy
+KR Office sp. z o.o. jest **czynnym podatnikiem VAT** (Biała Lista), czy figuruje w **VIES** (VAT-UE), jaki
+ma **status w KRS** oraz czy nie widnieje w **publicznych rejestrach dłużników** (KRZ, MSiG). Komercyjne
+biura informacji gospodarczej (KRD, ERIF, BIG InfoMonitor) są ujęte jako osobny punkt z jawnym opisem
+ograniczeń dostępu.
+
+> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano jeszcze źródeł urzędowych** — wszystkie
+> ustalenia M2 mają status `(do weryfikacji)` albo są jawnie opisane jako `(brak danych publicznych)` /
+> `(założenie)`. Uziemienie źródłami (URL + data dostępu) nastąpi w pass 2 (M2 — real).
+
+### 2.2. Biała Lista podatników VAT
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| NIP sprawdzany | 7011222044 | kotwica identyfikacyjna |
+| Status „czynny podatnik VAT" | do potwierdzenia | (do weryfikacji na Białej Liście — podatki.gov.pl / API MF `wl-api.mf.gov.pl`) |
+| Data rejestracji jako podatnik VAT | do potwierdzenia | (do weryfikacji na Białej Liście) |
+| Rachunek rozliczeniowy (wykaz rachunków) | do potwierdzenia | (do weryfikacji na Białej Liście) |
+
+- **Co sprawdzamy i dlaczego:** wpis na Białej Liście potwierdza, że kontrahent jest zarejestrowany jako
+  czynny podatnik VAT. Dla klienta biura rachunkowego to istotny sygnał, że podmiot formalnie funkcjonuje
+  w obrocie gospodarczym i że faktury wystawiane przez biuro mają status dokumentów od podatnika VAT.
+- **Status na etapie DRAFT:** brak potwierdzenia — nie formułuję twierdzenia o statusie VAT, dopóki nie
+  wykonam zapytania do API MF / wyszukiwarki Białej Listy `(do weryfikacji)`.
+
+### 2.3. VIES (VAT-UE)
+
+- **Sprawdzany identyfikator:** PL7011222044 (NIP z prefiksem PL).
+- **Status VAT-UE:** do potwierdzenia w VIES (`ec.europa.eu/taxation_customs/vies`) `(do weryfikacji)`.
+- **Uwaga:** rejestracja VAT-UE jest potrzebna głównie przy transakcjach wewnątrzwspólnotowych. Brak wpisu
+  w VIES u lokalnego biura rachunkowego nie jest sam w sobie sygnałem negatywnym — będzie interpretowany
+  w kontekście profilu działalności `(założenie metodologiczne)`.
+
+### 2.4. Status w KRS
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Numer KRS | 0001126380 | kotwica identyfikacyjna |
+| Rejestr | Rejestr Przedsiębiorców KRS | (do weryfikacji w odpisie aktualnym — ekrs.ms.gov.pl / PRS) |
+| Status podmiotu | aktywny (działający) — do potwierdzenia | (do weryfikacji w KRS) |
+| Postępowanie upadłościowe / restrukturyzacyjne / likwidacja | brak informacji — do potwierdzenia | (do weryfikacji w dziale odpisu KRS / KRZ) |
+
+- **Co sprawdzamy:** w KRS szukamy potwierdzenia, że podmiot jest wpisany i **aktywny**, oraz czy w dziale
+  dotyczącym postępowań nie ma wzmianek o upadłości, restrukturyzacji lub likwidacji. To kluczowy „twardy"
+  wskaźnik statusu prawnego `(do weryfikacji)`.
+
+### 2.5. Publiczne rejestry dłużników
+
+| Rejestr | Zakres | Status na etapie DRAFT |
+|---|---|---|
+| Krajowy Rejestr Zadłużonych (KRZ) — krz.ms.gov.pl | podmioty, wobec których toczy się postępowanie upadłościowe/restrukturyzacyjne, zakaz prowadzenia działalności | do sprawdzenia po NIP/KRS `(do weryfikacji)` |
+| Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl | ogłoszenia wymagane (m.in. o upadłości, restrukturyzacji, zmianach w KRS) | do sprawdzenia po KRS/NIP `(do weryfikacji)` |
+| KRD, ERIF, BIG InfoMonitor (komercyjne) | bazy dłużników komercyjnych | **brak dostępu bez logowania/opłaty — jawne ograniczenie** `(brak danych publicznych)` |
+
+- **KRZ i MSiG** są publiczne i bezpłatne — zostaną sprawdzone w pass 2 (M2 — real). Na etapie DRAFT nie
+  formułuję twierdzeń o wpisach; zapis „brak wpisów" będzie możliwy dopiero po faktycznym zapytaniu.
+- **Komercyjne BIG (KRD/ERIF/InfoMonitor):** wymagają konta i/lub opłaty. Zgodnie z zasadą uczciwości
+  **nie zgaduję** ich zawartości — to jawne ograniczenie raportu. Wynik negatywny w rejestrach publicznych
+  nie zastępuje pełnej weryfikacji w BIG `(założenie metodologiczne)`.
+
+### 2.6. Analiza i ocena ryzyka — M2
+
+**Ocena: Średnie.** Na etapie DRAFT brak jest potwierdzonych danych urzędowych o statusie VAT, VIES, KRS
+i rejestrach dłużników (wszystko `(do weryfikacji)`), a komercyjne BIG pozostają poza zasięgiem (jawne
+ograniczenie). Nie odnotowano żadnego negatywnego wpisu ani sprzeczności — brak potwierdzenia wynika
+z nieotwarcia źródeł, a nie ze stwierdzonego problemu. Po uziemieniu w pass 2 ocena może zostać obniżona do
+**Niskiej** (jeśli Biała Lista potwierdzi czynny VAT, a KRZ/MSiG nie wykażą wpisów) lub podniesiona do
+**Wysokiej** (w razie negatywnych wpisów).
+
+---
+
 ## Czerwone Flagi
 
 - **Nie stwierdzono jednoznacznych czerwonych flag** na etapie M1.
 - **Sygnał do obserwacji (nie flaga):** rozbieżność „91 udziałów = 4 550 zł" vs. „kapitał zakładowy 5 000 zł"
   — może wskazywać na drugiego wspólnika lub niepełny odczyt; do rozstrzygnięcia na pełnym odpisie KRS.
+- **M2 — nie stwierdzono** negatywnych wpisów w rejestrach publicznych na etapie DRAFT. Rejestry (Biała
+  Lista, VIES, KRS, KRZ/MSiG) nie zostały jeszcze sprawdzone, a komercyjne BIG pozostają poza dostępem —
+  brak wpisów ma tu status `(do weryfikacji)` / `(brak danych publicznych)`, a nie potwierdzonego „czystego"
+  wyniku.
 
 ---
 
 ## Źródła
 
 W pass 1 (stub) nie otwierano jeszcze źródeł — z tego powodu **nie podaję dat dostępu** (daty dostępu
-zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródła do weryfikacji M1:
+zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródła do weryfikacji:
 
+**M1 — Identyfikacja i metryka:**
 - KRS / e-KRS — ekrs.ms.gov.pl (odpis aktualny i pełny) — potwierdzenie nazwy, KRS, adresu, kapitału, zarządu, udziałowców, PKD.
 - Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — potwierdzenie NIP i statusu VAT (M2).
 - Rejestr REGON — potwierdzenie REGON.
+
+**M2 — Status prawny i podatkowy:**
+- Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — status czynnego podatnika VAT, data rejestracji, rachunek rozliczeniowy.
+- VIES — ec.europa.eu/taxation_customs/vies — status VAT-UE (PL7011222044).
+- KRS / e-KRS — ekrs.ms.gov.pl — status podmiotu, postępowania upadłościowe/restrukturyzacyjne/likwidacyjne.
+- Krajowy Rejestr Zadłużonych (KRZ) — krz.ms.gov.pl — ewentualne wpisy po NIP/KRS.
+- Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl — ogłoszenia wymagane po KRS/NIP.
+- KRD / ERIF / BIG InfoMonitor — dostęp komercyjny (konto/opłata); jawne ograniczenie, bez zgadywania zawartości.
 
 ---
 
@@ -101,8 +191,10 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 
 - **Metoda:** OSINT na źródłach publicznych i urzędowych; priorytet dla źródeł pierwotnych (KRS, Biała Lista,
   VIES, KRZ/MSiG); lustra (rejestr.io, aleo.com itp.) wyłącznie pomocniczo.
-- **Ograniczenia (pass 1):** wszystkie dane M1 mają status rozpoznania wstępnego i nie zostały jeszcze
-  potwierdzone w rejestrze urzędowym. Rejestry płatne lub wymagające logowania (np. komercyjne BIG) będą
-  opisane jako jawne ograniczenie w sekcji M2/M5 — bez zgadywania ich zawartości.
+- **Ograniczenia (pass 1):** wszystkie dane M1 i M2 mają status rozpoznania wstępnego i nie zostały jeszcze
+  potwierdzone w rejestrze urzędowym. Rejestry publiczne (Biała Lista, VIES, KRS, KRZ, MSiG) zostaną
+  sprawdzone w pass 2.
+- **Ograniczenie — komercyjne BIG:** KRD, ERIF i BIG InfoMonitor wymagają logowania/opłat, więc ich zawartość
+  jest poza zasięgiem tego raportu — odnotowane jako jawne ograniczenie, bez zgadywania zawartości.
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.

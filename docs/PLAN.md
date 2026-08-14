@@ -62,7 +62,7 @@ niepoparta źródłem lub poza celem.
 - [ ] **M2 -- Status prawny i podatkowy** — Biała Lista VAT (czynny podatnik VAT), VIES, status w KRS,
       publiczne rejestry dłużników: Krajowy Rejestr Zadłużonych (KRZ), MSiG; komercyjne (KRD/ERIF/BIG
       InfoMonitor) — z jawnym opisem ograniczeń dostępu. (służy celowi: status prawny)
-  - [ ] M2 -- stub
+  - [x] M2 -- stub
   - [ ] M2 -- real
 - [ ] **M3 -- Reputacja** — opinie Google Maps, GoWork, Oferteo, Facebook; merytoryka, oceny, daty,
       priorytet ostatnich 12 mies.; liczba opinii. (służy celowi: reputacja)
