@@ -74,7 +74,7 @@ niepoparta źródłem lub poza celem.
   - [ ] M4 -- real
 - [ ] **M5 -- Stabilność finansowa** — sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy,
       historia zmian, powiązania osobowe/kapitałowe. (służy celowi: stabilność finansowa z OBJECTIVE)
-  - [ ] M5 -- stub
+  - [x] M5 -- stub
   - [ ] M5 -- real
 - [ ] **M6 -- Synteza ryzyka** — tabela podsumowująca `Sekcja | Znaleziska | Ocena ryzyka`, sekcja
       „Czerwone Flagi" (jeśli są niepokojące sygnały), rekomendacja, pełna lista źródeł z datami dostępu,

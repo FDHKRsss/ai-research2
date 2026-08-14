@@ -101,5 +101,6 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
   `(do weryfikacji)` i bez sfabrykowanych metryk opinii; ocena ryzyka M3 = Średnie, spójna między sekcją
   a podsumowaniem. Dodany wiersz M3 w podsumowaniu oraz wpisy w Czerwonych Flagach i Źródłach.
 - **M4 -- stub:** gotowy i przetestowany. W `raport/KR-OFFICE-OSINT.md` dopisana sekcja M4 (Jakość usług i specjalizacja): oferta i zakres usług, specjalizacja (IT/transport/inne), ubezpieczenie OC (jawny zapis „nie znaleziono informacji o OC" z braku otwarcia źródeł — bez wymyślania zakresu/limitu), certyfikaty i uprawnienia, doświadczenie kadry, kanały kontaktu; dezambiguacja przez NIP 7011222044 / KRS 0001126380. Wszystko oznaczone `(do weryfikacji)`; brak sfabrykowanej oferty/specjalizacji/OC; ocena ryzyka M4 = Średnie, spójna między sekcją a podsumowaniem. Dodany wiersz M4 w podsumowaniu oraz wpisy w Czerwonych Flagach, Źródłach i Metodologii.
-- **M5–M6 -- stub:** do wykonania w kolejnych krokach pass 1 (dopisanie do TEGO SAMEGO pliku), następnie
-  pass 2 (real) dla M1 → M6.
+- **M5 -- stub:** gotowy i przetestowany. W `raport/KR-OFFICE-OSINT.md` dopisana sekcja M5 (Stabilność finansowa): sprawozdania finansowe (KRS/MSiG), kapitał zakładowy (5 000 zł), wiek firmy (rejestracja 2024-09-11), historia zmian, powiązania osobowe/kapitałowe; dezambiguacja przez NIP 7011222044 / KRS 0001126380. Wszystko oznaczone `(do weryfikacji)`; brak sfabrykowanych wielkości finansowych (przychody/zysk/strata nie wymyślane); ocena ryzyka M5 = Średnie, spójna między sekcją a podsumowaniem. Dodany wiersz M5 w podsumowaniu oraz wpisy w Czerwonych Flagach, Źródłach i Metodologii.
+- **M6 -- stub:** do wykonania w kolejnym kroku pass 1 (dopisanie do TEGO SAMEGO pliku), następnie pass 2
+  (real) dla M1 → M6.

@@ -3,9 +3,9 @@
 > **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub).
 > Dokument powstaje sekwencyjnie (po jednym kroku milestona). Obecnie wypełnione i kompletne są sekcje:
 > **M1 — Identyfikacja podmiotu i metryka**, **M2 — Status prawny i podatkowy**,
-> **M3 — Reputacja** oraz **M4 — Jakość usług i specjalizacja**. Pozostałe sekcje (M5–M6) zostaną
-> dopisane w kolejnych krokach pass 1, a w pass 2 (REAL) całość zostanie zweryfikowana i uziemiona
-> źródłami (URL + data dostępu).
+> **M3 — Reputacja**, **M4 — Jakość usług i specjalizacja** oraz **M5 — Stabilność finansowa**.
+> Pozostała sekcja (M6 — Synteza ryzyka) zostanie dopisana w kolejnym kroku pass 1, a w pass 2 (REAL)
+> całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu).
 
 ---
 
@@ -29,8 +29,9 @@
 | M2 — Status prawny i podatkowy | Biała Lista VAT, VIES, status KRS oraz rejestry dłużników (KRZ/MSiG) do weryfikacji w źródłach urzędowych; komercyjne BIG (KRD/ERIF/InfoMonitor) bez dostępu (jawne ograniczenie). Brak stwierdzonych negatywnych wpisów na etapie DRAFT. | **Średnie** — dane niezweryfikowane (do weryfikacji) i ograniczenie dostępu do BIG |
 | M3 — Reputacja | Opinie z Google Maps, GoWork, Oferteo i Facebooka do zebrania i weryfikacji; merytoryka, oceny i daty (priorytet ostatnich 12 mies.) nieznane na etapie DRAFT. Brak sfabrykowanych ocen ani treści opinii. | **Średnie** — dane nie zebrane (do weryfikacji), brak potwierdzonej reputacji |
 | M4 — Jakość usług i specjalizacja | Oferta, specjalizacja (IT/transport/inne), certyfikaty, doświadczenie kadry, kanały kontaktu oraz OC biura do ustalenia i weryfikacji; PKD 69.20.Z (powiązane z M1). Nieznane na etapie DRAFT. | **Średnie** — dane nie zweryfikowane (do weryfikacji), wzmianka o OC nie znaleziona z braku otwarcia źródeł |
+| M5 — Stabilność finansowa | Sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy, historia zmian oraz powiązania osobowe/kapitałowe do ustalenia i weryfikacji. Nieznane na etapie DRAFT; brak sfabrykowanych wielkości finansowych. | **Średnie** — dane nie zweryfikowane (do weryfikacji); młody wiek i minimalny kapitał jako ograniczenie danych |
 
-> Pozostałe wiersze (M5–M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
+> Pozostałe wiersze (M6) zostaną dopisane wraz z ukończeniem odpowiednich sekcji w pass 1.
 
 ---
 
@@ -331,6 +332,102 @@ sprzeczności).
 
 ---
 
+## Sekcja M5 — Stabilność finansowa
+
+### 5.1. Cel i zakres
+
+Sekcja odpowiada na pytanie o **stabilność finansową** badanego podmiotu (wymóg OBJECTIVE, uzupełnienie
+obszaru „stabilność finansowa"). Analizuję:
+
+- **sprawozdania finansowe** składane do KRS i ogłaszane w MSiG (bilans, rachunek zysków i strat,
+  ewentualna opinia biegłego),
+- **kapitał zakładowy** i jego relację do minimalnych wymogów dla sp. z o.o.,
+- **wiek firmy** (historia działalności od rejestracji),
+- **historię zmian** (zmiany w KRS — zarząd, wspólnicy, siedziba, przedmiot działalności),
+- **powiązania osobowe i kapitałowe** (wspólnicy, członkowie zarządu, podmioty powiązane).
+
+**Dezambiguacja podmiotu:** ustalenia M5 dotyczą wyłącznie KR Office sp. z o.o. identyfikowanej przez
+**NIP 7011222044 / KRS 0001126380**, ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa — nie innych firm
+o zbliżonej nazwie `(założenie metodologiczne)`.
+
+> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano** jeszcze rejestrów (KRS/MSiG) ani
+> sprawozdań finansowych — wszystkie ustalenia M5 mają status `(do weryfikacji)` albo `(brak danych
+> publicznych)`. **Nie fabrykuję** żadnych wielkości finansowych (przychody, koszty, zysk/strata, aktywa,
+> zobowiązania).
+
+### 5.2. Sprawozdania finansowe (KRS / MSiG)
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Sprawozdanie finansowe za ostatni rok obrotowy | do ustalenia | (do weryfikacji w KRS — ekrs.ms.gov.pl / Repozytorium Dokumentów Finansowych) |
+| Ogłoszenie sprawozdania w MSiG | do ustalenia | (do weryfikacji w MSiG — imsig.pl) |
+| Przychody / koszty / zysk (strata) netto | nieznane na etapie DRAFT | (do weryfikacji — nie fabrykuję wielkości) |
+| Aktywa / kapitał własny / zobowiązania | nieznane na etapie DRAFT | (do weryfikacji) |
+| Opinia biegłego rewidenta (o ile wymagana) | do ustalenia | (do weryfikacji) |
+
+- **Czego szukam:** czy spółka złożyła sprawozdanie finansowe do KRS (Repozytorium Dokumentów Finansowych)
+  i/lub ogłosiła je w MSiG. Młoda spółka (rejestracja 2024-09-11) może jeszcze nie mieć złożonych
+  sprawozdań — brak sprawozdania będzie traktowany jako **ograniczenie danych**, a nie jako dowód złej
+  kondycji `(założenie metodologiczne)`.
+- **Status na etapie DRAFT:** brak potwierdzenia — nie formułuję żadnych twierdzeń o wielkościach
+  finansowych `(do weryfikacji)`.
+
+### 5.3. Kapitał zakładowy
+
+- **Wartość wstępna:** 5 000 zł — jest to **ustawowe minimum** kapitału zakładowego spółki z o.o.
+  (art. 154 § 1 k.s.h.) `(do weryfikacji w KRS)`.
+- **Interpretacja:** minimalny kapitał zakładowy sam w sobie nie przesądza o złej kondycji (typowy dla
+  małych, nowo zakładanych biur), ale oznacza **niewielki bufor kapitałowy** na pokrycie ewentualnych
+  zobowiązań — podwyższona uwaga przy ocenie ryzyka `(założenie metodologiczne)`.
+- **Niespójność do rozstrzygnięcia (powiązane z M1):** zadeklarowane „91 udziałów = 4 550 zł" nie sumuje
+  się do kapitału 5 000 zł — do wyjaśnienia na pełnym odpisie KRS `(do weryfikacji)`.
+
+### 5.4. Wiek firmy
+
+- **Data rejestracji (wstępna):** 2024-09-11 — na dzień analizy (2026-08-15) spółka działa **krócej niż
+  2 lata** `(do weryfikacji w KRS)`.
+- **Interpretacja:** krótka historia działalności to **ograniczenie dostępności danych** (brak wieloletnich
+  sprawozdań, ograniczona liczba opinii), a nie automatyczny sygnał negatywny. Podwyższa jednak niepewność
+  co do stabilności finansowej `(założenie metodologiczne)`.
+
+### 5.5. Historia zmian
+
+| Pole | Wartość (wstępna) | Status |
+|---|---|---|
+| Zmiany w zarządzie | do ustalenia (czy były zmiany od rejestracji) | (do weryfikacji w KRS — dział 2) |
+| Zmiany wspólników / struktury kapitałowej | do ustalenia | (do weryfikacji w KRS — dział 1) |
+| Zmiany siedziby / adresu | do ustalenia | (do weryfikacji w KRS) |
+| Zmiany przedmiotu działalności (PKD) | do ustalenia | (do weryfikacji w KRS) |
+| Postępowania (upadłość/restrukturyzacja) — powiązane z M2 | do ustalenia | (do weryfikacji w KRS/KRZ) |
+
+- **Czego szukam:** częstych zmian zarządu lub wspólników, które mogłyby być sygnałem niestabilności. Brak
+  historii zmian u młodej spółki jest neutralny; **liczne zmiany** byłyby odnotowane jako czynnik ryzyka
+  `(założenie metodologiczne)`. Na etapie DRAFT nie stwierdzam żadnych zmian `(do weryfikacji)`.
+
+### 5.6. Powiązania osobowe i kapitałowe
+
+- **Wspólnik / zarząd (wstępnie):** Katarzyna Pydynowska — prezes zarządu i wspólnik (91 udziałów =
+  4 550 zł) `(do weryfikacji w pełnym odpisie KRS)`.
+- **Szukane informacje:** inne podmioty, w których Katarzyna Pydynowska pełni funkcje (powiązania
+  osobowe) oraz ewentualni pozostali wspólnicy (powiązania kapitałowe). Koncentracja własności w jednej
+  osobie jest typowa dla małego biura, ale oznacza **uzależnienie ciągłości działania od jednej osoby**
+  `(założenie metodologiczne)`.
+- **Status na etapie DRAFT:** powiązania **nieznane** — wymagają weryfikacji w KRS (działy 1 i 2) oraz
+  ewentualnie w publicznych wyszukiwarkach powiązań osobowych `(do weryfikacji)`. Nie formułuję twierdzeń
+  o powiązaniach z innymi podmiotami.
+
+### 5.7. Analiza i ocena ryzyka — M5
+
+**Ocena: Średnie.** Na etapie DRAFT stabilność finansowa jest **nieznana**: sprawozdania finansowe
+(KRS/MSiG), historia zmian i powiązania osobowe/kapitałowe mają status `(do weryfikacji)`, a żadne
+wielkości finansowe nie są znane (nie są fabrykowane). Dodatkowo **młody wiek spółki** i **minimalny
+kapitał zakładowy** ograniczają dostępność danych i podnoszą niepewność — to ograniczenia, a nie
+stwierdzone problemy. Po uziemieniu w pass 2 ocena może zostać obniżona do **Niskiej** (jeśli sprawozdania
+wykażą stabilność i brak negatywnych zmian) lub podniesiona do **Wysokiej** (w razie strat, braku
+sprawozdań mimo obowiązku, licznych zmian zarządu lub negatywnych wpisów).
+
+---
+
 ## Czerwone Flagi
 
 - **Nie stwierdzono jednoznacznych czerwonych flag** na etapie M1.
@@ -347,6 +444,11 @@ sprzeczności).
 - **M4 — nie stwierdzono** negatywnych sygnałów jakościowych na etapie DRAFT. Strona WWW, oferta,
   certyfikaty i kanały kontaktu nie zostały jeszcze otwarte/sprawdzone, a brak wzmianki o OC ma status
   `(do weryfikacji)` — nie jest to potwierdzony „brak ubezpieczenia".
+- **M5 — nie stwierdzono** negatywnych sygnałów finansowych na etapie DRAFT. Sprawozdania finansowe
+  (KRS/MSiG), historia zmian i powiązania osobowe/kapitałowe nie zostały jeszcze otwarte/sprawdzone —
+  brak danych ma status `(do weryfikacji)`, a nie potwierdzonej „stabilności finansowej". Młody wiek
+  spółki (rejestracja 2024-09-11) i minimalny kapitał zakładowy (5 000 zł) to sygnał do obserwacji
+  (ograniczenie danych / podwyższona uwaga), a nie czerwona flaga sam w sobie.
 
 ---
 
@@ -381,16 +483,23 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 - Profile firmy / wizytówki usługowe — Google Maps, Oferteo, Facebook — opis oferty i specjalizacji (pokrywa się z M3).
 - Ogłoszenia / materiały własne biura — ewentualna wzmianka o ubezpieczeniu OC biura.
 
+**M5 — Stabilność finansowa:**
+- KRS / e-KRS — ekrs.ms.gov.pl — sprawozdania finansowe (Repozytorium Dokumentów Finansowych), kapitał zakładowy, data rejestracji (wiek firmy), historia zmian (działy 1 i 2), powiązania osobowe/kapitałowe.
+- Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl — ogłoszenia o sprawozdaniach finansowych i zmianach w KRS.
+- Rejestr REGON — potwierdzenie daty rejestracji / wieku firmy.
+- Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — ewentualny rachunek rozliczeniowy (powiązane z M2).
+
 ---
 
 ## Metodologia i ograniczenia
 
 - **Metoda:** OSINT na źródłach publicznych i urzędowych; priorytet dla źródeł pierwotnych (KRS, Biała Lista,
   VIES, KRZ/MSiG); lustra (rejestr.io, aleo.com itp.) wyłącznie pomocniczo.
-- **Ograniczenia (pass 1):** wszystkie dane M1–M4 mają status rozpoznania wstępnego i nie zostały jeszcze
-  potwierdzone w rejestrze urzędowym, w źródłach opinii ani w materiałach o ofercie/jakości usług. Rejestry
-  publiczne (Biała Lista, VIES, KRS, KRZ, MSiG), portale opinii (Google Maps, GoWork, Oferteo, Facebook) oraz
-  strona WWW / materiały o ofercie zostaną sprawdzone w pass 2.
+- **Ograniczenia (pass 1):** wszystkie dane M1–M5 mają status rozpoznania wstępnego i nie zostały jeszcze
+  potwierdzone w rejestrze urzędowym, w źródłach opinii ani w materiałach o ofercie/jakości usług i
+  stabilności finansowej. Rejestry publiczne (Biała Lista, VIES, KRS, KRZ, MSiG), portale opinii (Google
+  Maps, GoWork, Oferteo, Facebook), strona WWW / materiały o ofercie oraz sprawozdania finansowe (KRS/MSiG)
+  zostaną sprawdzone w pass 2.
 - **Ograniczenie — komercyjne BIG:** KRD, ERIF i BIG InfoMonitor wymagają logowania/opłat, więc ich zawartość
   jest poza zasięgiem tego raportu — odnotowane jako jawne ograniczenie, bez zgadywania zawartości.
 - **Ograniczenie — reputacja:** młody wiek spółki (rejestracja 2024-09-11) i mała skala działalności mogą
@@ -400,5 +509,10 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
   materiałów własnych biura (strona WWW, ogłoszenia), które mogą być niekompletne lub nieaktualne. Wzmianka
   o ubezpieczeniu OC nie została na etapie DRAFT znaleziona (nie otwierano źródeł) — to brak danych, a nie
   potwierdzenie braku polisy; zakres/suma OC nie są zgadywane.
+- **Ograniczenie — stabilność finansowa:** młoda spółka (rejestracja 2024-09-11) może nie mieć jeszcze
+  złożonych sprawozdań finansowych w KRS/MSiG; brak sprawozdań traktowany jako ograniczenie danych, a nie
+  domniemanie negatywne. Kapitał zakładowy 5 000 zł (minimum ustawowe) sam w sobie nie przesądza o kondycji,
+  ale oznacza niewielki bufor kapitałowy. Powiązania osobowe/kapitałowe weryfikowane wyłącznie na podstawie
+  odpisu KRS.
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.

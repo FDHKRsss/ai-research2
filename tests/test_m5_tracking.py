@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M4 stub *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
+"""Tests for the M5 stub *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
 
-The M4 deliverable section itself is validated by tests/test_m4_stub.py. This file
-validates the M4-specific bookkeeping: PLAN.md must mark `M4 -- stub` done (and it
-must stay done), and ARCHITECTURE.md "Stan wdrożenia" must record the M4 stub as
-ready.
+The M5 deliverable section itself is validated by tests/test_m5_stub.py. This file
+validates the bookkeeping that wraps it: PLAN.md must mark `M5 -- stub` done (and
+nothing prematurely beyond M5), and ARCHITECTURE.md "Stan wdrożenia" must record the
+M5 stub as ready while narrowing the remaining stub work to M6.
 
-NOTE: the *progression* snapshot (exactly which stubs are done, and what the
-remaining work is) advances with each milestone and is owned by the current
-milestone's tracking test (see tests/test_m5_tracking.py). Here we only assert the
-M4 invariants plus "at least M1–M4 stubs remain done".
+This is the CURRENT milestone's tracking test, so it owns the exact progression
+snapshot (which stubs are done and what remains). Earlier milestones' tracking tests
+(test_m1..m4_tracking) only assert their own invariant plus a "min done / no regress"
+guarantee, so they stay valid as the snapshot advances.
 """
 import re
 import unittest
@@ -19,13 +19,11 @@ REPO = Path(__file__).resolve().parents[1]
 PLAN = REPO / "docs" / "PLAN.md"
 ARCH = REPO / "docs" / "ARCHITECTURE.md"
 
-# A milestone checkbox line looks like: "  - [x] M4 -- stub"
+# A milestone checkbox line looks like: "  - [x] M5 -- stub"
 MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = {f"M{i}" for i in range(1, 7)}
-# M1–M4 must remain done; later milestones may additionally be done (see the
-# current milestone's tracking test for the exact snapshot).
-MIN_DONE_STUBS = {"M1", "M2", "M3", "M4"}
+DONE_STUBS_EXPECTED = {"M1", "M2", "M3", "M4", "M5"}
 
 
 def _load(path: Path) -> str:
@@ -53,7 +51,7 @@ def _arch_wdrozenie(text: str) -> str:
     return rest if nxt == -1 else rest[:nxt]
 
 
-class TestM4Tracking(unittest.TestCase):
+class TestM5Tracking(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.plan = _load(PLAN)
@@ -63,77 +61,80 @@ class TestM4Tracking(unittest.TestCase):
 
     # -- PLAN.md --------------------------------------------------------------
 
-    def test_01_plan_m4_stub_marked_done(self):
+    def test_01_plan_m5_stub_marked_done(self):
         self.assertTrue(
-            self.statuses.get(("M4", "stub"), False),
-            "PLAN.md must mark M4 -- stub as [x]",
+            self.statuses.get(("M5", "stub"), False),
+            "PLAN.md must mark M5 -- stub as [x]",
         )
 
-    def test_02_plan_m4_real_still_pending(self):
+    def test_02_plan_m5_real_still_pending(self):
         self.assertFalse(
-            self.statuses.get(("M4", "real"), True),
-            "PLAN.md must keep M4 -- real as [ ] (only stub is done)",
+            self.statuses.get(("M5", "real"), True),
+            "PLAN.md must keep M5 -- real as [ ] (only stub is done)",
         )
 
-    def test_03_plan_m1_through_m4_stubs_remain_done(self):
+    def test_03_plan_only_m1_through_m5_stubs_done(self):
         done = {m for (m, p), d in self.statuses.items() if p == "stub" and d}
-        self.assertTrue(
-            MIN_DONE_STUBS <= done,
-            "M1/M2/M3/M4 -- stub must remain checked (later milestones may also be done)",
-        )
+        self.assertEqual(done, DONE_STUBS_EXPECTED,
+                         "exactly M1/M2/M3/M4/M5 -- stub may be checked; M6 must stay pending")
 
     def test_04_plan_no_real_milestone_marked_done(self):
         for (m, p), d in self.statuses.items():
             if p == "real":
                 self.assertFalse(d, f"PLAN.md must not mark {m} -- real as done in pass 1")
 
-    def test_05_plan_parent_m4_milestone_not_prematurely_done(self):
+    def test_05_plan_parent_m5_milestone_not_prematurely_done(self):
         found = False
         for line in self.plan.splitlines():
             stripped = line.strip()
-            if stripped.startswith("- [") and "**M4" in line:
+            if stripped.startswith("- [") and "**M5" in line:
                 self.assertTrue(
                     stripped.startswith("- [ ]"),
-                    "parent M4 milestone must stay unchecked until its real pass is done",
+                    "parent M5 milestone must stay unchecked until its real pass is done",
                 )
                 found = True
                 break
-        self.assertTrue(found, "parent M4 milestone checkbox line not found")
+        self.assertTrue(found, "parent M5 milestone checkbox line not found")
 
     # -- ARCHITECTURE.md ------------------------------------------------------
 
-    def test_06_arch_m4_stub_entry_present_and_green(self):
-        self.assertIn("**M4 -- stub:**", self.wdrozenie, "ARCH must list the M4 stub entry")
-        for marker in ("gotowy", "nie znaleziono informacji o OC"):
-            self.assertIn(marker, self.wdrozenie, f"ARCH M4 entry missing marker: {marker}")
+    def test_06_arch_m5_stub_entry_present_and_green(self):
+        self.assertIn("**M5 -- stub:**", self.wdrozenie, "ARCH must list the M5 stub entry")
+        self.assertIn("gotowy", self.wdrozenie, "ARCH M5 entry must record M5 as ready")
 
-    def test_07_arch_m4_stub_entry_lists_coverage(self):
-        for marker in ("specjalizacja", "ubezpieczenie OC", "certyfikaty",
-                       "doświadczenie kadry", "kanały kontaktu"):
+    def test_07_arch_m5_stub_entry_lists_coverage(self):
+        for marker in ("sprawozdania finansowe", "kapitał zakładowy", "wiek firmy",
+                       "historia zmian", "powiązania osobowe/kapitałowe"):
             self.assertIn(marker, self.wdrozenie,
-                          f"ARCH M4 entry must list covered dimension: {marker}")
+                          f"ARCH M5 entry must list covered dimension: {marker}")
         for ident in ("NIP 7011222044", "KRS 0001126380"):
             self.assertIn(ident, self.wdrozenie,
-                          f"ARCH M4 entry must record disambiguation identifier: {ident}")
+                          f"ARCH M5 entry must record disambiguation identifier: {ident}")
 
-    def test_08_arch_m4_stub_entry_states_risk(self):
-        self.assertIn("ocena ryzyka M4 = Średnie", self.wdrozenie,
-                      "ARCH M4 entry must state the M4 risk rating (Średnie)")
+    def test_08_arch_m5_stub_entry_states_risk_and_honesty(self):
+        self.assertIn("ocena ryzyka M5 = Średnie", self.wdrozenie,
+                      "ARCH M5 entry must state the M5 risk rating (Średnie)")
+        self.assertIn("sfabrykowanych wielkości finansowych", self.wdrozenie,
+                      "ARCH M5 entry must note that financial figures are not fabricated")
 
-    def test_09_arch_remaining_work_is_a_later_milestone(self):
-        # Remaining work moves forward each milestone; it must never regress to M4.
+    def test_09_arch_remaining_work_narrowed_to_m6(self):
+        self.assertIn("M6 -- stub", self.wdrozenie,
+                      "ARCH remaining-work bullet must be M6 -- stub")
         self.assertIn("do wykonania", self.wdrozenie,
                       "ARCH remaining-work bullet must say 'do wykonania'")
+        # The old too-wide bullets must be gone.
+        self.assertNotIn("M5–M6 -- stub", self.wdrozenie)
+        self.assertNotIn("M5-M6 -- stub", self.wdrozenie)
         self.assertNotIn("M4–M6 -- stub", self.wdrozenie)
-        self.assertNotIn("M4-M6 -- stub", self.wdrozenie)
         self.assertNotIn("M3–M6 -- stub", self.wdrozenie)
 
     def test_10_arch_earlier_entries_intact(self):
         for marker in ("11 testów zielonych", "tests.test_m1_stub",
                        "16 testów zielonych", "tests.test_m2_stub",
-                       "15 testów zielonych", "tests.test_m3_stub"):
+                       "15 testów zielonych", "tests.test_m3_stub",
+                       "**M4 -- stub:**"):
             self.assertIn(marker, self.wdrozenie,
-                          f"ARCH must keep earlier M1/M2/M3 stub entry intact: {marker}")
+                          f"ARCH must keep earlier M1/M2/M3/M4 stub entry intact: {marker}")
 
     # -- cross-consistency ----------------------------------------------------
 
