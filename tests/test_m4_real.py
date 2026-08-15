@@ -15,9 +15,11 @@ section must be GROUNDED in sources actually opened in pass 2:
 - risk rating M4 = Niskie/Średnie/Wysokie, consistent between the M4 section and the
   summary table.
 
-This file also owns the pass-2 *progression* snapshot after M4 -- real: the done reals
-are exactly M1, M2, M3, M4; M5 and M6 -- real remain pending; all M1..M6 stubs stay
-done; and the ARCH "remaining work" advances to M5 → M6.
+The pass-2 *progression* snapshot (exactly which reals are done / remaining work)
+is owned by the current milestone's tracking test (tests/test_m6_real.py after
+M6 -- real landed). This file only asserts the M4 invariants plus the durable
+cross-milestone invariants (all stubs done, reals completed in order, M1–M4 real
+remain done as a prefix).
 """
 import re
 import unittest
@@ -34,9 +36,8 @@ M4_HEADING = "Sekcja M4 — Jakość usług i specjalizacja"
 MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = ("M1", "M2", "M3", "M4", "M5", "M6")
-# Progression snapshot after M4 -- real lands: M1..M4 real done, M5/M6 pending.
-DONE_REALS = {"M1", "M2", "M3", "M4"}
-PENDING_REALS = ("M5", "M6")
+# M4's own real cannot land without M1–M3 -- real; all four must stay done forever.
+MUST_BE_DONE_REALS = {"M1", "M2", "M3", "M4"}
 ALLOWED_RISK = ("Niskie", "Średnie", "Wysokie")
 
 
@@ -98,6 +99,14 @@ def _plan_statuses(text: str) -> dict:
         if m:
             statuses[(m.group(2), m.group(3))] = m.group(1).lower() == "x"
     return statuses
+
+
+def _done_reals(statuses: dict) -> set:
+    return {m for (m, p), d in statuses.items() if p == "real" and d}
+
+
+def _pending_reals(statuses: dict) -> list:
+    return [m for m in ALL_MILESTONES if m not in _done_reals(statuses)]
 
 
 def _plan_parent_done(plan: str, milestone: str) -> bool:
@@ -272,28 +281,23 @@ class TestM4RealTracking(unittest.TestCase):
         self.assertTrue(_plan_parent_done(self.plan, "M4"),
                         "parent M4 milestone must be checked now that M4 -- real is done")
 
-    def test_14_plan_done_reals_exactly_m1_through_m4(self):
-        done_real = {m for (m, p), d in self.statuses.items() if p == "real" and d}
-        self.assertEqual(done_real, DONE_REALS,
-                         "exactly M1, M2, M3 and M4 -- real may be checked right now")
+    def test_14_plan_m1_through_m4_reals_remain_done(self):
+        done_real = _done_reals(self.statuses)
+        self.assertTrue(MUST_BE_DONE_REALS <= done_real,
+                        "M1/M2/M3/M4 -- real must remain done (later reals may also be done)")
 
-    def test_15_plan_m5_m6_real_still_pending(self):
-        for m in PENDING_REALS:
-            self.assertFalse(self.statuses.get((m, "real"), True),
-                             f"PLAN.md must keep {m} -- real as [ ]")
-
-    def test_16_plan_all_stubs_remain_done(self):
+    def test_15_plan_all_stubs_remain_done(self):
         for m in ALL_MILESTONES:
             self.assertTrue(self.statuses.get((m, "stub"), False),
                             f"PLAN.md must keep {m} -- stub as [x]")
 
-    def test_17_plan_real_milestones_done_in_order(self):
-        done_real = {m for (m, p), d in self.statuses.items() if p == "real" and d}
+    def test_16_plan_real_milestones_done_in_order(self):
+        done_real = _done_reals(self.statuses)
         done_idx = {i for i, m in enumerate(ALL_MILESTONES) if m in done_real}
         self.assertEqual(done_idx, set(range(len(done_idx))),
                          "real milestones must be completed in order (no gaps)")
 
-    def test_18_arch_m4_real_entry_present_and_grounded(self):
+    def test_17_arch_m4_real_entry_present_and_grounded(self):
         self.assertIn("**M4 -- real:**", self.wdrozenie,
                       "ARCH must list the M4 -- real entry")
         self.assertIn("uziemion", self.wdrozenie,
@@ -302,11 +306,18 @@ class TestM4RealTracking(unittest.TestCase):
             self.assertIn(marker, self.wdrozenie,
                           f"ARCH M4 -- real entry must record: {marker}")
 
-    def test_19_arch_remaining_work_is_m5_to_m6_real(self):
-        self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
-                      "ARCH must state pass 2 (REAL) is in progress")
-        self.assertIn("M5 → M6", self.wdrozenie,
-                      "ARCH remaining work must be M5 → M6 (after M4 -- real landed)")
+    def test_18_arch_pass2_state_matches_pending_reals(self):
+        pending = _pending_reals(self.statuses)
+        if pending:
+            self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                          "ARCH must state pass 2 (REAL) is in progress while reals are pending")
+            self.assertIn(" → ".join(pending), self.wdrozenie,
+                          "ARCH remaining work must list the pending reals (derived from PLAN.md)")
+        else:
+            self.assertIn("Pass 2 (REAL) zakończon", self.wdrozenie,
+                          "ARCH must declare pass 2 (REAL) complete once all reals are done")
+            self.assertNotIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                             "ARCH must not claim pass 2 is in progress when all reals are done")
 
 
 if __name__ == "__main__":

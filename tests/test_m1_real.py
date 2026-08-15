@@ -167,14 +167,22 @@ class TestM1RealDeliverable(unittest.TestCase):
         header = self.text.split("---")[0]
         self.assertIn("M1 — Identyfikacja podmiotu i metryka", header,
                       "status note must record M1 as REAL")
-        self.assertIn("uziemienie", header,
-                      "status note must record the grounded (real) sections")
+        self.assertTrue(
+            any(s in header.lower() for s in ("uziemione", "uziemienie")),
+            "status note must record the grounded (real) sections",
+        )
         done_real = {m for (m, p), d in self.statuses.items() if p == "real" and d}
         pending = [m for m in ALL_MILESTONES if m not in done_real]
-        for m in pending:
-            self.assertIn(m, header, f"status note must mention still-pending {m}")
-        self.assertIn("DRAFT/stub", header,
-                      "status note must mark the pending sections as DRAFT/stub")
+        if pending:
+            for m in pending:
+                self.assertIn(m, header, f"status note must mention still-pending {m}")
+            self.assertIn("DRAFT/stub", header,
+                          "status note must mark the pending sections as DRAFT/stub")
+        else:
+            self.assertIn("pass 2", header,
+                          "status note must record pass 2 once all reals are done")
+            self.assertNotIn("DRAFT/stub", header,
+                             "status note must not mark sections DRAFT/stub once pass 2 is complete")
 
 
 class TestM1RealTracking(unittest.TestCase):

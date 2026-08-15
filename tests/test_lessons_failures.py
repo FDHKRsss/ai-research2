@@ -6,8 +6,8 @@ The corrected second bullet must accurately describe what actually happened:
   regression when a later real milestone landed (the earlier claim that "testy real
   pękły hurtowo / 21 stale failures" was unsupported and must be gone),
 - the "which reals are done" snapshot has a SINGLE owner — the latest completed
-  real's test (e.g. tests/test_m4_real.py deliberately hardcodes DONE_REALS /
-  PENDING_REALS),
+  real's test (e.g. tests/test_m6_real.py deliberately hardcodes
+  DONE_REALS = {M1..M6}),
 - the first bullet (the genuine tests/test_m5_tracking.py tracking regression) is
   preserved.
 
@@ -24,7 +24,7 @@ TESTS_DIR = REPO / "tests"
 
 M1_REAL = TESTS_DIR / "test_m1_real.py"
 M2_REAL = TESTS_DIR / "test_m2_real.py"
-M4_REAL = TESTS_DIR / "test_m4_real.py"
+M6_REAL = TESTS_DIR / "test_m6_real.py"
 
 # A standalone (not "MUST_BE_DONE_REALS") hardcoded snapshot assignment.
 SNAPSHOT_DONE_RE = re.compile(r"(?<!\w)DONE_REALS\s*=\s*\{")
@@ -81,7 +81,7 @@ class TestFailuresLessonFix(unittest.TestCase):
                       "second bullet must say the real tests are forward-compatible")
 
     def test_03_second_bullet_names_single_snapshot_owner(self):
-        for marker in ("test_m1_real.py", "test_m2_real.py", "test_m4_real.py",
+        for marker in ("test_m1_real.py", "test_m2_real.py", "test_m6_real.py",
                        "JEDNEGO właściciela", "celowo hardkoduje"):
             self.assertIn(marker, self.real_bullet,
                           f"second bullet must name the single-owner design ({marker})")
@@ -113,12 +113,10 @@ class TestFailuresLessonFix(unittest.TestCase):
             )
 
     def test_06_single_owner_test_hardcodes_the_snapshot(self):
-        # The corrected bullet's example: test_m4_real.py is the snapshot owner.
-        src = _load(M4_REAL)
+        # The corrected bullet's example: test_m6_real.py is the snapshot owner.
+        src = _load(M6_REAL)
         self.assertRegex(src, SNAPSHOT_DONE_RE,
-                         "test_m4_real.py must hardcode DONE_REALS = {...} (single owner)")
-        self.assertRegex(src, SNAPSHOT_PENDING_RE,
-                         "test_m4_real.py must hardcode PENDING_REALS = (...) (single owner)")
+                         "test_m6_real.py must hardcode DONE_REALS = {...} (single owner)")
 
     def test_07_doc_has_no_todo_placeholders(self):
         self.assertIsNone(

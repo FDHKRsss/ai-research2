@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M5 (stub) deliverable: raport/KR-OFFICE-OSINT.md.
+"""Tests for the M5 deliverable section: raport/KR-OFFICE-OSINT.md.
 
-These tests validate the M5 -- Stabilność finansowa section against the
-requirement contract in docs/PLAN.md / docs/ARCHITECTURE.md (research deliverable,
-no application code exists in this project).
-
-M5 contract (PLAN.md / OBJECTIVE): sprawozdania finansowe (KRS/MSiG), kapitał
-zakładowy, wiek firmy, historia zmian, powiązania osobowe/kapitałowe. W pass 1
-(stub) wszystko musi być oznaczone "(do weryfikacji)" / "(brak danych publicznych)"
-/ "(założenie)" -- zero fabrykacji wielkości finansowych (przychody/koszty/
-zysk/strata/aktywa/zobowiązania).
+NOTE: M5 has progressed from stub to REAL in pass 2. The section's contract
+(sprawozdania finansowe KRS/MSiG, kapitał zakładowy, wiek firmy, historia zmian,
+powiązania osobowe/kapitałowe, disambiguation by NIP/KRS) is still validated
+here, together with the pass-2 grounding (brak złożonych sprawozdań, kapitał
+5 000 zł = minimum ustawowe, historia zmian = brak zmian po rejestracji, URLs +
+access dates). This mirrors tests/test_m3_stub.py / tests/test_m4_stub.py, which
+keep validating the section contract after the real pass landed.
 """
 import re
 import unittest
@@ -127,32 +125,38 @@ class TestM5StubDeliverable(unittest.TestCase):
         self.assertIn("powiązane z M1", self.m5,
                       "M5 must cross-reference the share/capital discrepancy back to M1")
 
-    # -- honesty / no fabrication in the DRAFT --------------------------------
+    # -- pass 2 (REAL): grounded findings, no fabricated figures ---------------
 
-    def test_10_m5_draft_disclaimer_sources_not_opened(self):
+    def test_10_m5_grounded_with_sources_and_access_dates(self):
+        self.assertIn("2026-08-15", self.m5, "M5 REAL must carry the access date 2026-08-15")
+        self.assertIn("brak złożonych", self.m5,
+                      "M5 REAL must record the absence of filed financial statements")
+        block = _sources_block(self.text, "M5")
+        self.assertTrue(block, "Źródła must contain an M5 source block")
+        self.assertIn("2026-08-15", block,
+                      "M5 (REAL) source block must carry the access date 2026-08-15")
         self.assertTrue(
-            any(m in self.m5 for m in ("nie otwierano", "nie otwarto")),
-            "M5 DRAFT must state that KRS/MSiG and financial statements have not been opened",
+            any(d in block for d in ("ekrs.ms.gov.pl", "imsig.pl", "rejestr.io",
+                                     "krs-pobierz.pl", "aleo.com")),
+            "M5 (REAL) source block must cite a concrete source domain",
         )
 
-    def test_11_m5_flags_everything_for_verification(self):
-        self.assertGreaterEqual(self.m5.count("(do weryfikacji"), 3,
-                                "M5 must flag multiple findings as '(do weryfikacji)'")
-        self.assertIn("do ustalenia", self.m5,
-                      "M5 must mark unknown fields as 'do ustalenia'")
-        self.assertIn("nieznane na etapie DRAFT", self.m5,
-                      "M5 must mark unknown financials as 'nieznane na etapie DRAFT'")
-
-    def test_12_m5_no_fabricated_financial_figures(self):
-        self.assertIn("fabrykuję", self.m5,
+    def test_11_m5_no_fabricated_financial_figures(self):
+        self.assertIn("fabrykacj", self.m5,
                       "M5 must state it does not fabricate financial figures")
-        # No invented revenue/cost/profit/asset/liability amounts in the DRAFT.
+        # No invented revenue/cost/profit/asset/liability amounts.
         for pattern in (r"przychod[yw]\b.*\d", r"zysk.*\d", r"strat[ay]\b.*\d",
                         r"aktywa.*\d", r"zobowiązani[ae].*\d"):
             self.assertIsNone(
                 re.search(pattern, self.m5, re.IGNORECASE),
                 f"M5 must not fabricate a financial figure matching: {pattern}",
             )
+
+    def test_12_no_post_dated_access_dates(self):
+        dates = re.findall(r"\b20\d{2}-\d{2}-\d{2}\b", self.text)
+        self.assertTrue(dates, "M5 REAL must carry access dates")
+        for d in dates:
+            self.assertLessEqual(d, "2026-08-15", f"access date must not be post-dated: {d}")
 
     # -- risk consistency ------------------------------------------------------
 
@@ -167,15 +171,15 @@ class TestM5StubDeliverable(unittest.TestCase):
         )
         self.assertIn("Średnie", risk_cell, "summary M5 risk cell must match M5 section (Średnie)")
 
-    def test_14_m5_summary_row_is_honest_unverified(self):
+    def test_14_m5_summary_row_grounded(self):
         m5 = [r for r in _summary_rows(self.text) if r and "M5" in r[0]]
         findings = m5[0][1]
-        self.assertIn("do ustalenia i weryfikacji", findings,
-                      "M5 summary findings must flag financial stability as not yet established")
-        self.assertIn("Nieznane na etapie DRAFT", findings,
-                      "M5 summary findings must say the details are unknown in the DRAFT")
-        self.assertIn("sfabrykowanych", findings,
-                      "M5 summary findings must note that no financial figures are fabricated")
+        self.assertNotIn("do ustalenia", findings,
+                         "M5 summary findings must not leave the financials as 'do ustalenia'")
+        self.assertNotIn("Nieznane na etapie DRAFT", findings,
+                         "M5 summary findings must not leave the financials as DRAFT-unknown")
+        self.assertIn("Brak złożonych", findings,
+                      "M5 summary findings must record the absence of financial statements")
 
     # -- cross-cutting hygiene -------------------------------------------------
 
@@ -184,23 +188,17 @@ class TestM5StubDeliverable(unittest.TestCase):
         self.assertIn("M5", sec, "Czerwone Flagi section must address M5")
         self.assertIn("nie stwierdzono", sec,
                       "M5 red-flags entry must be honest (no negative findings)")
-        self.assertTrue(
-            any(m in sec for m in ("nie zostały jeszcze otwarte", "nie zostały jeszcze sprawdzone")),
-            "M5 red-flags entry must note the financial sources have not been opened yet",
-        )
+        self.assertIn("sprawdzone 2026-08-15", sec,
+                      "M5 red-flags entry must record the 2026-08-15 check date")
 
-    def test_16_m5_sources_planned_no_fabricated_dates(self):
+    def test_16_m5_sources_grounded_with_access_dates(self):
         sec = _section(self.text, "Źródła")
-        for marker in ("M5 — Stabilność finansowa", "ekrs.ms.gov.pl", "imsig.pl",
-                       "Rejestr REGON", "Repozytorium Dokumentów Finansowych"):
-            self.assertIn(marker, sec, f"Źródła section missing planned M5 source: {marker}")
-        # M5 is still DRAFT: its source block must not carry a fabricated access date.
+        for marker in ("M5 — Stabilność finansowa", "ekrs.ms.gov.pl", "imsig.pl"):
+            self.assertIn(marker, sec, f"Źródła section missing M5 source: {marker}")
         block = _sources_block(self.text, "M5")
         self.assertTrue(block, "Źródła must contain an M5 source block")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", block),
-            "M5 (DRAFT) source block must not contain a fabricated access date",
-        )
+        self.assertIn("2026-08-15", block,
+                      "M5 (REAL) source block must carry the access date 2026-08-15")
 
     def test_17_m5_methodology_limitation_present(self):
         sec = _section(self.text, "Metodologia i ograniczenia")

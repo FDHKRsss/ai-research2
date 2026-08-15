@@ -121,11 +121,19 @@ class TestM4Tracking(unittest.TestCase):
                       "ARCH M4 entry must state the M4 risk rating (Średnie)")
 
     def test_09_arch_remaining_work_is_a_later_milestone(self):
-        self.assertIn("do wykonania", self.wdrozenie,
-                      "ARCH remaining-work bullet must say 'do wykonania'")
+        # The remaining-work bullet must never regress to the M4 (or earlier) stub range.
         self.assertNotIn("M4–M6 -- stub", self.wdrozenie)
         self.assertNotIn("M4-M6 -- stub", self.wdrozenie)
         self.assertNotIn("M3–M6 -- stub", self.wdrozenie)
+        pending = [m for m in ORDER if not self.statuses.get((m, "real"), False)]
+        if pending:
+            self.assertIn("do wykonania", self.wdrozenie,
+                          "ARCH remaining-work bullet must say 'do wykonania' while reals are pending")
+        else:
+            self.assertIn("Pass 2 (REAL) zakończon", self.wdrozenie,
+                          "ARCH must declare pass 2 (REAL) complete once all reals are done")
+            self.assertNotIn("do wykonania", self.wdrozenie,
+                             "ARCH must not leave a 'do wykonania' bullet after pass 2 is complete")
 
     def test_10_arch_earlier_entries_intact(self):
         for marker in ("11 testów zielonych", "tests.test_m1_stub",

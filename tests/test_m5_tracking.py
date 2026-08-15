@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M5 stub *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
+"""Tests for the M5 *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
 
 The M5 deliverable section itself is validated by tests/test_m5_stub.py. This file
-validates the M5-specific bookkeeping: PLAN.md must mark `M5 -- stub` done (and it
-must stay done), and ARCHITECTURE.md "Stan wdrożenia" must record the M5 stub as
-ready.
+validates the M5 bookkeeping plus the durable cross-milestone invariants.
 
-NOTE: the *progression* snapshot (exactly which stubs/reals are done, and what the
-remaining work is) advances with each milestone and is owned by the current
-milestone's tracking test (in pass 2: tests/test_m2_real.py). Here we only assert the
-M5 invariants plus "at least M1–M5 stubs remain done".
+Forward-compatible by design: completed milestones stay completed, so M5 -- stub
+and M5 -- real are asserted as DONE, and the parent-M5 checkbox is asserted to
+MATCH the M5 -- real status (derived from PLAN.md, not a hardcoded snapshot).
+The exact "which reals are done" snapshot lives in the current milestone's real
+test (tests/test_m6_real.py).
 """
 import re
 import unittest
@@ -24,8 +23,7 @@ MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = {f"M{i}" for i in range(1, 7)}
 ORDER = ("M1", "M2", "M3", "M4", "M5", "M6")
-# M1–M5 must remain done; later milestones may additionally be done (see the
-# current milestone's tracking test for the exact snapshot).
+# M1–M5 must remain done; later milestones may additionally be done.
 MIN_DONE_STUBS = {"M1", "M2", "M3", "M4", "M5"}
 
 
@@ -70,10 +68,10 @@ class TestM5Tracking(unittest.TestCase):
             "PLAN.md must mark M5 -- stub as [x]",
         )
 
-    def test_02_plan_m5_real_still_pending(self):
-        self.assertFalse(
-            self.statuses.get(("M5", "real"), True),
-            "PLAN.md must keep M5 -- real as [ ] (only stub is done)",
+    def test_02_plan_m5_real_marked_done(self):
+        self.assertTrue(
+            self.statuses.get(("M5", "real"), False),
+            "PLAN.md must mark M5 -- real as [x] (completed in pass 2)",
         )
 
     def test_03_plan_m1_through_m5_stubs_remain_done(self):
@@ -90,14 +88,15 @@ class TestM5Tracking(unittest.TestCase):
         self.assertEqual(done_idx, set(range(len(done_idx))),
                          "real milestones must be completed in order (no gaps)")
 
-    def test_05_plan_parent_m5_milestone_not_prematurely_done(self):
+    def test_05_plan_parent_m5_matches_m5_real_status(self):
+        m5_real = self.statuses.get(("M5", "real"), False)
         found = False
         for line in self.plan.splitlines():
             stripped = line.strip()
             if stripped.startswith("- [") and "**M5" in line:
-                self.assertTrue(
-                    stripped.startswith("- [ ]"),
-                    "parent M5 milestone must stay unchecked until its real pass is done",
+                self.assertEqual(
+                    stripped.startswith("- [x]"), m5_real,
+                    "parent M5 checkbox must match the M5 -- real status",
                 )
                 found = True
                 break
@@ -124,13 +123,8 @@ class TestM5Tracking(unittest.TestCase):
         self.assertIn("sfabrykowanych wielkości finansowych", self.wdrozenie,
                       "ARCH M5 entry must note that financial figures are not fabricated")
 
-    def test_09_arch_remaining_work_is_later_than_m5(self):
+    def test_09_arch_remaining_work_is_a_later_milestone(self):
         # Remaining work moves forward each milestone; it must never regress to M5.
-        self.assertIn("do wykonania", self.wdrozenie,
-                      "ARCH remaining-work bullet must say 'do wykonania'")
-        self.assertIn("pass 2", self.wdrozenie,
-                      "ARCH remaining work must be pass 2 (real)")
-        # The old too-wide bullets must be gone.
         self.assertNotIn("M5–M6 -- stub", self.wdrozenie)
         self.assertNotIn("M5-M6 -- stub", self.wdrozenie)
         self.assertNotIn("M4–M6 -- stub", self.wdrozenie)

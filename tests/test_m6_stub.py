@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M6 (stub) deliverable: raport/KR-OFFICE-OSINT.md.
+"""Tests for the M6 deliverable section: raport/KR-OFFICE-OSINT.md.
 
-These tests validate the M6 -- Synteza ryzyka section against the requirement
-contract in docs/PLAN.md / docs/ARCHITECTURE.md (research deliverable, no
-application code exists in this project).
-
-M6 contract (PLAN.md / OBJECTIVE): tabela podsumowująca `Sekcja | Znaleziska |
-Ocena ryzyka`, sekcja „Czerwone Flagi" (jeśli są niepokojące sygnały), rekomendacja,
-pełna lista źródeł z datami dostępu, metodologia i ograniczenia. W pass 1 (stub)
-wszystko musi być oznaczone "(do weryfikacji)" / "(założenie)" / "(brak danych
-publicznych)" -- zero fabrykacji potwierdzonego stanu faktycznego; rekomendacja
-i końcowa ocena ryzyka mają charakter warunkowy.
+NOTE: M6 has progressed from stub to REAL in pass 2. The section's contract
+(synthesis of the M1–M5 partial ratings, final risk rating, recommendation,
+"Czerwone Flagi" cross-reference, merged source list with access dates,
+methodology/limitations) is still validated here, together with the pass-2
+grounding. This mirrors tests/test_m5_stub.py, which keeps validating the M5
+contract after M5 -- real landed. The detailed REAL grounding is validated in
+tests/test_m6_real.py.
 """
 import re
 import unittest
@@ -81,7 +78,7 @@ def _summary_rows(text: str):
     return rows
 
 
-class TestM6StubDeliverable(unittest.TestCase):
+class TestM6Deliverable(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.text = _load()
@@ -107,57 +104,36 @@ class TestM6StubDeliverable(unittest.TestCase):
             self.assertIn(row_marker, self.m6,
                           f"M6 synthesis table must rate area as Średnie: {row_marker}")
 
-    def test_04_m6_explains_uniform_unverified_rating(self):
-        self.assertIn("niezweryfikowane", self.m6,
-                      "M6 must explain that the uniform rating is due to unverified data")
-        self.assertIn("nie otwarto źródeł", self.m6,
-                      "M6 must tie the rating to sources not yet being opened")
-
-    def test_05_m6_final_risk_rating_present(self):
+    def test_04_m6_final_risk_rating_present(self):
         self.assertIn("Końcowa ocena ryzyka: Średnie", self.m6,
                       "M6 must state the final risk rating (Średnie)")
 
-    def test_06_m6_recommendation_is_conditional(self):
+    def test_05_m6_recommendation_present_and_final(self):
         self.assertIn("Rekomendacja", self.m6, "M6 must contain a recommendation subsection")
-        self.assertIn("warunkow", self.m6,
-                      "M6 recommendation must be conditional on the DRAFT stage")
+        self.assertNotIn("warunkow", self.m6,
+                         "M6 recommendation must be final (not conditional on a later pass)")
+
+    def test_06_m6_carries_forward_observation_signals(self):
+        for marker in ("91 udziałów", "4 550 zł", "450 zł",
+                       "Art. 96 ust. 9h", "2025-06-27"):
+            self.assertIn(marker, self.m6, f"M6 missing carried-forward signal: {marker}")
 
     def test_07_m6_links_red_flags_and_summary(self):
         for marker in ("Czerwone Flagi", "Podsumowanie tabelaryczne"):
             self.assertIn(marker, self.m6,
                           f"M6 must cross-reference the '{marker}' section")
 
-    def test_08_m6_states_direction_of_change_in_pass2(self):
-        for marker in ("pass 2", "Niskiej", "Wysokiej"):
-            self.assertIn(marker, self.m6,
-                          f"M6 must state the possible direction of change in pass 2 ({marker})")
+    # -- pass 2 (REAL): grounded synthesis -----------------------------------
 
-    # -- honesty / no fabricated confirmation in the DRAFT --------------------
-
-    def test_09_m6_draft_disclaimer_sources_not_opened(self):
-        self.assertTrue(
-            any(m in self.m6 for m in ("nie zostały jeszcze otwarte", "nie otwarto")),
-            "M6 DRAFT must state that no official/opinion sources have been opened yet",
-        )
-
-    def test_10_m6_flags_findings_for_verification(self):
-        self.assertGreaterEqual(self.m6.count("(do weryfikacji"), 3,
-                                "M6 must flag multiple findings as '(do weryfikacji)'")
-        self.assertIn("sfabrykowanych", self.m6,
-                      "M6 must note it does not fabricate ratings/confirmations")
-
-    def test_11_m6_no_fabricated_positive_confirmation(self):
-        # The DRAFT must not claim a confirmed clean/positive status.
-        for pattern in (r"potwierdzon[eyao].*czynny", r"czysty.*status.*potwierdzon",
-                        r"bez negatywnych wpisów\."):
-            self.assertIsNone(
-                re.search(pattern, self.m6, re.IGNORECASE),
-                f"M6 must not fabricate a confirmed status matching: {pattern}",
-            )
+    def test_08_m6_grounded_in_pass2(self):
+        for marker in ("REAL", "pass 2", "2026-08-15"):
+            self.assertIn(marker, self.m6, f"M6 REAL missing grounding marker: {marker}")
+        self.assertIn("M1", self.m6, "M6 REAL must reference the M1 findings")
+        self.assertIn("M5", self.m6, "M6 REAL must reference the M5 findings")
 
     # -- risk consistency ------------------------------------------------------
 
-    def test_12_m6_risk_rating_consistent_summary_vs_section(self):
+    def test_09_m6_risk_rating_consistent_summary_vs_section(self):
         m6 = [r for r in _summary_rows(self.text) if r and "M6" in r[0]]
         self.assertTrue(m6, "summary table must contain an M6 row")
         risk_cell = m6[0][2]
@@ -165,60 +141,56 @@ class TestM6StubDeliverable(unittest.TestCase):
             any(v in risk_cell for v in ALLOWED_RISK),
             f"M6 risk cell must use Niskie/Średnie/Wysokie, got: {risk_cell!r}",
         )
-        self.assertIn("Średnie", risk_cell,
-                      "summary M6 risk cell must match M6 section (Średnie)")
+        self.assertIn("Średnie", risk_cell, "summary M6 risk cell must match M6 section (Średnie)")
 
-    def test_13_m6_summary_row_is_honest_unverified(self):
+    def test_10_m6_summary_row_grounded(self):
         m6 = [r for r in _summary_rows(self.text) if r and "M6" in r[0]]
         findings = m6[0][1]
-        self.assertIn("rekomendacja warunkowa", findings,
-                      "M6 summary findings must state the recommendation is conditional")
-        self.assertIn("pass 2", findings,
-                      "M6 summary findings must defer the decision to pass 2 (real)")
+        self.assertNotIn("warunkow", findings,
+                         "M6 summary findings must not describe the recommendation as conditional")
+        self.assertNotIn("dokończenia pass 2", findings,
+                         "M6 summary findings must not defer the decision to pass 2")
+        self.assertIn("Średnie", findings, "M6 summary findings must record the Średnie rating")
 
     # -- cross-cutting hygiene -------------------------------------------------
 
-    def test_14_m6_red_flags_honest(self):
+    def test_11_m6_red_flags_honest(self):
         sec = _section(self.text, "Czerwone Flagi")
-        self.assertIn("M6 — synteza", sec, "Czerwone Flagi section must address M6 synthesis")
-        self.assertIn("końcowa ocena ryzyka", sec,
-                      "M6 red-flags entry must state the final risk rating")
+        self.assertIn("M6", sec, "Czerwone Flagi section must address M6")
         self.assertIn("Średnie", sec, "M6 red-flags entry must state the Średnie rating")
-        self.assertIn("potwierdzonej", sec,
+        self.assertIn("potwierdzonych", sec,
                       "M6 red-flags entry must honestly say no confirmed red flag exists")
+        self.assertIn("dwa sygnały do obserwacji", sec,
+                      "M6 red-flags entry must carry the two observation signals")
 
-    def test_15_m6_sources_block_present_no_fabricated_dates(self):
+    def test_12_m6_sources_grounded_with_access_dates(self):
         sec = _section(self.text, "Źródła")
         self.assertIn("M6 — Synteza ryzyka", sec, "Źródła section missing the M6 block")
-        self.assertIn("scalona lista źródeł", sec,
-                      "M6 sources block must promise a merged source list in pass 2")
-        # M6 is still DRAFT: its source block must not carry a fabricated access date.
         block = _sources_block(self.text, "M6")
         self.assertTrue(block, "Źródła must contain an M6 source block")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", block),
-            "M6 (DRAFT) source block must not contain a fabricated access date",
-        )
+        self.assertIn("2026-08-15", block,
+                      "M6 (REAL) source block must carry the access date 2026-08-15")
+        self.assertIn("M1", block, "M6 source block must reference the grounded M1 sources")
+        self.assertIn("M5", block, "M6 source block must reference the grounded M5 sources")
 
-    def test_16_m6_methodology_limitation_present(self):
+    def test_13_m6_methodology_limitation_present(self):
         sec = _section(self.text, "Metodologia i ograniczenia")
         self.assertIn("synteza ryzyka", sec,
                       "Metodologia section must describe the M6 synthesis limitation")
-        self.assertIn("warunkowe", sec,
-                      "Metodologia must state the final rating/recommendation are conditional")
-        self.assertIn("nie stanowi rekomendacji do zawarcia umowy", sec,
+        self.assertIn("rekomendacji do zawarcia umowy", sec,
                       "Metodologia must say the document is not a standalone basis to contract")
+        self.assertNotIn("warunkowe", sec,
+                         "Metodologia must not leave the M6 rating 'warunkowe' (DRAFT)")
 
-    def test_17_document_status_note_mentions_m6(self):
-        # In pass 2 the status note groups the still-pending sections (currently M3–M6)
-        # and must keep recording M6 as pending until M6 -- real lands.
+    def test_14_document_status_note_mentions_m6(self):
         header = self.text.split("---")[0]
-        self.assertIn("M6", header,
-                      "document status note should record M6 as still pending real")
-        self.assertIn("DRAFT/stub", header,
-                      "document status note must mark M6 (and siblings) as DRAFT/stub")
+        self.assertIn("M6 — Synteza ryzyka", header,
+                      "document status note should record M6 as complete")
+        self.assertIn("pass 2", header, "document status note should record pass 2 (REAL)")
+        self.assertNotIn("DRAFT/stub", header,
+                         "document status note must not mark M6 as DRAFT/stub")
 
-    def test_18_m6_no_todo_placeholders(self):
+    def test_15_m6_no_todo_placeholders(self):
         # Only standalone placeholder markers count ("metodologia" contains "todo").
         self.assertIsNone(
             re.search(r"\b(todo|tbd|lorem|placeholder|fixme)\b", self.text, re.IGNORECASE),

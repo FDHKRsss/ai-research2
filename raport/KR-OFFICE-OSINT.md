@@ -1,13 +1,15 @@
 # Wywiad gospodarczy (OSINT) — KR Office sp. z o.o.
 
-> **Status dokumentu:** WERSJA ROBOCZA — pass 2 (REAL) W TOKU.
-> Ukończono uziemienie źródłami sekcji **M1 — Identyfikacja podmiotu i metryka**,
-> **M2 — Status prawny i podatkowy**, **M3 — Reputacja** oraz **M4 — Jakość usług i specjalizacja**
-> (M1/M2 potwierdzone w rejestrach urzędowych: KRS — API Ministerstwa Sprawiedliwości, Biała Lista VAT —
-> API MF, VIES — Komisja Europejska, MSiG; M3 sprawdzona w portalach opinii — Google Maps, GoWork,
-> Oferteo, Facebook; M4 sprawdzona w profilach publicznych — Oferteo, pkt.pl, GoWork, aleo.com).
-> Sekcje **M5–M6** pozostają w statusie DRAFT/stub i oczekują na uziemienie źródłami w kolejnych
-> krokach pass 2; ich dane nadal mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`.
+> **Status dokumentu:** WERSJA KOŃCOWA — pass 2 (REAL) zakończony.
+> Uziemione źródłami wszystkie sekcje **M1 — Identyfikacja podmiotu i metryka**,
+> **M2 — Status prawny i podatkowy**, **M3 — Reputacja**, **M4 — Jakość usług i specjalizacja**,
+> **M5 — Stabilność finansowa** oraz **M6 — Synteza ryzyka** (M1/M2 potwierdzone w rejestrach urzędowych:
+> KRS — API Ministerstwa Sprawiedliwości, Biała Lista VAT — API MF, VIES — Komisja Europejska, MSiG;
+> M3 sprawdzona w portalach opinii — Google Maps, GoWork, Oferteo, Facebook; M4 sprawdzona w profilach
+> publicznych — Oferteo, pkt.pl, GoWork, aleo.com; M5 sprawdzona w KRS — API MS, MSiG i lustrach KRS —
+> rejestr.io, krs-pobierz.pl, aleo.com; M6 zamyka raport końcową oceną ryzyka).
+> Wszystkie dane faktograficzne mają źródło (URL + data dostępu 2026-08-15) lub jawne oznaczenie
+> ograniczenia; nie stwierdzono sfabrykowanych danych.
 
 ---
 
@@ -19,7 +21,7 @@
 | Cel analizy | Ocena ryzyka nawiązania współpracy — reputacja, status prawny, jakość usług, stabilność finansowa |
 | Data analizy | 2026-08-15 |
 | Metoda | OSINT — rejestry urzędowe (KRS, Biała Lista/VAT, VIES, KRZ/MSiG) + opinie publiczne (Google Maps, GoWork, Oferteo, Facebook) |
-| Status | REAL (M1, M2, M3, M4) — dane identyfikacyjne i status prawno-podatkowy **potwierdzone** w rejestrach urzędowych (KRS — API MS, Biała Lista — API MF, VIES — KE, MSiG); reputacja (M3) sprawdzona w portalach opinii (0 opinii); jakość usług (M4) sprawdzona w profilach publicznych (Oferteo, pkt.pl, GoWork, aleo.com); sekcje M5–M6 nadal DRAFT/stub |
+| Status | REAL (M1, M2, M3, M4, M5, M6) — dane identyfikacyjne i status prawno-podatkowy **potwierdzone** w rejestrach urzędowych (KRS — API MS, Biała Lista — API MF, VIES — KE, MSiG); reputacja (M3) sprawdzona w portalach opinii (0 opinii); jakość usług (M4) sprawdzona w profilach publicznych (Oferteo, pkt.pl, GoWork, aleo.com); stabilność finansowa (M5) sprawdzona w KRS — API MS, MSiG i lustrach KRS (rejestr.io, krs-pobierz.pl, aleo.com); synteza ryzyka (M6) uziemiona na ustaleniach M1–M5 (dostęp 2026-08-15) |
 
 ---
 
@@ -31,12 +33,11 @@
 | M2 — Status prawny i podatkowy | Biała Lista VAT (API MF): status **„Czynny"** (czynny podatnik VAT), rejestracja VAT 2024-10-08, rachunek 52 1160 2202 0000 0006 3037 1440. VIES: **ważny** (PL7011222044). KRS: **aktywny**, bez wpisów o upadłości/restrukturyzacji/likwidacji (działy 4–6 puste). MSiG: 1 wpis (rejestracyjny). Sygnał do obserwacji: przywrócenie rejestracji VAT (Art. 96 ust. 9h, 2025-06-27). KRZ — brak bezpośredniego zapytania (ograniczenie); BIG (KRD/ERIF/InfoMonitor) — brak dostępu (jawne ograniczenie). | **Średnie** — status potwierdzony, ale sygnał przywrócenia VAT i niepełna weryfikacja dłużników |
 | M3 — Reputacja | **0 opinii** na wszystkich czterech platformach (Google Maps, GoWork, Oferteo, Facebook) oraz w lustrach (aleo.com, pkt.pl) — sprawdzone 2026-08-15. Brak merytoryki, ocen i dat do analizy; dezambiguacja przez NIP/KRS (np. KR Group sp. z o.o. to inny podmiot). | **Średnie** — brak opinii to ograniczenie danych (młody podmiot), nie sygnał negatywny |
 | M4 — Jakość usług i specjalizacja | Oferta uziemiona: prowadzenie ksiąg rachunkowych (spółki z o.o./akcyjne, fundacje, stowarzyszenia) + kompleksowa obsługa księgowo-kadrowa (kadry-płace; PKD 69.20.Z — powiązane z M1). Specjalizacja branżowa (IT/transport) nie potwierdzona — profil ogólny. OC: znaleziona deklaracja „Firma ubezpieczona OC" (pkt.pl) bez szczegółów polisy. Certyfikaty/kadra: brak danych publicznych; kontakt: adres + e-mail z KRS, brak jawnego telefonu/www. | **Średnie** — oferta i deklaracja OC potwierdzone, ale niepełne dane (brak szczegółów polisy, specjalizacji, certyfikatów, telefonu) |
-| M5 — Stabilność finansowa | Sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy, historia zmian oraz powiązania osobowe/kapitałowe do ustalenia i weryfikacji. Nieznane na etapie DRAFT; brak sfabrykowanych wielkości finansowych. | **Średnie** — dane nie zweryfikowane (do weryfikacji); młody wiek i minimalny kapitał jako ograniczenie danych |
-| M6 — Synteza ryzyka | Wszystkie obszary (M1–M5) ocenione jako Średnie z powodu danych niezweryfikowanych (do weryfikacji) lub pojedynczych zastrzeżeń; brak stwierdzonych czerwonych flag; rekomendacja warunkowa — decyzję uzależnić od pass 2 (real). | **Średnie** — końcowa ocena uwarunkowana niezweryfikowanymi danymi (DRAFT) |
+| M5 — Stabilność finansowa | Brak złożonych/ogłoszonych sprawozdań finansowych (pierwszy rok obrotowy kończy się 31.12.2025 — KRS; w MSiG wyłącznie 1 wpis rejestracyjny). Kapitał zakładowy 5 000 zł = minimum ustawowe (art. 154 § 1 k.s.h.). Wiek < 2 lata (rejestracja 2024-09-11). Brak zmian w KRS po rejestracji (3 wpisy z 11.09.2024). Własność/jednoosobowy zarząd: Katarzyna Pydynowska (91 udziałów = 4 550 zł; „nie posiada całości udziałów"). Brak publicznych wielkości finansowych (nie są fabrykowane). | **Średnie** — brak sprawozdań (młody podmiot) i minimalny kapitał ograniczają ocenę; historia rejestrowa stabilna |
+| M6 — Synteza ryzyka | Wszystkie obszary (M1–M5) ocenione jako Średnie z powodu pojedynczych zastrzeżeń lub niepełnych danych; brak potwierdzonych czerwonych flag; dwa sygnały do obserwacji (rozbieżność 91 udziałów = 4 550 zł vs kapitał 5 000 zł oraz przywrócenie rejestracji VAT „Art. 96 ust. 9h" / 2025-06-27); końcowa ocena ryzyka Średnie. | **Średnie** — końcowa ocena uwarunkowana niepełnymi danymi i sygnałami do obserwacji, bez potwierdzonych negatywnych wpisów |
 
-> Powyższa tabela zawiera wszystkie obszary M1–M6. Wiersze M1, M2, M3 i M4 zostały uziemione źródłami
-> w pass 2 (real); pozostałe wiersze (M5–M6) zachowują charakter wstępny (DRAFT, dane
-> niezweryfikowane) i zostaną zaktualizowane w kolejnych krokach pass 2.
+> Powyższa tabela zawiera wszystkie obszary M1–M6, każdy uziemiony źródłami w pass 2 (real, dostęp
+> 2026-08-15). Oceny cząstkowe M1–M5 oraz końcowa ocena M6 (Średnie) są ze sobą spójne.
 
 ---
 
@@ -435,85 +436,117 @@ obszaru „stabilność finansowa"). Analizuję:
 - **historię zmian** (zmiany w KRS — zarząd, wspólnicy, siedziba, przedmiot działalności),
 - **powiązania osobowe i kapitałowe** (wspólnicy, członkowie zarządu, podmioty powiązane).
 
-**Dezambiguacja podmiotu:** ustalenia M5 dotyczą wyłącznie KR Office sp. z o.o. identyfikowanej przez
+**Dezambiguacja podmiotu:** ustalenia M5 dotyczą wyłącznie KR OFFICE sp. z o.o. identyfikowanej przez
 **NIP 7011222044 / KRS 0001126380**, ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa — nie innych firm
-o zbliżonej nazwie `(założenie metodologiczne)`.
+o zbliżonej nazwie.
 
-> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano** jeszcze rejestrów (KRS/MSiG) ani
-> sprawozdań finansowych — wszystkie ustalenia M5 mają status `(do weryfikacji)` albo `(brak danych
-> publicznych)`. **Nie fabrykuję** żadnych wielkości finansowych (przychody, koszty, zysk/strata, aktywa,
-> zobowiązania).
+> **Uwaga (pass 2 — REAL):** sekcja została **uziemiona źródłami** w dniu 2026-08-15. Sprawdzono: odpis
+> aktualny i pełny KRS (API Ministerstwa Sprawiedliwości), Monitor Sądowy i Gospodarczy (imsig.pl) oraz
+> lustra KRS (rejestr.io, krs-pobierz.pl, aleo.com). **Nie publikuję żadnych wielkości finansowych**
+> (przychody, koszty, zysk/strata, aktywa, zobowiązania) — takie dane nie są publicznie dostępne dla tego
+> podmiotu, a pierwsze sprawozdanie finansowe nie zostało jeszcze złożone/ogłoszone.
 
 ### 5.2. Sprawozdania finansowe (KRS / MSiG)
 
-| Pole | Wartość (wstępna) | Status |
-|---|---|---|
-| Sprawozdanie finansowe za ostatni rok obrotowy | do ustalenia | (do weryfikacji w KRS — ekrs.ms.gov.pl / Repozytorium Dokumentów Finansowych) |
-| Ogłoszenie sprawozdania w MSiG | do ustalenia | (do weryfikacji w MSiG — imsig.pl) |
-| Przychody / koszty / zysk (strata) netto | nieznane na etapie DRAFT | (do weryfikacji — nie fabrykuję wielkości) |
-| Aktywa / kapitał własny / zobowiązania | nieznane na etapie DRAFT | (do weryfikacji) |
-| Opinia biegłego rewidenta (o ile wymagana) | do ustalenia | (do weryfikacji) |
+**Wynik: brak złożonych/ogłoszonych sprawozdań finansowych — podmiot nie opublikował jeszcze sprawozdania.**
 
-- **Czego szukam:** czy spółka złożyła sprawozdanie finansowe do KRS (Repozytorium Dokumentów Finansowych)
-  i/lub ogłosiła je w MSiG. Młoda spółka (rejestracja 2024-09-11) może jeszcze nie mieć złożonych
-  sprawozdań — brak sprawozdania będzie traktowany jako **ograniczenie danych**, a nie jako dowód złej
-  kondycji `(założenie metodologiczne)`.
-- **Status na etapie DRAFT:** brak potwierdzenia — nie formułuję żadnych twierdzeń o wielkościach
-  finansowych `(do weryfikacji)`.
+| Pole | Wartość (uziemiona) | Źródło (dostęp 2026-08-15) |
+|---|---|---|
+| Dzień kończący pierwszy rok obrotowy | **31.12.2025** | KRS (API MS, odpis aktualny — dział 3: `informacjaODniuKonczacymRokObrotowy`) |
+| Ogłoszenia w MSiG | **1 ogłoszenie** — wyłącznie wpis rejestracyjny (MSiG nr 185/2024 z 23.09.2024); **brak ogłoszenia o sprawozdaniu finansowym** | MSiG (`imsig.pl/szukaj?krs=0001126380`) |
+| Repozytorium Dokumentów Finansowych (RDF) | bezpośrednie zapytanie **zablokowane** (ochrona przed robotami, HTTP 403) | ekrs.ms.gov.pl/rdf/pd/search_df (ograniczenie) |
+| Wynik finansowy (przychody/koszty/zysk/strata) | **nie publikowane** | `(brak danych publicznych)` |
+| Bilans (aktywa/kapitał własny/zobowiązania) | **nie publikowane** | `(brak danych publicznych)` |
+
+- **Interpretacja:** spółka została zarejestrowana 11.09.2024, a jej **pierwszy rok obrotowy kończy się
+  31.12.2025** (potwierdzone w odpisie KRS). Pierwsze sprawozdanie finansowe (za okres do 31.12.2025)
+  należało zatwierdzić w 2026 r., a następnie złożyć do KRS oraz ogłosić w MSiG. **Na dzień dostępu
+  (2026-08-15) w MSiG widnieje wyłącznie wpis rejestracyjny — brak ogłoszenia o sprawozdaniu finansowym.**
+  Może to oznaczać, że pierwsze sprawozdanie nie zostało jeszcze zatwierdzone/ogłoszone (możliwe
+  opóźnienie) albo że MSiG nie zindeksował jeszcze ogłoszenia — nie jest to potwierdzony dowód naruszenia,
+  lecz sygnał do obserwacji `(do weryfikacji terminu w RDF)`.
+- **Czego NIE robię:** nie podaję żadnych wielkości finansowych — takich danych nie ma w otwartych
+  źródłach, a ich podanie byłoby fabrykacją.
 
 ### 5.3. Kapitał zakładowy
 
-- **Wartość wstępna:** 5 000 zł — jest to **ustawowe minimum** kapitału zakładowego spółki z o.o.
-  (art. 154 § 1 k.s.h.) `(do weryfikacji w KRS)`.
-- **Interpretacja:** minimalny kapitał zakładowy sam w sobie nie przesądza o złej kondycji (typowy dla
-  małych, nowo zakładanych biur), ale oznacza **niewielki bufor kapitałowy** na pokrycie ewentualnych
-  zobowiązań — podwyższona uwaga przy ocenie ryzyka `(założenie metodologiczne)`.
-- **Niespójność do rozstrzygnięcia (powiązane z M1):** zadeklarowane „91 udziałów = 4 550 zł" nie sumuje
-  się do kapitału 5 000 zł — do wyjaśnienia na pełnym odpisie KRS `(do weryfikacji)`.
+- **Wartość potwierdzona: 5 000 zł** — kapitał zakładowy wykazany w odpisie KRS (API MS), spójny
+  w lustrach (rejestr.io, aleo.com, krs-pobierz.pl).
+- **Relacja do minimum ustawowego:** 5 000 zł to **ustawowe minimum** kapitału zakładowego spółki z o.o.
+  (art. 154 § 1 k.s.h.); wartość nominalna udziału nie może być niższa niż 50 zł (art. 154 § 2 k.s.h.).
+  Źródło prawne: `https://lexlege.pl/ksh/art-154/` (dostęp 2026-08-15).
+- **Struktura udziałów (powiązane z M1):** przy nominale 50 zł kapitał 5 000 zł odpowiada **100 udziałom**.
+  Wykazany wspólnik posiada **91 udziałów o wartości 4 550 zł** (50 zł × 91), a pole
+  `czyPosiadaCaloscUdzialow` = **false** — zatem **9 udziałów (450 zł)** pozostaje niewykazanych publicznie.
+  Oznacza to, że w kapitale mogą istnieć udziały **drugiego, nieujawnionego w odpisie publicznym
+  wspólnika** — rozbieżność potwierdzona w KRS i otwarta (szczegóły w M1). Pole „informacja o liczbie
+  udziałów: większą liczbę udziałów" potwierdza, że umowa spółki dopuszcza posiadanie przez wspólnika
+  więcej niż jednego udziału (spójne z 91 udziałami).
+- **Interpretacja ryzyka:** minimalny kapitał zakładowy sam w sobie nie przesądza o złej kondycji (typowy
+  dla małych, nowo zakładanych biur), ale oznacza **niewielki bufor kapitałowy** na pokrycie ewentualnych
+  zobowiązań — podwyższona uwaga przy ocenie ryzyka (ocena metodologiczna).
 
 ### 5.4. Wiek firmy
 
-- **Data rejestracji (wstępna):** 2024-09-11 — na dzień analizy (2026-08-15) spółka działa **krócej niż
-  2 lata** `(do weryfikacji w KRS)`.
-- **Interpretacja:** krótka historia działalności to **ograniczenie dostępności danych** (brak wieloletnich
-  sprawozdań, ograniczona liczba opinii), a nie automatyczny sygnał negatywny. Podwyższa jednak niepewność
-  co do stabilności finansowej `(założenie metodologiczne)`.
+- **Data rejestracji potwierdzona: 2024-09-11** (KRS — API MS, odpis aktualny: `dataRejestracjiWKRS`).
+- **Wiek na dzień analizy (2026-08-15):** spółka działa **krócej niż 2 lata** (ok. 1 rok i 11 miesięcy).
+- **Interpretacja:** krótka historia działalności to **ograniczenie dostępności danych** (brak sprawozdań
+  finansowych i opinii — powiązane z M3), a nie automatyczny sygnał negatywny. Podwyższa jednak niepewność
+  co do stabilności finansowej — to ograniczenie, a nie dowód problemów.
 
 ### 5.5. Historia zmian
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (uziemiona) | Źródło (dostęp 2026-08-15) |
 |---|---|---|
-| Zmiany w zarządzie | do ustalenia (czy były zmiany od rejestracji) | (do weryfikacji w KRS — dział 2) |
-| Zmiany wspólników / struktury kapitałowej | do ustalenia | (do weryfikacji w KRS — dział 1) |
-| Zmiany siedziby / adresu | do ustalenia | (do weryfikacji w KRS) |
-| Zmiany przedmiotu działalności (PKD) | do ustalenia | (do weryfikacji w KRS) |
-| Postępowania (upadłość/restrukturyzacja) — powiązane z M2 | do ustalenia | (do weryfikacji w KRS/KRZ) |
+| Wpisy w KRS (historia) | **3 wpisy, wszystkie z 11.09.2024**: nr 1 „REJESTRACJA W KRAJOWYM REJESTRZE SĄDOWYM", nr 2 „ZMIANA DANYCH W REJESTRZE" (NIP), nr 3 „ZMIANA DANYCH W REJESTRZE" (REGON) | KRS (API MS, odpis pełny — `naglowekP.wpis`) |
+| Ostatni wpis / ostatnia zmiana | **11.09.2024** (wpis nr 3) | KRS (API MS, odpis aktualny — `dataOstatniegoWpisu`); krs-pobierz.pl |
+| Zmiany w zarządzie | **brak** — od rejestracji ta sama osoba (Katarzyna Pydynowska, prezes) | KRS (API MS, dział 2) |
+| Zmiany wspólników / struktury kapitałowej | **brak** | KRS (API MS, dział 1) |
+| Zmiany siedziby / adresu | **brak** | KRS (API MS, dział 1) |
+| Zmiany przedmiotu działalności (PKD) | **brak** (PKD 69.20.Z od rejestracji) | KRS (API MS, dział 3) |
 
-- **Czego szukam:** częstych zmian zarządu lub wspólników, które mogłyby być sygnałem niestabilności. Brak
-  historii zmian u młodej spółki jest neutralny; **liczne zmiany** byłyby odnotowane jako czynnik ryzyka
-  `(założenie metodologiczne)`. Na etapie DRAFT nie stwierdzam żadnych zmian `(do weryfikacji)`.
+- **Wniosek:** od rejestracji (11.09.2024) **nie odnotowano żadnych zmian** w zarządzie, wspólnikach,
+  siedzibie ani PKD — trzy wpisy w KRS to wyłącznie rejestracja i techniczne uzupełnienia (NIP, REGON).
+  To **stabilna, niezmienna historia rejestrowa** — sygnał neutralny/pozytywny (brak rotacji zarządu
+  i struktury właścicielskiej, która bywa oznaką niestabilności). Uwaga: krótki okres działalności
+  ogranicza moc tego wniosku.
 
 ### 5.6. Powiązania osobowe i kapitałowe
 
-- **Wspólnik / zarząd (wstępnie):** Katarzyna Pydynowska — prezes zarządu i wspólnik (91 udziałów =
-  4 550 zł) `(do weryfikacji w pełnym odpisie KRS)`.
-- **Szukane informacje:** inne podmioty, w których Katarzyna Pydynowska pełni funkcje (powiązania
-  osobowe) oraz ewentualni pozostali wspólnicy (powiązania kapitałowe). Koncentracja własności w jednej
-  osobie jest typowa dla małego biura, ale oznacza **uzależnienie ciągłości działania od jednej osoby**
-  `(założenie metodologiczne)`.
-- **Status na etapie DRAFT:** powiązania **nieznane** — wymagają weryfikacji w KRS (działy 1 i 2) oraz
-  ewentualnie w publicznych wyszukiwarkach powiązań osobowych `(do weryfikacji)`. Nie formułuję twierdzeń
-  o powiązaniach z innymi podmiotami.
+- **Właściciel / zarząd (potwierdzone):** jedyną ujawnioną w odpisie osobą jest **Katarzyna Pydynowska** —
+  prezes zarządu (dział 2) i wspólnik (dział 1: 91 udziałów = 4 550 zł); wg lustra rejestr.io jest też
+  **beneficjentem rzeczywistym** („wspólnik spółki z o.o."). W KRS dane osobowe są **zamaskowane**
+  (K******** P*********, PESEL 8**********); pełne nazwisko potwierdzone w lustrach (rejestr.io,
+  aleo.com, krs-pobierz.pl) oraz przez adres e-mail K.PYDYNOWSKA@GMAIL.COM.
+- **Koncentracja własności:** kontrola skoncentrowana w **jednej osobie** (właściciel = prezes). Typowe
+  dla małego biura, ale oznacza **uzależnienie ciągłości działania od jednej osoby** (ryzyko operacyjne,
+  nie finansowe per se).
+- **Działalność z innymi podmiotami:** KRS (`czyProwadziDzialalnoscZInnymiPodmiotami` = **false**) —
+  spółka **nie prowadzi** działalności z innymi podmiotami na podstawie umowy spółki cywilnej.
+- **Powiązania z innymi spółkami (ograniczenie):** z powodu maskowania danych osobowych w publicznym
+  odpisie KRS **nie da się jednoznacznie przypisać** Katarzynie Pydynowskiej funkcji w innych podmiotach.
+  Wyszukiwanie publiczne nazwiska „Katarzyna Pydynowska" zwraca profile w różnych firmach — np. osoba
+  o tym nazwisku figuruje w dziale „Rozliczenia & fakturowanie" spółki GOLDFINCH BUSINESS SOLUTIONS
+  Sp. z o.o. (ksiegowosc@goldfinchtrade.com). **Bez PESEL nie można potwierdzić, czy to ta sama osoba**
+  — to jawne ograniczenie, a nie stwierdzone powiązanie kapitałowe/osobowe. Pełna weryfikacja powiązań
+  wymaga odpisu KRS z ujawnieniem PESEL lub danych z CRBR `(do weryfikacji)`.
+- **Drugi wspólnik (powiązane z M1):** pole `czyPosiadaCaloscUdzialow` = false wskazuje, że **może
+  istnieć drugi wspólnik** (9 udziałów / 450 zł), którego publiczny odpis nie ujawnia — otwarta kwestia
+  struktury kapitałowej do rozstrzygnięcia na pełnym odpisie z ujawnieniem wszystkich wspólników.
 
 ### 5.7. Analiza i ocena ryzyka — M5
 
-**Ocena: Średnie.** Na etapie DRAFT stabilność finansowa jest **nieznana**: sprawozdania finansowe
-(KRS/MSiG), historia zmian i powiązania osobowe/kapitałowe mają status `(do weryfikacji)`, a żadne
-wielkości finansowe nie są znane (nie są fabrykowane). Dodatkowo **młody wiek spółki** i **minimalny
-kapitał zakładowy** ograniczają dostępność danych i podnoszą niepewność — to ograniczenia, a nie
-stwierdzone problemy. Po uziemieniu w pass 2 ocena może zostać obniżona do **Niskiej** (jeśli sprawozdania
-wykażą stabilność i brak negatywnych zmian) lub podniesiona do **Wysokiej** (w razie strat, braku
-sprawozdań mimo obowiązku, licznych zmian zarządu lub negatywnych wpisów).
+**Ocena: Średnie.** Po stronie pozytywnej: **stabilna historia rejestrowa** (brak jakichkolwiek zmian
+w KRS po rejestracji — 3 wpisy z 11.09.2024), **brak negatywnych wpisów** w odpisie KRS (działy 4–6
+puste — powiązane z M2) oraz **spójna struktura** (jedna osoba w roli właściciela i prezesa, kapitał
+w wysokości minimum ustawowego). Ocena nie jest jednak „Niska", bo: (1) **brak sprawozdań finansowych**
+(pierwszy rok obrotowy kończy się 31.12.2025, a w MSiG brak ogłoszenia na 2026-08-15) — nie ma żadnych
+publicznych danych o wyniku finansowym, (2) **minimalny kapitał zakładowy** (5 000 zł) i **krótki staż**
+(< 2 lata) ograniczają dowody stabilności, (3) **otwarta kwestia 9 udziałów / 450 zł** (powiązane z M1)
+oraz (4) **koncentracja własności w jednej osobie**. To niepełne dane i pojedyncze zastrzeżenia, a nie
+stwierdzone problemy — stąd **Średnie**, a nie Wysoka. Po złożeniu pierwszego sprawozdania finansowego
+i wyjaśnieniu struktury udziałów ocena może zostać obniżona do **Niskiej** lub — w razie strat/naruszeń —
+podniesiona do **Wysokiej**.
 
 ---
 
@@ -522,63 +555,71 @@ sprawozdań mimo obowiązku, licznych zmian zarządu lub negatywnych wpisów).
 ### 6.1. Cel i zakres
 
 Sekcja zamyka raport i odpowiada na pytanie z celu analizy: **jakie jest ryzyko nawiązania współpracy
-z KR Office sp. z o.o.** Agreguję tu oceny cząstkowe z obszarów M1–M5 w jedną **końcową ocenę ryzyka**,
-formułuję **rekomendację** dla zleceniodawcy oraz wskazuję otwarte kwestie do rozstrzygnięcia w pass 2
-(REAL). Synteza opiera się wyłącznie na ustaleniach sekcji M1–M5 i jest spójna z sekcjami
+z KR Office sp. z o.o.** Agreguje oceny cząstkowe z obszarów M1–M5 w jedną **końcową ocenę ryzyka**,
+formułuje **rekomendację** dla zleceniodawcy oraz zbiera sygnały do obserwacji. Synteza opiera się
+wyłącznie na uziemionych źródłami ustaleniach sekcji M1–M5 (dostęp 2026-08-15) i jest spójna z sekcjami
 „Podsumowanie tabelaryczne" i „Czerwone Flagi".
 
-> **Uwaga (pass 2 — w toku):** sekcja M5 nadal nie ma otwartych źródeł, więc jej dane mają status
-> `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`; sekcja M4 została już uziemiona.
-> Końcowa ocena ryzyka ma charakter **warunkowy** i zostanie zaktualizowana po uziemieniu źródeł w pass 2.
+> **Uwaga (pass 2 — REAL):** sekcja M6 została **uziemiona** na ustaleniach sekcji M1–M5, które zostały
+> potwierdzone w rejestrach urzędowych i portalach opinii w dniu 2026-08-15. Synteza nie wprowadza nowych
+> danych ani nowych źródeł — scala oceny cząstkowe w końcową ocenę ryzyka.
 
 ### 6.2. Synteza ocen cząstkowych (M1–M5)
 
 | Obszar | Ocena cząstkowa | Kluczowe zastrzeżenie / status |
 |---|---|---|
-| M1 — Identyfikacja i metryka | Średnie | identyfikacja potwierdzona; rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł |
-| M2 — Status prawny i podatkowy | Średnie | czynny VAT / ważny VIES / aktywny KRS potwierdzone; sygnał przywrócenia VAT (2025-06-27); BIG poza dostępem `(brak danych publicznych)` |
-| M3 — Reputacja | Średnie | 0 opinii na Google Maps/GoWork/Oferteo/Facebook + lustra (sprawdzone 2026-08-15); brak sfabrykowanych ocen i treści — brak opinii = ograniczenie, nie sygnał negatywny |
+| M1 — Identyfikacja i metryka | Średnie | identyfikacja potwierdzona w KRS/Białej Liście; rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł (9 udziałów / 450 zł niewyjaśnione) |
+| M2 — Status prawny i podatkowy | Średnie | czynny VAT / ważny VIES / aktywny KRS potwierdzone; sygnał przywrócenia VAT „Art. 96 ust. 9h" / 2025-06-27; KRZ/BIG poza dostępem `(brak danych publicznych)` |
+| M3 — Reputacja | Średnie | 0 opinii na Google Maps/GoWork/Oferteo/Facebook + lustra (sprawdzone 2026-08-15); brak opinii = ograniczenie, nie sygnał negatywny |
 | M4 — Jakość usług i specjalizacja | Średnie | oferta uziemiona (księgi rachunkowe + kadry-płace, PKD 69.20.Z); deklaracja OC (pkt.pl) bez szczegółów; specjalizacja branżowa nie potwierdzona; certyfikaty/kadra/telefon — brak danych publicznych |
-| M5 — Stabilność finansowa | Średnie | sprawozdania / historia zmian / powiązania nieznane `(do weryfikacji)`; młody wiek, minimalny kapitał |
+| M5 — Stabilność finansowa | Średnie | brak sprawozdań finansowych (pierwszy rok obrotowy 31.12.2025); historia rejestrowa stabilna (3 wpisy z 11.09.2024); minimalny kapitał 5 000 zł; jednoosobowa własność/zarząd |
 
-- **Wniosek z syntezy:** wszystkie obszary otrzymały ocenę **Średnie**. Dla M1 i M2 wynika to z
-  **pojedynczych zastrzeżeń/niepełnych danych** mimo pozytywnego potwierdzenia w rejestrach; dla M3
+- **Wniosek z syntezy:** wszystkie obszary otrzymały ocenę **Średnie**. Dla M1 i M2 wynika to
+  z **pojedynczych zastrzeżeń/niepełnych danych** mimo pozytywnego potwierdzenia w rejestrach; dla M3
   z **braku opinii** (0 opinii — ograniczenie danych, nie sygnał negatywny); dla M4 z **niepełnych danych
   o jakości usług** (oferta i deklaracja OC potwierdzone, ale brak szczegółów polisy, specjalizacji,
-  certyfikatów i telefonu); dla M5 z danych **niezweryfikowanych** (nie otwarto źródeł). To spójny obraz
-  niepewności informacyjnej `(założenie metodologiczne)`.
-- **Kierunek zmiany w pass 2:** jeśli kolejne źródła potwierdzą „czysty" status (brak wpisów w KRZ/BIG,
-  spójna struktura kapitałowa, potwierdzenie szczegółów polisy OC i sprawozdania bez negatywnych sygnałów),
-  ocena może spaść do **Niskiej**. Negatywne wpisy w rejestrach, pojawienie się negatywnych opinii lub
-  rażące braki podniosłyby ocenę do **Wysokiej**.
+  certyfikatów i telefonu); dla M5 z **braku sprawozdań finansowych** (pierwszy rok obrotowy 31.12.2025,
+  brak ogłoszenia w MSiG na 2026-08-15) przy stabilnej historii rejestrowej, minimalnym kapitale
+  i jednoosobowej własności.
+- **Czynniki mogące zmienić ocenę w przyszłości:** ocena może zostać obniżona do **Niskiej**, jeśli
+  podmiot złoży pierwsze sprawozdanie finansowe bez negatywnych sygnałów, wyjaśni strukturę udziałów
+  (91 udziałów = 4 550 zł vs kapitał 5 000 zł) i potwierdzi szczegóły polisy OC; negatywne wpisy
+  w rejestrach dłużników, wzorzec negatywnych opinii lub rażące braki podniosłyby ocenę do **Wysokiej**.
 
 ### 6.3. Rekomendacja
 
-- **Rekomendacja ma charakter warunkowy.** Dokument jest użyteczny jako rozpoznanie (identyfikacja podmiotu,
-  status prawno-podatkowy, reputacja i jakość usług są już sprawdzone), ale **nie może być jedyną podstawą
-  decyzji** o nawiązaniu współpracy — kluczowy obszar M5 wciąż ma status `(do weryfikacji)`, a część danych
-  M4 (szczegóły polisy OC, certyfikaty, kadra, telefon) pozostaje niepubliczna.
-- **Przed podjęciem decyzji należy dokończyć pass 2 (REAL):** sprawdzić sprawozdania finansowe (M5) oraz
-  rozstrzygnąć rozbieżność udziałów vs kapitał (pełny odpis KRS) i wyjaśnić przyczynę wcześniejszego
-  wykreślenia z rejestru VAT (sygnał z M2). W zakresie M4 pozostało do uzupełnienia u samego biura: kopia
-  polisy OC (zakres/suma), potwierdzenie specjalizacji i doświadczenia kadry oraz aktualny telefon.
-  Reputacja (M3) została już sprawdzona — 0 opinii na dostępnych platformach.
-- **Wstępnie:** nie stwierdzono potwierdzonych negatywnych wpisów w rejestrach; identyfikatory są
-  wewnętrznie spójne, a status VAT/VIES/KRS pozytywny. Sygnały do obserwacji (przywrócenie VAT, rozbieżność
-  udziałów, młody wiek, minimalny kapitał) uzasadniają **ostrożność**, ale nie są dowodem nierzetelności.
-  Kontynuacja due diligence jest uzasadniona.
+- **Rekomendacja końcowa: współpraca możliwa przy zachowaniu ostrożności i dokończeniu due diligence
+  bezpośrednio u biura.** Na podstawie zweryfikowanych danych (dostęp 2026-08-15) nie stwierdzono
+  potwierdzonych negatywnych wpisów w rejestrach urzędowych: podmiot jest **aktywny** w KRS (działy 4–6
+  puste — brak upadłości/restrukturyzacji/likwidacji), **czynnym podatnikiem VAT** (Biała Lista), ma
+  **ważny numer VAT-UE** (VIES), a w MSiG figuruje wyłącznie wpis rejestracyjny. Identyfikatory
+  (KRS 0001126380, NIP 7011222044, REGON 529621586) są wzajemnie spójne.
+- **Przed zawarciem umowy zaleca się uzyskać bezpośrednio od biura:** (1) kopię polisy OC (zakres i suma
+  gwarancyjna) — obecnie znana jest wyłącznie deklaracja „Firma ubezpieczona OC" z pkt.pl, bez szczegółów;
+  (2) wyjaśnienie rozbieżności „91 udziałów = 4 550 zł" vs kapitał 5 000 zł (9 udziałów / 450 zł) — pełny
+  odpis KRS z ujawnieniem wszystkich wspólników; (3) wyjaśnienie przyczyny wcześniejszego wykreślenia
+  i przywrócenia rejestracji VAT („Art. 96 ust. 9h", 2025-06-27); (4) potwierdzenie specjalizacji
+  i doświadczenia kadry oraz aktualny telefon.
+- **Monitorować:** termin złożenia pierwszego sprawozdania finansowego (pierwszy rok obrotowy kończy się
+  31.12.2025; na 2026-08-15 brak ogłoszenia w MSiG) oraz pojawienie się pierwszych opinii klientów (obecnie
+  0 opinii na Google Maps/GoWork/Oferteo/Facebook).
+- **Ryzyko: Średnie.** Przeważają czynniki pozytywne (spójna identyfikacja, czynny VAT, czysty odpis KRS),
+  ale młody wiek spółki, minimalny kapitał, brak sprawozdań finansowych i opinii oraz dwa sygnały do
+  obserwacji nie pozwalają na ocenę „Niską" bez uzupełnienia powyższych dokumentów.
 
 ### 6.4. Czerwone Flagi i końcowa ocena ryzyka
 
 - **Czerwone Flagi:** sekcja „Czerwone Flagi" (poniżej) zbiera wszystkie zidentyfikowane sygnały. Nie
-  stwierdzono **potwierdzonych** czerwonych flag; sygnały do obserwacji to rozbieżność liczby udziałów vs
-  kapitał zakładowy (M1/M5) oraz przywrócenie rejestracji VAT (M2).
-- **Końcowa ocena ryzyka: Średnie.** Uzasadnienie: M1–M2 są potwierdzone w rejestrach, ale niosą pojedyncze
-  zastrzeżenia; M3 wykazuje **0 opinii** (ograniczenie danych); M4 ma uziemioną ofertę i deklarację OC, ale
-  niepełne dane (szczegóły polisy, specjalizacja, certyfikaty, kadra, telefon); M5 jest niezweryfikowane
-  `(do weryfikacji)`. Komercyjne BIG oraz młody wiek spółki dodatkowo ograniczają dostępność informacji.
-  Nie jest to ocena „Wysoka" (brak stwierdzonych negatywnych wpisów) ani „Niska" (brak pełnego potwierdzenia
-  reputacji, szczegółów OC i sprawozdań). Ocena zostanie zaktualizowana w pass 2 (real).
+  stwierdzono **potwierdzonych** czerwonych flag; dwa sygnały do obserwacji to (a) rozbieżność liczby
+  udziałów vs kapitał zakładowy (91 udziałów = 4 550 zł vs 5 000 zł; 9 udziałów / 450 zł niewyjaśnione —
+  M1/M5) oraz (b) przywrócenie rejestracji VAT („Art. 96 ust. 9h", 2025-06-27 — M2).
+- **Końcowa ocena ryzyka: Średnie.** Uzasadnienie: M1 i M2 są potwierdzone w rejestrach urzędowych, ale
+  niosą pojedyncze zastrzeżenia (rozbieżność udziałów, sygnał przywrócenia VAT); M3 wykazuje 0 opinii
+  (ograniczenie danych, nie sygnał negatywny); M4 ma uziemioną ofertę i deklarację OC, ale niepełne dane
+  (szczegóły polisy, specjalizacja, certyfikaty, kadra, telefon); M5 jest sprawdzone, ale nie wykazuje
+  jeszcze sprawozdań finansowych. Ocena nie jest „Wysoka" (brak stwierdzonych negatywnych wpisów) ani
+  „Niska" (brak pełnego potwierdzenia reputacji, szczegółów OC i sprawozdań finansowych). Ocena ta jest
+  spójna z wierszem M6 w „Podsumowaniu tabelarycznym".
 
 ---
 
@@ -612,27 +653,28 @@ formułuję **rekomendację** dla zleceniodawcy oraz wskazuję otwarte kwestie d
   polisy (zakres/suma/ubezpieczyciel). Do obserwacji: brak publicznych danych o certyfikatach
   i doświadczeniu kadry oraz brak jawnego telefonu i własnej strony WWW — to ograniczenia dostępności
   danych/kontaktu, a nie potwierdzone czerwone flagi.
-- **M5 — nie stwierdzono** negatywnych sygnałów finansowych na etapie DRAFT. Sprawozdania finansowe
-  (KRS/MSiG), historia zmian i powiązania osobowe/kapitałowe nie zostały jeszcze otwarte/sprawdzone —
-  brak danych ma status `(do weryfikacji)`, a nie potwierdzonej „stabilności finansowej". Młody wiek
-  spółki (rejestracja 2024-09-11) i minimalny kapitał zakładowy (5 000 zł) to sygnał do obserwacji
-  (ograniczenie danych / podwyższona uwaga), a nie czerwona flaga sam w sobie.
-
+- **M5 — nie stwierdzono** negatywnych sygnałów finansowych (sprawdzone 2026-08-15). Sprawozdania
+  finansowe **nie zostały jeszcze złożone/ogłoszone** (pierwszy rok obrotowy kończy się 31.12.2025 — KRS;
+  w MSiG wyłącznie 1 wpis rejestracyjny, brak ogłoszenia sprawozdania). Historia rejestrowa **stabilna**
+  (3 wpisy z 11.09.2024, brak zmian zarządu/wspólników/siedziby/PKD po rejestracji). Do obserwacji:
+  minimalny kapitał zakładowy (5 000 zł = minimum ustawowe), jednoosobowa własność/zarząd (Katarzyna
+  Pydynowska — zależność ciągłości od jednej osoby) oraz brak publicznych wielkości finansowych — to
+  ograniczenia danych / podwyższona uwaga, a nie potwierdzone czerwone flagi.
 - **M6 — synteza:** końcowa ocena ryzyka = **Średnie** wynika z pojedynczych zastrzeżeń w M1–M2 (przywrócenie
-  VAT, rozbieżność udziałów), braku opinii w M3 (0 opinii), niepełnych danych o jakości usług w M4 (deklaracja
-  OC bez szczegółów, brak specjalizacji/certyfikatów/telefonu) oraz danych niezweryfikowanych
-  `(do weryfikacji)` w M5, a nie ze stwierdzonych negatywnych wpisów. Żadna z sekcji nie wykazała
-  **potwierdzonej** czerwonej flagi. Kluczowe do rozstrzygnięcia w pass 2: rozbieżność „91 udziałów =
-  4 550 zł" vs kapitał 5 000 zł (M1/M5), przyczyna przywrócenia rejestracji VAT (M2), szczegóły polisy OC
-  i specjalizacja (M4) oraz sprawozdania finansowe (M5).
+  VAT „Art. 96 ust. 9h" / 2025-06-27, rozbieżność udziałów 91 = 4 550 zł vs kapitał 5 000 zł), braku opinii
+  w M3 (0 opinii), niepełnych danych o jakości usług w M4 (deklaracja OC bez szczegółów, brak
+  specjalizacji/certyfikatów/telefonu) oraz braku sprawozdań finansowych w M5, a nie ze stwierdzonych
+  negatywnych wpisów. Żadna z sekcji nie wykazała **potwierdzonych** czerwonych flag;
+  dwa sygnały do obserwacji (rozbieżność udziałów, przywrócenie VAT) wymagają wyjaśnienia u biura,
+  a termin złożenia pierwszego sprawozdania finansowego (rok obrotowy do 31.12.2025) — monitorowania.
 
 ---
 
 ## Źródła
 
-W pass 1 (stub) nie otwierano źródeł. W pass 2 (REAL) uziemiono dotąd sekcje **M1**, **M2**, **M3**
-i **M4** — poniżej podano faktycznie otwarte źródła wraz z datami dostępu (2026-08-15). Sekcje M5–M6
-nadal zawierają planowane źródła do weryfikacji (daty dostępu zostaną dodane po ich faktycznym otwarciu):
+W pass 1 (stub) nie otwierano źródeł. W pass 2 (REAL) uziemiono źródłami wszystkie sekcje **M1**–**M6** —
+poniżej podano faktycznie otwarte źródła wraz z datami dostępu (2026-08-15). Sekcja **M6 (synteza)**
+opiera się na źródłach wymienionych w blokach M1–M5 i nie wprowadza nowych źródeł:
 
 **M1 — Identyfikacja i metryka (uziemione w pass 2; dostęp 2026-08-15):**
 - KRS — odpis aktualny (API Ministerstwa Sprawiedliwości): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` — nazwa, forma prawna, KRS, NIP, REGON, adres, kapitał zakładowy, zarząd, wspólnik, PKD, data rejestracji, status pozycji (dostęp 2026-08-15).
@@ -664,16 +706,22 @@ nadal zawierają planowane źródła do weryfikacji (daty dostępu zostaną doda
 - KRS — odpis aktualny/pełny (API MS): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` — PKD 69.20.Z, skład zarządu (kadra), adres i e-mail (szczegóły w bloku M1; dostęp 2026-08-15).
 - C.I.K. — lista certyfikowanych biur rachunkowych (powiat Warszawa): `https://www.cik.org.pl/biura/warszawa-25` — sprawdzona pod kątem KR OFFICE (brak pozycji na sprawdzonych stronach listy); certyfikat/uprawnienia niepotwierdzone (dostęp 2026-08-15).
 
-**M5 — Stabilność finansowa:**
-- KRS / e-KRS — ekrs.ms.gov.pl — sprawozdania finansowe (Repozytorium Dokumentów Finansowych), kapitał zakładowy, data rejestracji (wiek firmy), historia zmian (działy 1 i 2), powiązania osobowe/kapitałowe.
-- Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl — ogłoszenia o sprawozdaniach finansowych i zmianach w KRS.
-- Rejestr REGON — potwierdzenie daty rejestracji / wieku firmy.
-- Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — ewentualny rachunek rozliczeniowy (powiązane z M2).
+**M5 — Stabilność finansowa (uziemione w pass 2; dostęp 2026-08-15):**
+- KRS — odpis aktualny (API Ministerstwa Sprawiedliwości): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` — kapitał zakładowy 5 000 zł, wspólnik 91 udziałów = 4 550 zł (`czyPosiadaCaloscUdzialow` = false), data rejestracji 11.09.2024, ostatni wpis 11.09.2024, **dzień kończący pierwszy rok obrotowy 31.12.2025** (dział 3), działy 4–6 puste, `czyProwadziDzialalnoscZInnymiPodmiotami` = false (dostęp 2026-08-15).
+- KRS — odpis pełny (API Ministerstwa Sprawiedliwości): `https://api-krs.ms.gov.pl/api/krs/OdpisPelny/0001126380?format=json` — historia wpisów (3 wpisy, wszystkie 11.09.2024: rejestracja + NIP + REGON — brak zmian po rejestracji), umowa spółki 09.09.2024, czas trwania nieoznaczony, „informacja o liczbie udziałów: większą liczbę udziałów" (dostęp 2026-08-15).
+- Monitor Sądowy i Gospodarczy (MSiG): `https://www.imsig.pl/szukaj?krs=0001126380` — status „aktywna", **1 ogłoszenie** (wpis rejestracyjny nr 1 z 11.09.2024, MSiG nr 185/2024 z 23.09.2024); **brak ogłoszenia o sprawozdaniu finansowym** (dostęp 2026-08-15).
+- Repozytorium Dokumentów Finansowych (RDF): `https://ekrs.ms.gov.pl/rdf/pd/search_df` — bezpośrednie zapytanie zablokowane (ochrona przed robotami, HTTP 403); brak potwierdzenia programowego (jawne ograniczenie; dostęp do portalu 2026-08-15).
+- rejestr.io (lustro KRS): `https://rejestr.io/krs/1126380` — kapitał 5 tys. zł, beneficjent rzeczywisty Katarzyna Pydynowska (wspólnik sp. z o.o.), „Posiada całość akcji spółki: NIE", „Czy prowadzi działalność z innymi podmiotami… NIE", dzień kończący pierwszy rok obrotowy 31.12.2025 (dostęp 2026-08-15).
+- krs-pobierz.pl (lustro KRS): `https://krs-pobierz.pl/kr-office-spolka-z-ograniczona-odpowiedzialnoscia-i0001126380` — „Ostatnia zmiana w KRS 2024-09-11", „Osoby powiązane: wspólnik / zarząd KATARZYNA PYDYNOWSKA" (jedna osoba), kapitał 5 000 zł (dostęp 2026-08-15).
+- aleo.com (lustro KRS): `https://aleo.com/pl/firma/kr-office-spolka-z-ograniczona-odpowiedzialnoscia` — kapitał 5 000 zł, zarząd Katarzyna Pydynowska (prezes, „40 lat"), wspólnik 91 udziałów (dostęp 2026-08-15).
+- Lexlege — art. 154 k.s.h. (minimum kapitału zakładowego 5 000 zł i wartość nominalna udziału ≥ 50 zł): `https://lexlege.pl/ksh/art-154/` (dostęp 2026-08-15).
+- Goldfinch Business Solutions — strona kontaktowa (przykład profilu o tym samym nazwisku, bez możliwości przypisania): `https://www.goldfinchtrade.com/kontakt/` — osoba „Katarzyna Pydynowska" w dziale „Rozliczenia & fakturowanie" (dostęp 2026-08-15).
 
-**M6 — Synteza ryzyka:**
-- Synteza i rekomendacja opierają się na źródłach wymienionych w blokach M1–M5 powyżej. W pass 2 zostanie
-  dopisana pełna, scalona lista źródeł z datami dostępu (wyłącznie dla faktycznie otwartych stron) oraz
-  jawne rozstrzygnięcie otwartych kwestii (m.in. rozbieżność udziałów vs kapitał, status VAT, opinie, OC).
+**M6 — Synteza ryzyka (uziemione w pass 2; dostęp 2026-08-15):**
+- Synteza i rekomendacja opierają się na źródłach wymienionych w blokach **M1**–**M5** powyżej (dostęp
+  2026-08-15): KRS — API MS (odpis aktualny i pełny), Biała Lista — API MF, VIES — Komisja Europejska,
+  MSiG (imsig.pl), profile opinii (Google Maps, GoWork, Oferteo, Facebook) oraz lustra (aleo.com, pkt.pl,
+  rejestr.io, krs-pobierz.pl). Sekcja M6 scala już uziemione ustalenia M1–M5; nie wprowadza nowych źródeł.
 
 ---
 
@@ -681,13 +729,14 @@ nadal zawierają planowane źródła do weryfikacji (daty dostępu zostaną doda
 
 - **Metoda:** OSINT na źródłach publicznych i urzędowych; priorytet dla źródeł pierwotnych (KRS, Biała Lista,
   VIES, KRZ/MSiG); lustra (rejestr.io, aleo.com itp.) wyłącznie pomocniczo.
-- **Ograniczenia (pass 2 — w toku):** sekcje M1 (identyfikacja i metryka) oraz M2 (status prawny
+- **Ograniczenia (pass 2 — REAL, dostęp 2026-08-15):** sekcje M1 (identyfikacja i metryka) oraz M2 (status prawny
   i podatkowy) zostały uziemione w rejestrach urzędowych (KRS — API MS; Biała Lista — API MF; VIES — KE;
   MSiG), sekcja M3 (reputacja) została sprawdzona w portalach opinii (Google Maps, GoWork, Oferteo,
-  Facebook + lustra aleo.com/pkt.pl — wynik: 0 opinii, dostęp 2026-08-15), a sekcja M4 (jakość usług)
+  Facebook + lustra aleo.com/pkt.pl — wynik: 0 opinii, dostęp 2026-08-15), sekcja M4 (jakość usług)
   została sprawdzona w profilach publicznych (Oferteo, pkt.pl, GoWork, aleo.com — oferta, deklaracja OC,
-  kanały kontaktu, dostęp 2026-08-15). Dane M5 (stabilność finansowa) mają nadal status rozpoznania
-  wstępnego i nie zostały jeszcze potwierdzone — zostaną sprawdzone w kolejnych krokach pass 2.
+  kanały kontaktu, dostęp 2026-08-15), a sekcja M5 (stabilność finansowa) została sprawdzona w KRS
+  (API MS), MSiG i lustrach KRS (rejestr.io, krs-pobierz.pl, aleo.com), a sekcja M6 (synteza) scala
+  uziemione ustalenia M1–M5 w końcową ocenę ryzyka.
 - **Ograniczenie — struktura właścicielska (M1):** publiczny odpis KRS (aktualny i pełny) wykazuje jednego
   wspólnika (91 udziałów = 4 550 zł) przy kapitale 5 000 zł i wskazaniu „nie posiada całości udziałów",
   lecz nie ujawnia drugiego wspólnika — 9 udziałów (450 zł) pozostaje niewyjaśnione; wymaga pełnego odpisu
@@ -707,12 +756,20 @@ nadal zawierają planowane źródła do weryfikacji (daty dostępu zostaną doda
   samo-deklaracja bez zakresu/sumy gwarancyjnej/ubezpieczyciela — nie jest to dokument polisy; zakres
   i suma OC nie są zgadywane. Certyfikaty, doświadczenie kadry, telefon i strona WWW nie są publicznie
   dostępne w sprawdzonych źródłach — odnotowane jako `(brak danych publicznych)`.
-- **Ograniczenie — stabilność finansowa:** młoda spółka (rejestracja 2024-09-11) może nie mieć jeszcze
-  złożonych sprawozdań finansowych w KRS/MSiG; brak sprawozdań traktowany jako ograniczenie danych, a nie
-  domniemanie negatywne. Kapitał zakładowy 5 000 zł (minimum ustawowe) sam w sobie nie przesądza o kondycji,
-  ale oznacza niewielki bufor kapitałowy. Powiązania osobowe/kapitałowe weryfikowane wyłącznie na podstawie
-  odpisu KRS.
+- **Ograniczenie — stabilność finansowa (M5, zweryfikowane):** spółka (rejestracja 2024-09-11) nie ma
+  jeszcze złożonych/ogłoszonych sprawozdań finansowych — pierwszy rok obrotowy kończy się 31.12.2025 (KRS),
+  a w MSiG na 2026-08-15 brak ogłoszenia o sprawozdaniu; brak sprawozdań traktowany jako ograniczenie danych
+  (młody podmiot), a nie domniemanie negatywne. Repozytorium Dokumentów Finansowych (ekrs.ms.gov.pl) nie
+  zostało sprawdzone bezpośrednio (ochrona przed robotami, HTTP 403) — ewentualny termin złożenia
+  pierwszego sprawozdania wymaga dalszej weryfikacji. Kapitał zakładowy 5 000 zł (minimum ustawowe,
+  art. 154 § 1 k.s.h.) nie przesądza o kondycji, ale oznacza niewielki bufor kapitałowy. Powiązania
+  osobowe/kapitałowe weryfikowane wyłącznie na podstawie publicznego odpisu KRS (dane osobowe zamaskowane) —
+  pełna weryfikacja powiązań wymaga odpisu z ujawnieniem PESEL lub CRBR.
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.
 
-- **Ograniczenie — synteza ryzyka (M6):** końcowa ocena ryzyka i rekomendacja na tym etapie są **warunkowe** — M1–M2 opierają się na potwierdzonych danych rejestrowych z pojedynczymi zastrzeżeniami, a M3–M5 na danych o statusie `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`; mogą ulec zmianie po uziemieniu źródeł w pass 2. Niniejszy dokument nie stanowi rekomendacji do zawarcia umowy bez dalszej weryfikacji.
+- **Ograniczenie — synteza ryzyka (M6):** końcowa ocena ryzyka (Średnie) i rekomendacja są wyprowadzone
+  z uziemionych ustaleń M1–M5 (dostęp 2026-08-15); pozostałe niepewności (struktura udziałów, przyczyna
+  przywrócenia VAT, szczegóły polisy OC, brak sprawozdań finansowych i opinii) są jawne i wymagają
+  uzupełnienia bezpośrednio u biura lub dalszego monitorowania. Niniejszy dokument nie stanowi
+  rekomendacji do zawarcia umowy bez dalszej weryfikacji u biura.

@@ -72,15 +72,15 @@ niepoparta źródłem lub poza celem.
       ubezpieczenie OC biura, certyfikaty, doświadczenie kadry, kanały kontaktu. (służy celowi: jakość usług)
   - [x] M4 -- stub
   - [x] M4 -- real
-- [ ] **M5 -- Stabilność finansowa** — sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy,
+- [x] **M5 -- Stabilność finansowa** — sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy,
       historia zmian, powiązania osobowe/kapitałowe. (służy celowi: stabilność finansowa z OBJECTIVE)
   - [x] M5 -- stub
-  - [ ] M5 -- real
-- [ ] **M6 -- Synteza ryzyka** — tabela podsumowująca `Sekcja | Znaleziska | Ocena ryzyka`, sekcja
+  - [x] M5 -- real
+- [x] **M6 -- Synteza ryzyka** — tabela podsumowująca `Sekcja | Znaleziska | Ocena ryzyka`, sekcja
       „Czerwone Flagi" (jeśli są niepokojące sygnały), rekomendacja, pełna lista źródeł z datami dostępu,
       metodologia i ograniczenia. (służy celowi: końcowa ocena ryzyka i użyteczność decyzyjna)
   - [x] M6 -- stub
-  - [ ] M6 -- real
+  - [x] M6 -- real
 
 Kolejność: **Pass 1** — wszystkie `-- stub` (kompletny dokument od razu). **Pass 2** — wszystkie `-- real`
 (uziemienie źródłami), M1 → M6.

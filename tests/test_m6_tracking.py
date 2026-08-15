@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M6 stub *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
+"""Tests for the M6 *tracking* state in docs/PLAN.md and docs/ARCHITECTURE.md.
 
-The M6 deliverable section itself is validated by tests/test_m6_stub.py. This file
-validates the bookkeeping that wraps it: PLAN.md must mark `M6 -- stub` done, keep
-M6 -- real pending, and ARCHITECTURE.md must record pass 1 (DRAFT/stub) complete
-while declaring pass 2 (REAL) in progress.
+The M6 deliverable section itself is validated by tests/test_m6_stub.py and the
+pass-2 grounding by tests/test_m6_real.py. This file validates the M6 bookkeeping
+plus the durable cross-milestone invariants.
 
-Forward-compatible by design: the ARCH "remaining work" bullet is derived from
-PLAN.md's pending reals (not hardcoded), so this file stays green as the REAL pass
-advances (M3, M4 … M6).
+Forward-compatible by design: completed milestones stay completed, so M6 -- stub
+and M6 -- real are asserted as DONE, and the parent-M6 checkbox is asserted to
+MATCH the M6 -- real status (derived from PLAN.md, not a hardcoded snapshot).
+The exact "which reals are done" snapshot lives in the current milestone's real
+test (tests/test_m6_real.py).
 """
 import re
 import unittest
@@ -23,6 +24,7 @@ MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = {f"M{i}" for i in range(1, 7)}
 ORDER = ("M1", "M2", "M3", "M4", "M5", "M6")
+# All six stubs must remain done; later milestones may additionally be done.
 DONE_STUBS_EXPECTED = {"M1", "M2", "M3", "M4", "M5", "M6"}
 
 
@@ -67,10 +69,10 @@ class TestM6Tracking(unittest.TestCase):
             "PLAN.md must mark M6 -- stub as [x]",
         )
 
-    def test_02_plan_m6_real_still_pending(self):
-        self.assertFalse(
-            self.statuses.get(("M6", "real"), True),
-            "PLAN.md must keep M6 -- real as [ ] (only stub is done)",
+    def test_02_plan_m6_real_marked_done(self):
+        self.assertTrue(
+            self.statuses.get(("M6", "real"), False),
+            "PLAN.md must mark M6 -- real as [x] (completed in pass 2)",
         )
 
     def test_03_plan_exactly_m1_through_m6_stubs_done(self):
@@ -84,14 +86,15 @@ class TestM6Tracking(unittest.TestCase):
         self.assertEqual(done_idx, set(range(len(done_idx))),
                          "real milestones must be completed in order (no gaps)")
 
-    def test_05_plan_parent_m6_milestone_not_prematurely_done(self):
+    def test_05_plan_parent_m6_matches_m6_real_status(self):
+        m6_real = self.statuses.get(("M6", "real"), False)
         found = False
         for line in self.plan.splitlines():
             stripped = line.strip()
             if stripped.startswith("- [") and "**M6" in line:
-                self.assertTrue(
-                    stripped.startswith("- [ ]"),
-                    "parent M6 milestone must stay unchecked until its real pass is done",
+                self.assertEqual(
+                    stripped.startswith("- [x]"), m6_real,
+                    "parent M6 checkbox must match the M6 -- real status",
                 )
                 found = True
                 break
@@ -115,19 +118,22 @@ class TestM6Tracking(unittest.TestCase):
         self.assertIn("sfabrykowanego potwierdzenia", self.wdrozenie,
                       "ARCH M6 entry must note no fabricated confirmation of facts")
 
-    def test_09_arch_pass1_complete_and_remaining_work_is_real(self):
+    def test_09_arch_pass1_complete_and_pass2_state_derived_from_plan(self):
         self.assertIn("Pass 1 (DRAFT/stub) zakończony", self.wdrozenie,
                       "ARCH must declare pass 1 (DRAFT/stub) complete")
-        self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
-                      "ARCH must state pass 2 (REAL) is in progress")
-        self.assertIn("real", self.wdrozenie,
-                      "ARCH remaining work must be the real pass")
-        self.assertIn("do wykonania", self.wdrozenie,
-                      "ARCH remaining-work bullet must say 'do wykonania'")
         pending = [m for m in ORDER if not self.statuses.get((m, "real"), False)]
-        remaining = " → ".join(pending)
-        self.assertIn(remaining, self.wdrozenie,
-                      f"ARCH remaining work must be {remaining} (derived from PLAN.md)")
+        if pending:
+            self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                          "ARCH must state pass 2 (REAL) is in progress while reals are pending")
+            self.assertIn("do wykonania", self.wdrozenie,
+                          "ARCH remaining-work bullet must say 'do wykonania'")
+            self.assertIn(" → ".join(pending), self.wdrozenie,
+                          "ARCH remaining work must list the pending reals (derived from PLAN.md)")
+        else:
+            self.assertIn("Pass 2 (REAL) zakończon", self.wdrozenie,
+                          "ARCH must declare pass 2 (REAL) complete once all reals are done")
+            self.assertNotIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                             "ARCH must not claim pass 2 is in progress when all reals are done")
 
     def test_10_arch_earlier_entries_intact(self):
         for marker in ("11 testów zielonych", "tests.test_m1_stub",

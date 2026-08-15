@@ -212,12 +212,18 @@ class TestM2RealTracking(unittest.TestCase):
                           f"ARCH M2 -- real entry must record the confirmed field: {marker}")
 
     def test_17_arch_remaining_work_matches_pending_reals(self):
-        self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
-                      "ARCH must state pass 2 (REAL) is in progress")
         pending = _pending_reals(self.statuses)
-        remaining = " → ".join(pending)
-        self.assertIn(remaining, self.wdrozenie,
-                      f"ARCH remaining work must be {remaining} (derived from PLAN.md)")
+        if pending:
+            self.assertIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                          "ARCH must state pass 2 (REAL) is in progress")
+            remaining = " → ".join(pending)
+            self.assertIn(remaining, self.wdrozenie,
+                          f"ARCH remaining work must be {remaining} (derived from PLAN.md)")
+        else:
+            self.assertIn("Pass 2 (REAL) zakończon", self.wdrozenie,
+                          "ARCH must declare pass 2 (REAL) complete once all reals are done")
+            self.assertNotIn("Pass 2 (REAL) w toku", self.wdrozenie,
+                             "ARCH must not claim pass 2 is in progress when all reals are done")
 
 
 if __name__ == "__main__":

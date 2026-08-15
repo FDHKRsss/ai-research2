@@ -80,7 +80,7 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
 - `docs/ARCHITECTURE.md` — niniejszy projekt i decyzje.
 - `docs/CONTEXT.md` — trwałe dyrektywy (nie zmieniać treści celu; tylko ewentualnie doprecyzować esencję).
 
-## Stan wdrożenia (pass 1 — DRAFT/stub zakończony; pass 2 — REAL w toku)
+## Stan wdrożenia (pass 1 — DRAFT/stub zakończony; pass 2 — REAL zakończony)
 
 - **M1 -- stub:** gotowy i przetestowany (11 testów zielonych: `python -m unittest tests.test_m1_stub -v`).
   W `raport/KR-OFFICE-OSINT.md` obecne i kompletne: metryka dokumentu, podsumowanie tabelaryczne (wiersz M1),
@@ -142,6 +142,23 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
   doświadczenie kadry/telefon/www — jawne `(brak danych publicznych)`. Ocena ryzyka M4 = Średnie, spójna
   między sekcją a podsumowaniem. Zaktualizowane w tym samym kroku: metryka dokumentu, wiersz M4
   w podsumowaniu, Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
-- **Pass 1 (DRAFT/stub) zakończony** — kompletny dokument M1–M6 gotowy. **Pass 2 (REAL) w toku:**
-  uziemiono źródłami sekcje **M1**, **M2**, **M3** i **M4**; **pozostała praca:** do wykonania uziemienie
-  źródłami (URL + data dostępu) sekcji **M5 → M6**.
+- **M5 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M5 (Stabilność finansowa)
+  zweryfikowana w źródłach (dostęp 2026-08-15): **brak złożonych/ogłoszonych sprawozdań finansowych**
+  (pierwszy rok obrotowy kończy się 31.12.2025 — KRS/API MS, dział 3; w MSiG wyłącznie 1 wpis rejestracyjny,
+  brak ogłoszenia o sprawozdaniu), kapitał zakładowy 5 000 zł = minimum ustawowe (art. 154 § 1 k.s.h.),
+  wiek firmy < 2 lata (rejestracja 2024-09-11), **historia zmian: brak zmian po rejestracji** (3 wpisy
+  z 11.09.2024: rejestracja + NIP + REGON), powiązania osobowe/kapitałowe: Katarzyna Pydynowska (zarząd +
+  wspólnik 91 udziałów = 4 550 zł, beneficjent rzeczywisty) — bez sfabrykowanych wielkości finansowych.
+  Ocena ryzyka M5 = Średnie, spójna między sekcją a podsumowaniem. Zaktualizowane w tym samym kroku:
+  metryka dokumentu, wiersz M5 w podsumowaniu, Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15)
+  i Metodologia.
+- **M6 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M6 (Synteza ryzyka) uziemiona
+  na zweryfikowanych ustaleniach M1–M5 (dostęp 2026-08-15): synteza ocen cząstkowych (M1–M5 = Średnie),
+  końcowa ocena ryzyka **Średnie**, rekomendacja (finalna, nie warunkowa) oraz powiązanie z sekcjami
+  „Czerwone Flagi", „Źródła" i „Metodologia i ograniczenia". Oba sygnały do obserwacji przeniesione
+  (rozbieżność 91 udziałów = 4 550 zł vs kapitał 5 000 zł; przywrócenie VAT „Art. 96 ust. 9h" /
+  2025-06-27). Zaktualizowane w tym samym kroku: metryka dokumentu, wiersz M6 w podsumowaniu,
+  Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
+- **Pass 1 (DRAFT/stub) zakończony** — kompletny dokument M1–M6 gotowy. **Pass 2 (REAL) zakończony:**
+  uziemiono źródłami wszystkie sekcje **M1**–**M6** (dostęp 2026-08-15); dokument jest kompletny
+  i gotowy do użycia decyzyjnego.
