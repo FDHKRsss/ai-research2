@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M2 (stub) deliverable: raport/KR-OFFICE-OSINT.md.
+"""Tests for the M2 deliverable section: raport/KR-OFFICE-OSINT.md.
 
-These tests validate the M2 -- Status prawny i podatkowy section against the
-requirement contract in docs/PLAN.md / docs/ARCHITECTURE.md (research deliverable,
-no application code exists in this project).
-
-M2 contract (PLAN.md): Biała Lista VAT (czynny podatnik VAT), VIES, status w KRS,
-publiczne rejestry dłużników (KRZ, MSiG) oraz komercyjne BIG (KRD/ERIF/InfoMonitor)
-z jawnym opisem ograniczeń dostępu. W pass 1 (stub) wszystko musi być oznaczone
-"(do weryfikacji)" / "(brak danych publicznych)" / "(założenie)" -- zero fabrykacji.
+NOTE: M2 has progressed from stub to REAL in pass 2. The section's contract
+(coverage of Biała Lista / VIES / KRS / KRZ / MSiG / commercial BIG, risk
+consistency, no placeholders, honest red-flags) is still validated here; the
+pass-2 grounding (confirmed status + primary-source URLs + access dates) is
+validated in detail in tests/test_m2_real.py.
 """
 import re
 import unittest
@@ -41,6 +38,21 @@ def _section(text: str, heading: str) -> str:
     return rest[:nxt]
 
 
+def _sources_block(text: str, milestone: str) -> str:
+    """Return the '**M# — ...' source block from the Źródła section."""
+    sec = _section(text, "Źródła")
+    start = sec.find(f"**{milestone} —")
+    if start == -1:
+        return ""
+    header_end = start + len(f"**{milestone} —")
+    nxt = None
+    for m in ("M1", "M2", "M3", "M4", "M5", "M6"):
+        idx = sec.find(f"**{m} —", header_end)
+        if idx != -1 and (nxt is None or idx < nxt):
+            nxt = idx
+    return sec[start:nxt] if nxt is not None else sec[start:]
+
+
 def _summary_rows(text: str):
     """Parse the '## Podsumowanie tabelaryczne' markdown table into rows of cells."""
     sec = _section(text, "Podsumowanie tabelaryczne")
@@ -55,7 +67,7 @@ def _summary_rows(text: str):
     return rows
 
 
-class TestM2StubDeliverable(unittest.TestCase):
+class TestM2Deliverable(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.text = _load()
@@ -85,9 +97,9 @@ class TestM2StubDeliverable(unittest.TestCase):
     def test_05_m2_covers_krs_status(self):
         for marker in ("KRS", "0001126380", "ekrs.ms.gov.pl", "aktywny"):
             self.assertIn(marker, self.m2, f"M2 missing KRS marker: {marker}")
-        # must check for insolvency/restructuring/liquidation markers
         self.assertTrue(
-            any(m in self.m2 for m in ("upadłości", "upadłość", "restrukturyzacji", "restrukturyzacyjne", "likwidacji", "likwidacja")),
+            any(m in self.m2 for m in ("upadłości", "upadłość", "restrukturyzacji",
+                                       "restrukturyzacyjne", "likwidacji", "likwidacja")),
             "M2 must address insolvency/restructuring/liquidation in KRS",
         )
 
@@ -105,45 +117,26 @@ class TestM2StubDeliverable(unittest.TestCase):
     def test_07_m2_commercial_big_explicit_limitation(self):
         for big in ("KRD", "ERIF", "InfoMonitor"):
             self.assertIn(big, self.m2, f"M2 missing commercial BIG marker: {big}")
-        # limitation must be explicit (no login/fee = cannot guess contents)
         self.assertIn("(brak danych publicznych)", self.m2,
                       "M2 must explicitly flag commercial BIG as 'brak danych publicznych'")
         self.assertTrue(
-            any(m in self.m2 for m in ("brak dostępu", "bez dostępu", "logowani", "logowania", "opłat", "ograniczenie")),
+            any(m in self.m2 for m in ("brak dostępu", "bez dostępu", "logowani",
+                                       "logowania", "opłat", "ograniczenie")),
             "M2 must describe the access limitation to commercial BIG",
         )
 
-    # -- honesty / no fabrication in the DRAFT --------------------------------
+    # -- pass 2 (REAL): grounded, confirmed status ----------------------------
 
-    def test_08_m2_draft_disclaimer_sources_not_opened(self):
-        # The DRAFT must explicitly say official sources have not been opened yet.
-        self.assertTrue(
-            any(m in self.m2 for m in (
-                "nie otwierano",
-                "nie otwarto",
-                "nie zostały jeszcze sprawdzone",
-                "nie były jeszcze sprawdzane",
-            )),
-            "M2 DRAFT must state that official sources have not been opened yet",
-        )
-
-    def test_09_m2_flags_everything_for_verification(self):
-        self.assertGreaterEqual(self.m2.count("(do weryfikacji"), 3,
-                                "M2 must flag multiple findings as '(do weryfikacji)'")
-        self.assertIn("do potwierdzenia", self.m2,
-                      "M2 must mark status fields as 'do potwierdzenia'")
-
-    def test_10_m2_no_fabricated_confirmed_status(self):
-        # A confirmed positive status ("Podmiot aktywny") belongs to the REAL pass,
-        # never to the stub. Any 'aktywny' in the stub must stay qualified.
-        self.assertNotIn("Podmiot aktywny", self.text,
-                         "M2 stub must not fabricate a confirmed 'Podmiot aktywny' status")
-        self.assertNotIn("czynny podatnik VAT — tak", self.m2)
-        self.assertNotIn("jest czynnym podatnikiem VAT", self.m2)
+    def test_08_m2_status_confirmed_in_primary_sources(self):
+        for marker in ("potwierdzone", "Czynny", "wl-api.mf.gov.pl",
+                       "ec.europa.eu/taxation_customs/vies", "ekrs.ms.gov.pl",
+                       "imsig.pl", "2026-08-15"):
+            self.assertIn(marker, self.m2,
+                          f"M2 REAL missing confirmed status / source / date: {marker}")
 
     # -- risk consistency ------------------------------------------------------
 
-    def test_11_m2_risk_rating_consistent_summary_vs_section(self):
+    def test_09_m2_risk_rating_consistent_summary_vs_section(self):
         self.assertIn("Ocena: Średnie", self.m2, "M2 section must state Ocena: Średnie")
         m2 = [r for r in _summary_rows(self.text) if r and "M2" in r[0]]
         self.assertTrue(m2, "summary table must contain an M2 row")
@@ -154,47 +147,51 @@ class TestM2StubDeliverable(unittest.TestCase):
         )
         self.assertIn("Średnie", risk_cell, "summary M2 risk cell must match M2 section (Średnie)")
 
-    def test_12_m2_summary_row_is_honest_unverified(self):
+    def test_10_m2_summary_row_reflects_confirmed_status_and_limitations(self):
         m2 = [r for r in _summary_rows(self.text) if r and "M2" in r[0]]
         findings = m2[0][1]
-        self.assertIn("do weryfikacji", findings,
-                      "M2 summary findings must be flagged as 'do weryfikacji'")
+        for marker in ("Czynny", "aktywny"):
+            self.assertIn(marker, findings,
+                          f"M2 summary findings must record the confirmed status: {marker}")
         self.assertTrue(
-            any(m in findings for m in ("bez dostępu", "brak dostępu", "ograniczenie")),
-            "M2 summary findings must note the commercial BIG access limitation",
+            any(m in findings for m in ("ograniczenie", "brak dostępu", "bez dostępu")),
+            "M2 summary findings must note the KRZ/BIG access limitation",
         )
 
     # -- cross-cutting hygiene -------------------------------------------------
 
-    def test_13_m2_no_todo_placeholders(self):
+    def test_11_m2_no_todo_placeholders(self):
         self.assertIsNone(
             re.search(r"\b(todo|tbd|lorem|placeholder|fixme)\b", self.text, re.IGNORECASE),
             "deliverable must not contain TODO/TBD/lorem/placeholder markers",
         )
 
-    def test_14_sources_planned_for_m2_no_fabricated_dates(self):
+    def test_12_m2_sources_grounded_with_access_dates(self):
         sec = _section(self.text, "Źródła")
-        for marker in ("Biała Lista", "VIES", "Krajowy Rejestr Zadłużonych", "Monitor Sądowy i Gospodarczy", "KRD", "ERIF", "InfoMonitor"):
-            self.assertIn(marker, sec, f"Źródła section missing planned M2 source: {marker}")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
-        )
+        for marker in ("Biała Lista", "VIES", "Krajowy Rejestr Zadłużonych",
+                       "Monitor Sądowy i Gospodarczy", "KRD", "ERIF", "InfoMonitor"):
+            self.assertIn(marker, sec, f"Źródła section missing M2 source: {marker}")
+        block = _sources_block(self.text, "M2")
+        self.assertTrue(block, "Źródła must contain an M2 source block")
+        self.assertIn("2026-08-15", block,
+                      "M2 (REAL) source block must carry the access date 2026-08-15")
+        dates = re.findall(r"\b20\d{2}-\d{2}-\d{2}\b", self.text)
+        self.assertTrue(dates, "M2 REAL must carry access dates")
+        for d in dates:
+            self.assertLessEqual(d, "2026-08-15",
+                                 f"access date must not be post-dated: {d}")
 
-    def test_15_document_status_note_mentions_m2(self):
-        # The crash-safe status note at the top should list M2 as now complete.
+    def test_13_document_status_note_mentions_m2(self):
         self.assertIn("M2 — Status prawny i podatkowy", self.text,
                       "document status note should record M2 as complete")
 
-    def test_16_red_flags_m2_honest(self):
+    def test_14_red_flags_m2_honest(self):
         sec = _section(self.text, "Czerwone Flagi")
         self.assertIn("M2", sec, "Czerwone Flagi section must address M2")
-        self.assertTrue(
-            any(m in sec for m in ("nie stwierdzono", "nie zostały jeszcze sprawdzone")),
-            "M2 red-flags entry must be honest (no negative findings, sources not yet checked)",
-        )
+        self.assertIn("status potwierdzony", sec,
+                      "M2 red-flags entry must record the confirmed status")
+        self.assertIn("przywrócenie", sec,
+                      "M2 red-flags entry must surface the VAT-restoration observation")
 
 
 if __name__ == "__main__":

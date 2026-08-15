@@ -52,6 +52,21 @@ def _section(text: str, heading: str) -> str:
     return rest[:nxt]
 
 
+def _sources_block(text: str, milestone: str) -> str:
+    """Return the '**M# — ...' source block from the Źródła section."""
+    sec = _section(text, "Źródła")
+    start = sec.find(f"**{milestone} —")
+    if start == -1:
+        return ""
+    header_end = start + len(f"**{milestone} —")
+    nxt = None
+    for m in ("M1", "M2", "M3", "M4", "M5", "M6"):
+        idx = sec.find(f"**{m} —", header_end)
+        if idx != -1 and (nxt is None or idx < nxt):
+            nxt = idx
+    return sec[start:nxt] if nxt is not None else sec[start:]
+
+
 def _summary_rows(text: str):
     """Parse the '## Podsumowanie tabelaryczne' markdown table into rows of cells."""
     sec = _section(text, "Podsumowanie tabelaryczne")
@@ -177,11 +192,12 @@ class TestM6StubDeliverable(unittest.TestCase):
         self.assertIn("M6 — Synteza ryzyka", sec, "Źródła section missing the M6 block")
         self.assertIn("scalona lista źródeł", sec,
                       "M6 sources block must promise a merged source list in pass 2")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
+        # M6 is still DRAFT: its source block must not carry a fabricated access date.
+        block = _sources_block(self.text, "M6")
+        self.assertTrue(block, "Źródła must contain an M6 source block")
         self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
+            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", block),
+            "M6 (DRAFT) source block must not contain a fabricated access date",
         )
 
     def test_16_m6_methodology_limitation_present(self):
@@ -194,8 +210,13 @@ class TestM6StubDeliverable(unittest.TestCase):
                       "Metodologia must say the document is not a standalone basis to contract")
 
     def test_17_document_status_note_mentions_m6(self):
-        self.assertIn("**M6 — Synteza ryzyka**", self.text,
-                      "document status note should record M6 as complete")
+        # In pass 2 the status note groups the still-pending sections (currently M3–M6)
+        # and must keep recording M6 as pending until M6 -- real lands.
+        header = self.text.split("---")[0]
+        self.assertIn("M6", header,
+                      "document status note should record M6 as still pending real")
+        self.assertIn("DRAFT/stub", header,
+                      "document status note must mark M6 (and siblings) as DRAFT/stub")
 
     def test_18_m6_no_todo_placeholders(self):
         # Only standalone placeholder markers count ("metodologia" contains "todo").

@@ -3,6 +3,11 @@
 
 These tests validate the RESEARCH deliverable against the requirement contract in
 docs/PLAN.md / docs/ARCHITECTURE.md (no application code exists in this project).
+
+NOTE: M1 has progressed from stub to REAL in pass 2. The section's contract
+(anchors, ownership, risk consistency, no placeholders) is still validated here;
+the pass-2 grounding (primary-source URLs + access dates) is validated in
+tests/test_m1_real.py.
 """
 import re
 import unittest
@@ -11,7 +16,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 DELIVERABLE = REPO / "raport" / "KR-OFFICE-OSINT.md"
 
-# Anchor facts from docs/PLAN.md (must appear, flagged "(do weryfikacji)" in the DRAFT).
+# Anchor facts from docs/PLAN.md.
 ANCHOR_IDENTIFIERS = {
     "KRS": "0001126380",
     "NIP": "7011222044",
@@ -132,14 +137,19 @@ class TestM1StubDeliverable(unittest.TestCase):
         )
         self.assertNotIn("[wstaw", self.text.lower(), "deliverable must not contain '[WSTAW' placeholders")
 
-    def test_09_sources_have_no_fabricated_access_dates(self):
+    def test_09_m1_sources_grounded_with_access_dates(self):
+        # M1 is REAL in pass 2: its sources must be grounded (primary URLs + access
+        # dates) and no access date may be post-dated.
         sec = _section(self.text, "Źródła")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
-        )
+        self.assertIn("api-krs.ms.gov.pl", sec,
+                      "M1 REAL sources must cite the KRS API (primary source)")
+        self.assertIn("wl-api.mf.gov.pl", sec,
+                      "M1 REAL sources must cite the MF White List API (primary source)")
+        self.assertIn("2026-08-15", sec, "M1 REAL sources must carry the access date 2026-08-15")
+        dates = re.findall(r"\b20\d{2}-\d{2}-\d{2}\b", self.text)
+        self.assertTrue(dates, "M1 REAL must carry access dates")
+        for d in dates:
+            self.assertLessEqual(d, "2026-08-15", f"access date must not be post-dated: {d}")
 
     def test_10_language_is_polish(self):
         for marker in ("działalność", "Źródła", "Czerwone", "spółka z ograniczoną odpowiedzialnością"):

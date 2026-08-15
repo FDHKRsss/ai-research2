@@ -1,11 +1,13 @@
 # Wywiad gospodarczy (OSINT) — KR Office sp. z o.o.
 
-> **Status dokumentu:** WERSJA ROBOCZA — pass 1 (DRAFT / stub) ZAKOŃCZONA (kompletny dokument).
-> Wypełnione i kompletne są wszystkie sekcje: **M1 — Identyfikacja podmiotu i metryka**,
-> **M2 — Status prawny i podatkowy**, **M3 — Reputacja**, **M4 — Jakość usług i specjalizacja**,
-> **M5 — Stabilność finansowa** oraz **M6 — Synteza ryzyka**.
-> W pass 2 (REAL) całość zostanie zweryfikowana i uziemiona źródłami (URL + data dostępu); do tego czasu
-> wszystkie dane mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`.
+> **Status dokumentu:** WERSJA ROBOCZA — pass 2 (REAL) W TOKU.
+> Ukończono uziemienie źródłami sekcji **M1 — Identyfikacja podmiotu i metryka**,
+> **M2 — Status prawny i podatkowy**, **M3 — Reputacja** oraz **M4 — Jakość usług i specjalizacja**
+> (M1/M2 potwierdzone w rejestrach urzędowych: KRS — API Ministerstwa Sprawiedliwości, Biała Lista VAT —
+> API MF, VIES — Komisja Europejska, MSiG; M3 sprawdzona w portalach opinii — Google Maps, GoWork,
+> Oferteo, Facebook; M4 sprawdzona w profilach publicznych — Oferteo, pkt.pl, GoWork, aleo.com).
+> Sekcje **M5–M6** pozostają w statusie DRAFT/stub i oczekują na uziemienie źródłami w kolejnych
+> krokach pass 2; ich dane nadal mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`.
 
 ---
 
@@ -17,7 +19,7 @@
 | Cel analizy | Ocena ryzyka nawiązania współpracy — reputacja, status prawny, jakość usług, stabilność finansowa |
 | Data analizy | 2026-08-15 |
 | Metoda | OSINT — rejestry urzędowe (KRS, Biała Lista/VAT, VIES, KRZ/MSiG) + opinie publiczne (Google Maps, GoWork, Oferteo, Facebook) |
-| Status | DRAFT (stub) — dane identyfikacyjne z rozpoznania wstępnego, **do potwierdzenia** w rejestrze urzędowym (KRS) |
+| Status | REAL (M1, M2, M3, M4) — dane identyfikacyjne i status prawno-podatkowy **potwierdzone** w rejestrach urzędowych (KRS — API MS, Biała Lista — API MF, VIES — KE, MSiG); reputacja (M3) sprawdzona w portalach opinii (0 opinii); jakość usług (M4) sprawdzona w profilach publicznych (Oferteo, pkt.pl, GoWork, aleo.com); sekcje M5–M6 nadal DRAFT/stub |
 
 ---
 
@@ -25,64 +27,93 @@
 
 | Sekcja | Znaleziska | Ocena ryzyka |
 |---|---|---|
-| M1 — Identyfikacja i metryka | Podmiot zidentyfikowany wstępnie (KRS 0001126380, NIP 7011222044, REGON 529621586); forma prawna sp. z o.o., kapitał zakładowy 5 000 zł, data rejestracji 2024-09-11, PKD 69.20.Z; zarząd/udziałowiec: Katarzyna Pydynowska. Dane do potwierdzenia w KRS. | **Średnie** — dane wstępne (do weryfikacji), brak sprzeczności blokujących |
-| M2 — Status prawny i podatkowy | Biała Lista VAT, VIES, status KRS oraz rejestry dłużników (KRZ/MSiG) do weryfikacji w źródłach urzędowych; komercyjne BIG (KRD/ERIF/InfoMonitor) bez dostępu (jawne ograniczenie). Brak stwierdzonych negatywnych wpisów na etapie DRAFT. | **Średnie** — dane niezweryfikowane (do weryfikacji) i ograniczenie dostępu do BIG |
-| M3 — Reputacja | Opinie z Google Maps, GoWork, Oferteo i Facebooka do zebrania i weryfikacji; merytoryka, oceny i daty (priorytet ostatnich 12 mies.) nieznane na etapie DRAFT. Brak sfabrykowanych ocen ani treści opinii. | **Średnie** — dane nie zebrane (do weryfikacji), brak potwierdzonej reputacji |
-| M4 — Jakość usług i specjalizacja | Oferta, specjalizacja (IT/transport/inne), certyfikaty, doświadczenie kadry, kanały kontaktu oraz OC biura do ustalenia i weryfikacji; PKD 69.20.Z (powiązane z M1). Nieznane na etapie DRAFT. | **Średnie** — dane nie zweryfikowane (do weryfikacji), wzmianka o OC nie znaleziona z braku otwarcia źródeł |
+| M1 — Identyfikacja i metryka | Podmiot potwierdzony w KRS (API MS) i Białej Liście (API MF): KR OFFICE sp. z o.o., KRS 0001126380, NIP 7011222044, REGON 529621586, adres Stefana Batorego 18/108, 02-591 Warszawa, kapitał 5 000 zł, rejestracja 2024-09-11, PKD 69.20.Z, prezes Katarzyna Pydynowska. Otwarta kwestia: 91 udziałów = 4 550 zł vs kapitał 5 000 zł (9 udziałów / 450 zł nieujawnione w odpisie). | **Średnie** — identyfikacja potwierdzona, ale otwarta rozbieżność udziałów vs kapitał |
+| M2 — Status prawny i podatkowy | Biała Lista VAT (API MF): status **„Czynny"** (czynny podatnik VAT), rejestracja VAT 2024-10-08, rachunek 52 1160 2202 0000 0006 3037 1440. VIES: **ważny** (PL7011222044). KRS: **aktywny**, bez wpisów o upadłości/restrukturyzacji/likwidacji (działy 4–6 puste). MSiG: 1 wpis (rejestracyjny). Sygnał do obserwacji: przywrócenie rejestracji VAT (Art. 96 ust. 9h, 2025-06-27). KRZ — brak bezpośredniego zapytania (ograniczenie); BIG (KRD/ERIF/InfoMonitor) — brak dostępu (jawne ograniczenie). | **Średnie** — status potwierdzony, ale sygnał przywrócenia VAT i niepełna weryfikacja dłużników |
+| M3 — Reputacja | **0 opinii** na wszystkich czterech platformach (Google Maps, GoWork, Oferteo, Facebook) oraz w lustrach (aleo.com, pkt.pl) — sprawdzone 2026-08-15. Brak merytoryki, ocen i dat do analizy; dezambiguacja przez NIP/KRS (np. KR Group sp. z o.o. to inny podmiot). | **Średnie** — brak opinii to ograniczenie danych (młody podmiot), nie sygnał negatywny |
+| M4 — Jakość usług i specjalizacja | Oferta uziemiona: prowadzenie ksiąg rachunkowych (spółki z o.o./akcyjne, fundacje, stowarzyszenia) + kompleksowa obsługa księgowo-kadrowa (kadry-płace; PKD 69.20.Z — powiązane z M1). Specjalizacja branżowa (IT/transport) nie potwierdzona — profil ogólny. OC: znaleziona deklaracja „Firma ubezpieczona OC" (pkt.pl) bez szczegółów polisy. Certyfikaty/kadra: brak danych publicznych; kontakt: adres + e-mail z KRS, brak jawnego telefonu/www. | **Średnie** — oferta i deklaracja OC potwierdzone, ale niepełne dane (brak szczegółów polisy, specjalizacji, certyfikatów, telefonu) |
 | M5 — Stabilność finansowa | Sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy, historia zmian oraz powiązania osobowe/kapitałowe do ustalenia i weryfikacji. Nieznane na etapie DRAFT; brak sfabrykowanych wielkości finansowych. | **Średnie** — dane nie zweryfikowane (do weryfikacji); młody wiek i minimalny kapitał jako ograniczenie danych |
-| M6 — Synteza ryzyka | Wszystkie obszary (M1–M5) ocenione jako Średnie z powodu danych niezweryfikowanych (do weryfikacji); brak stwierdzonych czerwonych flag; rekomendacja warunkowa — decyzję uzależnić od pass 2 (real). | **Średnie** — końcowa ocena uwarunkowana niezweryfikowanymi danymi (DRAFT) |
+| M6 — Synteza ryzyka | Wszystkie obszary (M1–M5) ocenione jako Średnie z powodu danych niezweryfikowanych (do weryfikacji) lub pojedynczych zastrzeżeń; brak stwierdzonych czerwonych flag; rekomendacja warunkowa — decyzję uzależnić od pass 2 (real). | **Średnie** — końcowa ocena uwarunkowana niezweryfikowanymi danymi (DRAFT) |
 
-> Powyższa tabela zawiera wszystkie obszary M1–M6. Oceny mają charakter wstępny (DRAFT, dane
-> niezweryfikowane) i zostaną zaktualizowane po uziemieniu źródeł w pass 2 (real).
+> Powyższa tabela zawiera wszystkie obszary M1–M6. Wiersze M1, M2, M3 i M4 zostały uziemione źródłami
+> w pass 2 (real); pozostałe wiersze (M5–M6) zachowują charakter wstępny (DRAFT, dane
+> niezweryfikowane) i zostaną zaktualizowane w kolejnych krokach pass 2.
 
 ---
 
 ## Sekcja M1 — Identyfikacja podmiotu i metryka
 
-### 1.1. Dane rejestrowe (rozpoznanie wstępne)
+### 1.1. Dane rejestrowe (potwierdzone w rejestrach urzędowych)
 
-Dane pochodzą z rozpoznania wstępnego i **wymagają potwierdzenia w rejestrze urzędowym KRS**
-(odpis aktualny/pełny — ekrs.ms.gov.pl) oraz na Białej Liście (podatki.gov.pl / API MF). Do czasu
-weryfikacji oznaczam je jako `(do weryfikacji)`.
+Dane poniżej zostały **potwierdzone w źródłach urzędowych** w pass 2 (real):
 
-| Pole | Wartość (wstępna) | Status |
+- **KRS — odpis aktualny i pełny** (API Ministerstwa Sprawiedliwości, `api-krs.ms.gov.pl`; stan odpisu na
+  dzień 03.12.2025, dostęp 2026-08-15). Pozycja KRS **0001126380** w Rejestrze Przedsiębiorców (RejP),
+  **status pozycji: 1 (podmiot wpisany / aktywny)**; ostatni wpis nr 3 z 11.09.2024 (rejestracja oraz
+  uzupełniające wpisy NIP i REGON — wszystkie z 11.09.2024).
+- **Biała Lista VAT — API MF** (`wl-api.mf.gov.pl`; dostęp 2026-08-15) — potwierdza NIP, REGON, KRS, nazwę
+  i adres (dodatkowo status VAT „Czynny" — szczegóły w sekcji M2).
+
+| Pole | Wartość (potwierdzona) | Źródło |
 |---|---|---|
-| Pełna nazwa | KR OFFICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ | (do weryfikacji w KRS) |
-| Forma prawna | spółka z ograniczoną odpowiedzialnością | (do weryfikacji w KRS) |
-| KRS | 0001126380 | (do weryfikacji w KRS) |
-| NIP | 7011222044 | (do weryfikacji na Białej Liście) |
-| REGON | 529621586 | (do weryfikacji w REGON/KRS) |
-| Adres siedziby | ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa | (do weryfikacji w KRS) |
-| Kapitał zakładowy | 5 000 zł | (do weryfikacji w KRS) |
-| Data rejestracji | 2024-09-11 | (do weryfikacji w KRS) |
-| PKD | 69.20.Z — działalność rachunkowo-księgowa; doradztwo podatkowe | (do weryfikacji w KRS) |
+| Pełna nazwa | KR OFFICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ | KRS (API MS); Biała Lista (API MF) |
+| Forma prawna | spółka z ograniczoną odpowiedzialnością | KRS (API MS) |
+| KRS | 0001126380 | KRS (API MS) |
+| NIP | 7011222044 | KRS (API MS); Biała Lista (API MF) |
+| REGON | 529621586 (pełny 14-cyfrowy: 52962158600000) | KRS (API MS); Biała Lista (API MF) |
+| Adres siedziby | ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa | KRS (API MS); Biała Lista (API MF) |
+| Kapitał zakładowy | 5 000 zł (5 000,00 PLN) | KRS (API MS) |
+| Data rejestracji w KRS | 2024-09-11 (umowa spółki zawarta 09.09.2024) | KRS (API MS) |
+| Czas trwania spółki | nieoznaczony | KRS (API MS) |
+| PKD (przeważające) | 69.20.Z — działalność rachunkowo-księgowa; doradztwo podatkowe | KRS (API MS) |
+| Sygnatura akt rejestrowych | WA.XII NS-REJ.KRS/54835/24/109 | KRS (API MS) |
+| Adres e-mail w KRS | K.PYDYNOWSKA@GMAIL.COM | KRS (API MS) |
 
 ### 1.2. Zarząd i struktura właścicielska
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (potwierdzona) | Uwagi / źródło |
 |---|---|---|
-| Zarząd | Katarzyna Pydynowska — prezes zarządu | (do weryfikacji w pełnym odpisie KRS) |
-| Udziałowiec | Katarzyna Pydynowska — 91 udziałów o łącznej wartości 4 550 zł | (do weryfikacji w pełnym odpisie KRS) |
+| Organ reprezentacji | ZARZĄD | KRS (API MS), dział 2 |
+| Sposób reprezentacji | zarząd jednoosobowy składa oświadczenia samodzielnie; przy zarządzie dwu- i więcej osobowym wymagane współdziałanie dwóch członków zarządu albo członka zarządu z prokurentem | KRS (API MS), dział 2 |
+| Członek zarządu | **Katarzyna Pydynowska — prezes zarządu** (funkcja: PREZES ZARZĄDU; nie zawieszona) | KRS (API MS) maskuje dane osobowe (`K******** P*********`); pełne nazwisko potwierdzone w lustrach (rejestr.io, aleo.com, krs-pobierz.pl) oraz przez adres e-mail w KRS (K.PYDYNOWSKA@…) |
+| Wspólnik (sp. z o.o.) | **Katarzyna Pydynowska — 91 udziałów o łącznej wartości 4 550 zł** | KRS (API MS), dział 1 |
+| Czy posiada całość udziałów | **NIE** (pole „czyPosiadaCaloscUdzialow" = false) | KRS (API MS), dział 1 |
+| Beneficjent rzeczywisty (wg lustra) | Katarzyna Pydynowska — wspólnik spółki z o.o. | rejestr.io (pomocniczo) |
 
-### 1.3. Analiza spójności identyfikatorów i uwagi metodologiczne
+### 1.3. Analiza spójności i uwagi metodologiczne
 
-- **Dezambiguacja podmiotu:** w obrocie może występować wiele firm o nazwie zbliżonej do „KR Office".
-  Wszystkie dalsze ustalenia (M2–M6) będą wiązane z identyfikatorami **NIP 7011222044 / KRS 0001126380**,
-  a nie z samą nazwą — aby uniknąć pomylenia z innymi biurami rachunkowymi.
-- **Niespójność do wyjaśnienia:** zadeklarowana liczba udziałów (91) o wartości 4 550 zł nie sumuje się do
-  kapitału zakładowego 5 000 zł. Może to oznaczać istnienie **drugiego pakietu udziałów** (np. 9 udziałów
-  innego wspólnika) albo błąd/niepełny odczyt danych. Kwestia ta wymaga rozstrzygnięcia na podstawie
-  **pełnego odpisu KRS** (M1 — real) `(do weryfikacji)`.
-- **Młody podmiot:** data rejestracji 2024-09-11 oznacza firmę działającą krócej niż 2 lata. Brak historii
-  sprawozdawczej lub ograniczona liczba opinii nie jest sam w sobie sygnałem negatywnym, lecz **ograniczeniem
-  dostępności danych** — będzie traktowany jako taki w sekcjach M2–M5 `(założenie metodologiczne)`.
+- **Dezambiguacja podmiotu — potwierdzona.** Nazwa, KRS, NIP, REGON i adres są wzajemnie spójne między KRS
+  a Białą Listą. Ustalenia M2–M6 pozostają związane z identyfikatorami **NIP 7011222044 / KRS 0001126380**,
+  a nie z samą nazwą (w obrocie mogą istnieć inne firmy o zbliżonej nazwie).
+- **Rozbieżność udziałów vs kapitał — potwierdzona w odpisie KRS, nadal otwarta.** Kapitał zakładowy wynosi
+  5 000 zł, a jedyny wykazany wspólnik posiada **91 udziałów o wartości 4 550 zł** i jest jednocześnie
+  oznaczony jako **„nie posiadający całości udziałów"** (czyPosiadaCaloscUdzialow = false). Publiczny odpis
+  (aktualny i pełny) **nie ujawnia drugiego wspólnika**, więc **9 udziałów (450 zł)** pozostaje
+  niewyjaśnione. Nie jest to błąd odczytu (stan potwierdzony w API MS), lecz niekompletność/niespójność
+  danych rejestrowych do rozstrzygnięcia w dokumentach spółki lub pełnym odpisie z ujawnieniem wszystkich
+  wspólników `(do weryfikacji)`.
+- **Brak zmian po rejestracji.** Wszystkie trzy wpisy w KRS pochodzą z 11.09.2024 (rejestracja oraz
+  uzupełnienie NIP i REGON); od tego czasu nie odnotowano zmian w zarządzie, wspólnikach, siedzibie ani PKD
+  (historia zmian — szerzej w M5).
+- **Młody podmiot.** Data rejestracji 2024-09-11 oznacza firmę działającą krócej niż 2 lata (na dzień
+  analizy 2026-08-15). Pierwszy rok obrotowy kończy się 31.12.2025, co oznacza, że pierwsze sprawozdanie
+  finansowe może dopiero powstawać (szczegóły w M5).
+- **Brak wpisów w działach 4–6 odpisu KRS** (wierzytelności/zastawy, kurator, likwidacja/upadłość/
+  restrukturyzacja) — działy 4, 5 i 6 są puste. To pozytywny sygnał identyfikacyjny, potwierdzany
+  w kontekście statusu prawnego w M2.
+- **Sygnał do obserwacji (status VAT — do analizy w M2).** Rekord Białej Listy potwierdza status „Czynny"
+  (czynny podatnik VAT), ale zawiera też pola przywrócenia rejestracji: `restorationBasis` „Art. 96 ust. 9h"
+  i `restorationDate` „2025-06-27", co wskazuje na wcześniejsze wykreślenie z rejestru VAT i ponowne
+  przywrócenie. Szczegółowa interpretacja i ocena w sekcji M2.
 
 ### 1.4. Ocena ryzyka — M1
 
-**Ocena: Średnie.** Identyfikatory i metryka są wewnętrznie spójne (adres, NIP, KRS, REGON z tego samego
-rozpoznania) i typowe dla małej spółki księgowej, ale mają status **danych wstępnych** i wymagają
-potwierdzenia w rejestrze urzędowym. Dodatkowo otwarta pozostaje kwestia liczby udziałów vs. kapitału
-zakładowego, którą należy rozstrzygnąć w pass 2.
+**Ocena: Średnie.** Identyfikacja podmiotu jest **w pełni potwierdzona** i spójna między rejestrami
+urzędowymi (KRS i Biała Lista — nazwa, KRS, NIP, REGON, adres, PKD, kapitał, data rejestracji, zarząd),
+a w odpisie KRS brak negatywnych wpisów (działy 4–6 puste). Ocena nie jest jednak „Niska" z dwóch powodów:
+(1) **nierozstrzygnięta rozbieżność** 91 udziałów = 4 550 zł vs kapitał 5 000 zł (9 udziałów / 450 zł
+nieujawnione; „nie posiada całości udziałów") oraz (2) **sygnał przywrócenia rejestracji VAT** (Art. 96
+ust. 9h, 2025-06-27) wymagający analizy w M2. Są to pojedyncze zastrzeżenia/niepełne dane, a nie
+stwierdzone negatywne wpisy — stąd ocena **Średnie**, a nie Wysoka.
 
 ---
 
@@ -96,68 +127,95 @@ ma **status w KRS** oraz czy nie widnieje w **publicznych rejestrach dłużnikó
 biura informacji gospodarczej (KRD, ERIF, BIG InfoMonitor) są ujęte jako osobny punkt z jawnym opisem
 ograniczeń dostępu.
 
-> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano jeszcze źródeł urzędowych** — wszystkie
-> ustalenia M2 mają status `(do weryfikacji)` albo są jawnie opisane jako `(brak danych publicznych)` /
-> `(założenie)`. Uziemienie źródłami (URL + data dostępu) nastąpi w pass 2 (M2 — real).
+> **Uwaga (pass 2 — REAL):** dane poniżej zostały **potwierdzone w źródłach urzędowych** w dniu
+> 2026-08-15 (Biała Lista — API MF, VIES — Komisja Europejska, KRS — API MS, MSiG). Jedyne niepełne pola
+> to Krajowy Rejestr Zadłużonych (interaktywna wyszukiwarka — patrz 2.5) oraz komercyjne BIG (paywall —
+> patrz 2.5).
 
 ### 2.2. Biała Lista podatników VAT
 
-| Pole | Wartość (wstępna) | Status |
-|---|---|---|
-| NIP sprawdzany | 7011222044 | kotwica identyfikacyjna |
-| Status „czynny podatnik VAT" | do potwierdzenia | (do weryfikacji na Białej Liście — podatki.gov.pl / API MF `wl-api.mf.gov.pl`) |
-| Data rejestracji jako podatnik VAT | do potwierdzenia | (do weryfikacji na Białej Liście) |
-| Rachunek rozliczeniowy (wykaz rachunków) | do potwierdzenia | (do weryfikacji na Białej Liście) |
+**Wynik: podmiot widnieje jako czynny podatnik VAT.** Zapytanie do API MF (`wl-api.mf.gov.pl`,
+wyszukiwanie po NIP) zwróciło rekord zgodny z kotwicą identyfikacyjną:
 
-- **Co sprawdzamy i dlaczego:** wpis na Białej Liście potwierdza, że kontrahent jest zarejestrowany jako
-  czynny podatnik VAT. Dla klienta biura rachunkowego to istotny sygnał, że podmiot formalnie funkcjonuje
-  w obrocie gospodarczym i że faktury wystawiane przez biuro mają status dokumentów od podatnika VAT.
-- **Status na etapie DRAFT:** brak potwierdzenia — nie formułuję twierdzenia o statusie VAT, dopóki nie
-  wykonam zapytania do API MF / wyszukiwarki Białej Listy `(do weryfikacji)`.
+| Pole | Wartość (potwierdzona) | Źródło |
+|---|---|---|
+| NIP | 7011222044 | API MF Biała Lista |
+| Nazwa | KR OFFICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ | API MF Biała Lista |
+| **Status VAT** | **„Czynny"** (czynny podatnik VAT) | API MF Biała Lista |
+| REGON | 529621586 | API MF Biała Lista |
+| KRS | 0001126380 | API MF Biała Lista |
+| Adres | STEFANA BATOREGO 18/108, 02-591 WARSZAWA | API MF Biała Lista |
+| Data rejestracji jako podatnik VAT | 2024-10-08 (pole `registrationLegalDate`) | API MF Biała Lista |
+| Rachunek rozliczeniowy | 52 1160 2202 0000 0006 3037 1440 (pojedynczy; `hasVirtualAccounts` = false) | API MF Biała Lista |
+| Przywrócenie rejestracji VAT | `restorationBasis` „Art. 96 ust. 9h"; `restorationDate` 2025-06-27 | API MF Biała Lista |
+
+- **Co to potwierdza:** wpis na Białej Liście oznacza, że kontrahent jest zarejestrowany jako **czynny
+  podatnik VAT** — dla klienta biura rachunkowego to istotny sygnał, że podmiot formalnie funkcjonuje
+  w obrocie gospodarczym i może wystawiać faktury VAT. Rekord obejmuje też **rachunek rozliczeniowy**
+  (52 1160 2202 0000 0006 3037 1440) weryfikowany w wykazie przy płatnościach (split payment).
+- **Sygnał do obserwacji (historia zgodności podatkowej):** rekord zawiera pola przywrócenia rejestracji
+  (`restorationBasis` „Art. 96 ust. 9h", `restorationDate` 2025-06-27), co oznacza, że podmiot **był
+  wcześniej wykreślony z rejestru podatników VAT i został do niego przywrócony** na podstawie art. 96
+  ust. 9h ustawy o VAT (przywrócenie zarejestrowania). API MF **nie ujawnia przyczyny** wykreślenia. Nie
+  jest to negatywny wpis „na dziś" (obecny status to **„Czynny"**), ale sygnał wcześniejszej
+  nieprawidłowości/niespełnienia obowiązków, który należy obserwować — zwłaszcza przy współpracy
+  zakładającej rozliczanie VAT klienta.
 
 ### 2.3. VIES (VAT-UE)
 
-- **Sprawdzany identyfikator:** PL7011222044 (NIP z prefiksem PL).
-- **Status VAT-UE:** do potwierdzenia w VIES (`ec.europa.eu/taxation_customs/vies`) `(do weryfikacji)`.
-- **Uwaga:** rejestracja VAT-UE jest potrzebna głównie przy transakcjach wewnątrzwspólnotowych. Brak wpisu
-  w VIES u lokalnego biura rachunkowego nie jest sam w sobie sygnałem negatywnym — będzie interpretowany
-  w kontekście profilu działalności `(założenie metodologiczne)`.
+- **Wynik: numer VAT-UE jest ważny.** Zapytanie do API VIES (`ec.europa.eu/taxation_customs/vies`) dla
+  numeru **PL7011222044** zwróciło `isValid: true`.
+- Potwierdzone dane w VIES: nazwa „KR OFFICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ" oraz adres
+  „STEFANA BATOREGO 18 M108, 02-591 WARSZAWA" — spójne z Białą Listą i KRS.
+- **Interpretacja:** ważny numer VAT-UE potwierdza zdolność do legalnego obrotu wewnątrzwspólnotowego
+  (faktury z VAT-UE). Dla lokalnego biura rachunkowego to sygnał dodatkowy, nie warunek konieczny — ale
+  potwierdza formalną rejestrację podmiotu w systemie VIES.
 
 ### 2.4. Status w KRS
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (potwierdzona) | Źródło |
 |---|---|---|
-| Numer KRS | 0001126380 | kotwica identyfikacyjna |
-| Rejestr | Rejestr Przedsiębiorców KRS | (do weryfikacji w odpisie aktualnym — ekrs.ms.gov.pl / PRS) |
-| Status podmiotu | aktywny (działający) — do potwierdzenia | (do weryfikacji w KRS) |
-| Postępowanie upadłościowe / restrukturyzacyjne / likwidacja | brak informacji — do potwierdzenia | (do weryfikacji w dziale odpisu KRS / KRZ) |
+| Numer KRS | 0001126380 | KRS (API MS) |
+| Rejestr | Rejestr Przedsiębiorców KRS | KRS (API MS) |
+| Status pozycji | **1 — podmiot wpisany / aktywny** | KRS (API MS, odpis aktualny) |
+| Postępowanie upadłościowe / restrukturyzacyjne / likwidacja | **brak wpisów** (działy 4–6 odpisu puste) | KRS (API MS, odpis pełny) |
+| Ostatni wpis | nr 3 z 11.09.2024 (rejestracja + uzupełnienie NIP/REGON) | KRS (API MS) |
 
-- **Co sprawdzamy:** w KRS szukamy potwierdzenia, że podmiot jest wpisany i **aktywny**, oraz czy w dziale
-  dotyczącym postępowań nie ma wzmianek o upadłości, restrukturyzacji lub likwidacji. To kluczowy „twardy"
-  wskaźnik statusu prawnego `(do weryfikacji)`.
+- **Wniosek:** podmiot jest **aktywny**, a w odpisie KRS **nie figurują** wpisy o upadłości,
+  restrukturyzacji ani likwidacji (działy 4, 5 i 6 puste). To pozytywny, „twardy" wskaźnik statusu prawnego
+  (pełna metryka identyfikacyjna w M1; portal przeglądarki: e-KRS `ekrs.ms.gov.pl`).
 
 ### 2.5. Publiczne rejestry dłużników
 
-| Rejestr | Zakres | Status na etapie DRAFT |
+| Rejestr | Wynik | Źródło / status |
 |---|---|---|
-| Krajowy Rejestr Zadłużonych (KRZ) — krz.ms.gov.pl | podmioty, wobec których toczy się postępowanie upadłościowe/restrukturyzacyjne, zakaz prowadzenia działalności | do sprawdzenia po NIP/KRS `(do weryfikacji)` |
-| Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl | ogłoszenia wymagane (m.in. o upadłości, restrukturyzacji, zmianach w KRS) | do sprawdzenia po KRS/NIP `(do weryfikacji)` |
-| KRD, ERIF, BIG InfoMonitor (komercyjne) | bazy dłużników komercyjnych | **brak dostępu bez logowania/opłaty — jawne ograniczenie** `(brak danych publicznych)` |
+| Krajowy Rejestr Zadłużonych (KRZ) | bezpośrednie zapytanie programowe **nie wykonane** (interaktywna wyszukiwarka); **brak sygnału negatywnego** w odpisie KRS (działy 4–6 puste) i w wyszukiwaniu publicznym | `krz.ms.gov.pl` / `prs.ms.gov.pl/krz/` — ograniczenie; KRS (API MS) |
+| Monitor Sądowy i Gospodarczy (MSiG) | **1 ogłoszenie** — wyłącznie pierwszy wpis do KRS (wpis nr 1 z 11.09.2024, opublikowany w MSiG nr 185/2024 z 23.09.2024); **brak ogłoszeń o upadłości/restrukturyzacji** | `imsig.pl/szukaj?krs=0001126380` |
+| KRD, ERIF, BIG InfoMonitor (komercyjne) | **brak dostępu bez logowania/opłaty** — jawne ograniczenie | `(brak danych publicznych)` |
 
-- **KRZ i MSiG** są publiczne i bezpłatne — zostaną sprawdzone w pass 2 (M2 — real). Na etapie DRAFT nie
-  formułuję twierdzeń o wpisach; zapis „brak wpisów" będzie możliwy dopiero po faktycznym zapytaniu.
+- **KRZ:** portal KRZ (`krz.ms.gov.pl` / `prs.ms.gov.pl/krz/`) to interaktywna aplikacja, z której nie da
+  się pobrać wyniku zwykłym zapytaniem bez sesji — dlatego bezpośrednie potwierdzenie „braku wpisu" w KRZ
+  **nie zostało wykonane programowo** `(do weryfikacji w interaktywnej wyszukiwarce)`. Jako sygnał zastępczy
+  traktuję **odpis KRS** (źródło pierwotne), który nie wykazuje postępowań
+  upadłościowych/restrukturyzacyjnych (działy 4–6 puste) — to główny „twardy" wskaźnik braku postępowań.
+- **MSiG:** wyszukiwarka MSiG (po KRS 0001126380) potwierdza status **„aktywna"** i pokazuje **dokładnie
+  1 ogłoszenie** — pierwszy wpis do KRS z 11.09.2024. Uwaga: wyszukiwarka MSiG z definicji **nie obejmuje**
+  ogłoszeń o postępowaniach upadłościowych/restrukturyzacyjnych (te są w KRZ), więc brak takich ogłoszeń
+  w MSiG sam w sobie nie przesądza — ale jest spójny z czystym odpisem KRS.
 - **Komercyjne BIG (KRD/ERIF/InfoMonitor):** wymagają konta i/lub opłaty. Zgodnie z zasadą uczciwości
   **nie zgaduję** ich zawartości — to jawne ograniczenie raportu. Wynik negatywny w rejestrach publicznych
-  nie zastępuje pełnej weryfikacji w BIG `(założenie metodologiczne)`.
+  nie zastępuje pełnej weryfikacji w BIG.
 
 ### 2.6. Analiza i ocena ryzyka — M2
 
-**Ocena: Średnie.** Na etapie DRAFT brak jest potwierdzonych danych urzędowych o statusie VAT, VIES, KRS
-i rejestrach dłużników (wszystko `(do weryfikacji)`), a komercyjne BIG pozostają poza zasięgiem (jawne
-ograniczenie). Nie odnotowano żadnego negatywnego wpisu ani sprzeczności — brak potwierdzenia wynika
-z nieotwarcia źródeł, a nie ze stwierdzonego problemu. Po uziemieniu w pass 2 ocena może zostać obniżona do
-**Niskiej** (jeśli Biała Lista potwierdzi czynny VAT, a KRZ/MSiG nie wykażą wpisów) lub podniesiona do
-**Wysokiej** (w razie negatywnych wpisów).
+**Ocena: Średnie.** Po stronie pozytywnej potwierdzono w źródłach urzędowych: **status „Czynny" na Białej
+Liście VAT** (API MF), **ważny numer VAT-UE w VIES** oraz **aktywny status w KRS bez wpisów o
+upadłości/restrukturyzacji/likwidacji** (działy 4–6 puste), a w MSiG wyłącznie jeden (rejestracyjny) wpis.
+Ocena nie jest jednak „Niska" z dwóch powodów: (1) **sygnał przywrócenia rejestracji VAT** (Art. 96
+ust. 9h, 2025-06-27) wskazujący na wcześniejsze wykreślenie z rejestru VAT — pojedyncze zastrzeżenie do
+historii zgodności podatkowej, oraz (2) **niepełna weryfikacja dłużników** — KRZ nie został zapytany
+bezpośrednio (interaktywna wyszukiwarka), a komercyjne BIG (KRD/ERIF/InfoMonitor) pozostają poza dostępem.
+To pojedyncze zastrzeżenia/niepełne dane, a nie stwierdzone negatywne wpisy — stąd **Średnie**, a nie Niska.
 
 ---
 
@@ -165,73 +223,82 @@ z nieotwarcia źródeł, a nie ze stwierdzonego problemu. Po uziemieniu w pass 2
 
 ### 3.1. Cel i zakres
 
-Sekcja odpowiada na pytanie o **reputację** badanego podmiotu w oczach klientów (i — o ile występuje —
-pracowników). Zbieram opinie z czterech wymaganych źródeł: **Google Maps, GoWork, Oferteo, Facebook**.
-Analizuję:
+Sekcja odpowiada na pytanie o **reputację** badanego podmiotu w oczach klientów (oraz — o ile
+występują — pracowników). Sprawdzono opinie w czterech wymaganych źródłach: **Google Maps, GoWork,
+Oferteo, Facebook** oraz dodatkowo w lustrach pomocniczych (aleo.com, pkt.pl). Analizowane są:
 
-- **merytorykę** — co konkretnie klienci chwalą lub krytykują (np. terminowość, kontakt, znajomość
-  przepisów, ceny),
-- **oceny** — średnią ocenę i rozkład (ile opinii pozytywnych/neutralnych/negatywnych),
-- **daty** — priorytet dla opinii z **ostatnich 12 miesięcy** (okno: 2025-08-15 → 2026-08-15); opinie
-  starsze odnotowuję z ich datą, ale nie traktuję jako miarodajne dla bieżącej jakości,
-- **liczbę opinii** — mała liczba opinii u młodej firmy to ograniczenie, a nie automatyczny sygnał
-  negatywny.
+- **merytoryka** — co klienci chwalą lub krytykują (terminowość, kontakt, znajomość przepisów, ceny),
+- **oceny** — średnia ocena i rozkład,
+- **daty** — priorytet dla opinii z **ostatnich 12 miesięcy** (okno: 2025-08-15 → 2026-08-15),
+- **liczba opinii**.
 
-**Dezambiguacja podmiotu:** przy wyszukiwaniu opinii kieruję się **adresem ul. Stefana Batorego 18 lok. 108,
-02-591 Warszawa** oraz identyfikatorami **NIP 7011222044 / KRS 0001126380**, a nie samą nazwą „KR Office"
-— w obrocie może działać wiele biur o zbliżonej nazwie `(założenie metodologiczne)`.
+**Dezambiguacja podmiotu:** ustalenia M3 dotyczą wyłącznie KR OFFICE sp. z o.o. identyfikowanej przez
+**NIP 7011222044 / KRS 0001126380**, ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa — nie innych firm
+o zbliżonej nazwie (np. **KR Group sp. z o.o.** czy „KR Office Interiors", które są odrębnymi podmiotami).
 
-> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano jeszcze źródeł opinii** — wszystkie
-> ustalenia M3 mają status `(do weryfikacji)` albo są opisane jako `(brak danych publicznych)`. **Nie
-> fabrykuję** żadnych ocen, liczby opinii ani treści recenzji.
+> **Uwaga (pass 2 — REAL):** źródła opinii zostały **sprawdzone 2026-08-15**. Wynik: na żadnej
+> z czterech platform ani w lustrach **nie znaleziono ani jednej opinii** (liczba opinii = 0). To
+> „brak danych" wynikający najprawdopodobniej z **młodego wieku spółki** (rejestracja 2024-09-11)
+> i małej skali działalności — a nie potwierdzony sygnał negatywny ani pozytywny.
 
 ### 3.2. Google Maps
 
-| Pole | Wartość (wstępna) | Status |
-|---|---|---|
-| Profil / wizytówka firmy | do ustalenia (wyszukiwanie po nazwie + adresie ul. Stefana Batorego 18, 02-591 Warszawa) | (do weryfikacji na google.com/maps) |
-| Liczba opinii | nieznana na etapie DRAFT | (do weryfikacji) |
-| Średnia ocena (gwiazdki) | nieznana na etapie DRAFT | (do weryfikacji) |
-| Rozkład ocen | nieznany na etapie DRAFT | (do weryfikacji) |
-| Merytoryka (powtarzające się atuty/zastrzeżenia) | nieznana na etapie DRAFT | (do weryfikacji) |
-| Daty opinii (priorytet ostatnich 12 mies.) | do ustalenia | (do weryfikacji) |
-
-- **Czego szukam:** liczby i dat opinii oraz treści (merytoryki). Opinie z ostatnich 12 miesięcy (2025-08-15 →
-  2026-08-15) mają pierwszeństwo; starsze odnotowuję z datą. Wzorzec powtarzających się zarzutów (np. błędy
-  księgowe, brak kontaktu) byłby czerwoną flagą — na etapie DRAFT żadnego nie stwierdzam `(do weryfikacji)`.
+- **Wynik:** nie zidentyfikowano publicznej wizytówki ani opinii dla KR OFFICE sp. z o.o.
+  (NIP 7011222044) w wynikach wyszukiwania; **liczba opinii = 0** do analizy.
+- **Ograniczenie techniczne:** Google Maps renderuje treść po stronie klienta (JavaScript), więc
+  bezpośredniego odczytu wizytówki/ocen nie da się wykonać zwykłym pobraniem strony; wyszukiwanie nie
+  zwróciło publicznej wizytówki z opiniami dla tego podmiotu.
+- **Źródło (próba odczytu):** `https://www.google.com/maps/search/KR+Office+Stefana+Batorego+18+Warszawa`
+  (dostęp 2026-08-15; strona JS — brak treści do odczytu). Brak opinii traktowany jako ograniczenie,
+  nie jako negatywna ocena.
 
 ### 3.3. GoWork
 
-- **Charakter źródła:** GoWork to portal z opiniami o **pracodawcach** (głównie z perspektywy pracowników).
-  Dla małego biura rachunkowego wpis może **nie istnieć** — brak wpisu traktuję jako ograniczenie danych,
-  a nie jako informację negatywną `(założenie metodologiczne)`.
-- **Status na etapie DRAFT:** do sprawdzenia, czy podmiot ma profil/opinie na GoWork `(do weryfikacji)`.
-  Nie formułuję żadnych twierdzeń o ocenach ani treści, dopóki nie wykonam wyszukiwania.
+- **Wynik:** profil firmy istnieje (oznaczony jako **„Profil nieoficjalny"**), ale ma **0 opinii**
+  i ocenę **0/5** — komunikat serwisu: „Bądź pierwszy i dodaj opinię o tej firmie".
+- Dane firmowe na profilu są spójne z kotwicą identyfikacyjną: STEFANA BATOREGO 18 lok. 108, 02-591
+  Warszawa; NIP 7011222044; KRS 0001126380; REGON 529621586; branża „Księgowość i podatki".
+- **Źródło:** `https://www.gowork.pl/opinie_czytaj,26859439` (dostęp 2026-08-15).
 
 ### 3.4. Oferteo
 
-- **Charakter źródła:** Oferteo to portal z opiniami **klientów o firmach usługowych** (w tym o biurach
-  rachunkowych). To źródło o najwyższej wartości dla reputacji klienckiej — sprawdzam liczbę opinii, ocenę
-  oraz merytorykę (terminowość, komunikacja, ceny) `(do weryfikacji)`.
-- **Status na etapie DRAFT:** do sprawdzenia, czy biuro ma profil na Oferteo i jakie ma opinie. **Nie
-  fabrykuję** ocen ani treści `(do weryfikacji)`.
+- **Wynik:** profil firmy istnieje, ale **nie ma jeszcze opinii** — komunikat serwisu: „Wykonawca nie ma
+  jeszcze opinii. Dodaj pierwszą opinię" (**0 opinii**, brak oceny).
+- Profil zawiera autoprezentację („O nas"), nie opinię klienta: „KR OFFICE SP. Z O.O. firma świadcząca
+  profesjonalne usługi prowadzenia ksiąg rachunkowych spółek z o.o., spółek akcyjnych, fundacji,
+  stowarzyszeń. Zapewniamy kompleksową obsługę księgowo-kadrową." — to deklaracja marketingowa biura, nie
+  recenzja (szczegóły oferty → sekcja M4).
+- Adres na profilu: ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa; NIP 701-122-20-44 — spójne
+  z kotwicą identyfikacyjną.
+- **Źródło:** `https://www.oferteo.pl/kr-office-sp-z-o-o/firma/6659698` (dostęp 2026-08-15).
 
 ### 3.5. Facebook
 
-- **Charakter źródła:** profil firmowy (fanpage) — sprawdzam istnienie profilu, aktywność (daty postów),
-  obecność recenzji/opinii oraz ocenę. Część małych biur nie prowadzi aktywnie fanpage'a; brak profilu lub
-  niska aktywność to ograniczenie, nie sygnał negatywny `(założenie metodologiczne)`.
-- **Status na etapie DRAFT:** do sprawdzenia, czy podmiot ma fanpage i recenzje `(do weryfikacji)`. Nie
-  formułuję twierdzeń o treści postów ani recenzji.
+- **Wynik:** nie znaleziono publicznego profilu firmowego (fanpage) ani recenzji dla KR OFFICE sp. z o.o.
+  (NIP 7011222044) w wynikach wyszukiwania; **brak opinii do analizy**.
+- **Ograniczenie:** część małych biur nie prowadzi fanpage'a; brak profilu/recenzji to ograniczenie danych,
+  a nie sygnał negatywny. Nie formułuję twierdzeń o treści postów ani recenzji (nie istnieją).
 
-### 3.6. Analiza i ocena ryzyka — M3
+### 3.6. Lustra pomocnicze i dezambiguacja
 
-**Ocena: Średnie.** Na etapie DRAFT reputacja jest **nieznana** — żadne z czterech źródeł (Google Maps,
-GoWork, Oferteo, Facebook) nie zostało jeszcze otwarte, a oceny, liczby i treści opinii mają status
-`(do weryfikacji)`. Brak danych wynika z **niezebrania opinii**, a nie ze stwierdzonego problemu; nie
-odnotowano żadnego negatywnego wzorca. Po uziemieniu w pass 2 ocena może zostać obniżona do **Niskiej**
-(jeśli opinie z ostatnich 12 miesięcy będą pozytywne i merytoryczne) lub podniesiona do **Wysokiej**
-(w razie powtarzających się negatywnych opinii, np. o błędach księgowych lub braku kontaktu).
+- **aleo.com** (`https://aleo.com/pl/firma/kr-office-spolka-z-ograniczona-odpowiedzialnoscia`, dostęp
+  2026-08-15): sekcja „Opinie (0)" — **0 opinii**, ocena 0/5.0, komunikat „brak opinii o firmie".
+- **pkt.pl** (`https://www.pkt.pl/firma/kr-office-sp-z-o-o-9383553`, dostęp 2026-08-15): **0,0 / 0 opinii**.
+- **Dezambiguacja (ważne):** w obrocie istnieją inne podmioty o zbliżonej nazwie, m.in. **KR Group
+  sp. z o.o.** (posiada 386 opinii na GoWork) oraz „KR Office Interiors" (meble biurowe, źródło YouTube).
+  Ich opinie **nie dotyczą** badanego podmiotu i nie mogą być z nim łączone — stąd dezambiguacja wyłącznie
+  przez NIP 7011222044 / KRS 0001126380 i adres Stefana Batorego 18/108, 02-591 Warszawa.
+
+### 3.7. Analiza i ocena ryzyka — M3
+
+**Ocena: Średnie.** Weryfikacja z 2026-08-15 wykazała **0 opinii** na wszystkich czterech wymaganych
+platformach (Google Maps, GoWork, Oferteo, Facebook) oraz w lustrach (aleo.com, pkt.pl). Oznacza to brak
+jakiejkolwiek merytoryki, ocen ani dat do analizy — zarówno w priorytetowym oknie ostatnich 12 miesięcy
+(2025-08-15 → 2026-08-15), jak i poza nim. Brak opinii jest tu **ograniczeniem danych** spójnym z młodym
+wiekiem spółki (rejestracja 2024-09-11) i małą skalą działalności, a nie sygnałem negatywnym; nie ma też
+podstaw, by mówić o potwierdzonej pozytywnej reputacji. Zgodnie ze skalą ryzyka („niepełne dane, np. brak
+opinii z powodu młodego wieku") ocena pozostaje **Średnie** — nie **Niska** (brak dowodu pozytywnej
+reputacji) ani **Wysoka** (brak jakichkolwiek negatywnych wpisów).
 
 ---
 
@@ -244,93 +311,113 @@ Sekcja odpowiada na pytanie o **jakość usług** badanego biura rachunkowego: c
 jakimi **kanałami kontaktu** dysponuje. Uzupełnia obszar „JAKOŚĆ USŁUG" z celu analizy i pomaga ocenić, czy
 biuro jest w stanie obsłużyć konkretny profil klienta (np. spółki IT / transportowe).
 
-**Dezambiguacja podmiotu:** ustalenia M4 dotyczą wyłącznie KR Office sp. z o.o. identyfikowanej przez
+**Dezambiguacja podmiotu:** ustalenia M4 dotyczą wyłącznie KR OFFICE sp. z o.o. identyfikowanej przez
 **NIP 7011222044 / KRS 0001126380**, ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa — nie innych firm
-o zbliżonej nazwie `(założenie metodologiczne)`.
+o zbliżonej nazwie.
 
-> **Uwaga (pass 1 — DRAFT/stub):** na tym etapie **nie otwierano** strony WWW biura, opisów oferty,
-> ogłoszeń ani profili branżowych — wszystkie ustalenia M4 mają status `(do weryfikacji)` albo
-> `(brak danych publicznych)`. **Nie fabrykuję** zakresu usług, specjalizacji, certyfikatów ani
-> szczegółów polisy OC.
+> **Uwaga (pass 2 — REAL):** sekcja została **uziemiona źródłami** w dniu 2026-08-15. Sprawdzono profile
+> publiczne podmiotu (Oferteo, pkt.pl/Favore, GoWork, aleo.com) oraz odpis KRS (z sekcji M1). Oferta
+> i specjalizacja zostały ustalone na podstawie autoprezentacji biura; wzmianka o OC pochodzi z deklaracji
+> w katalogu pkt.pl. Część danych (certyfikaty, doświadczenie kadry, telefon) **nie jest publicznie
+> dostępna** — odnotowano to jawnie jako `(brak danych publicznych)`.
 
 ### 4.2. Oferta i zakres usług
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (uziemiona) | Źródło (dostęp 2026-08-15) |
 |---|---|---|
-| Zakres oferty | do ustalenia (księgowość pełna/uproszczona, kadry-płace, rozliczenia ZUS/US, doradztwo podatkowe) | (do weryfikacji na stronie WWW / w opisach oferty) |
-| Profil klienta | do ustalenia (JDG / spółki kapitałowe / spółki IT / transportowe) | (do weryfikacji) |
-| Cennik / model rozliczeń | nieznany na etapie DRAFT | (do weryfikacji) |
-| PKD działalności | 69.20.Z — działalność rachunkowo-księgowa; doradztwo podatkowe | (do weryfikacji w KRS — powiązane z M1) |
+| Zakres oferty (autoprezentacja) | **Prowadzenie ksiąg rachunkowych** spółek z o.o., spółek akcyjnych, fundacji i stowarzyszeń oraz **kompleksowa obsługa księgowo-kadrowa** | Oferteo (profil firmy) |
+| Kategorie usług (Oferteo) | Pełna księgowość, uproszczona księgowość, inne usługi księgowe, kadry i płace, rejestracja spółek | Oferteo (profil firmy) |
+| Szczegółowy zakres (katalog pkt.pl) | Usługi księgowe (m.in. KPiR, ryczałt, karta podatkowa, sprawozdania finansowe, roczne rozliczenia), obsługa płacowa (deklaracje ZUS, listy płac, PIT), obsługa kadrowa (umowy o pracę, umowy cywilnoprawne, świadectwa pracy), doradztwo podatkowe i biznesowe (zakładanie działalności) | pkt.pl (Favore) |
+| Profil klienta (deklarowany) | Firmy jednoosobowe, firmy krajowe, spółki cywilne, spółki jawne, spółki partnerskie; wg Oferteo także spółki z o.o./akcyjne, fundacje, stowarzyszenia | pkt.pl; Oferteo |
+| Cennik | **nie opublikowany** w żadnym z otwartych źródeł `(brak danych publicznych)` | — |
+| PKD działalności | 69.20.Z — działalność rachunkowo-księgowa; doradztwo podatkowe (powiązane z M1) | KRS (API MS); pkt.pl; aleo.com |
 
-- **Czego szukam:** publicznego opisu oferty (np. „prowadzenie ksiąg rachunkowych", „obsługa
-  kadrowo-płacowa", „rozliczenia ZUS/US") oraz profilu obsługiwanych klientów. Zakres oferty weryfikuję
-  w pass 2 na podstawie strony WWW i opisów usług `(do weryfikacji)`.
+- **Co potwierdzono:** biuro publicznie deklaruje **prowadzenie ksiąg rachunkowych** (pełna księgowość
+  spółek kapitałowych oraz jednostek non-profit) i **obsługę kadrowo-płacową** — spójne z PKD 69.20.Z
+  (działalność rachunkowo-księgowa; doradztwo podatkowe) potwierdzonym w KRS (patrz M1).
+- **Ograniczenie:** to autoprezentacja z katalogów firm (Oferteo, pkt.pl), nie regulamin ani umowa. Cennik
+  ani model rozliczeń nie są opublikowane `(brak danych publicznych)`.
 
 ### 4.3. Specjalizacja (IT / transport / inne)
 
-- **Szukana informacja:** czy biuro deklaruje specjalizację branżową — np. obsługa spółek **IT**,
-  **transportowych**, e-commerce, budowlanych lub inną niszę (wymóg celu: „Poszukaj informacji
-  o specjalizacji, np. obsługa spółek IT / transportowych").
-- **Status na etapie DRAFT:** specjalizacja **nieznana** — nie potwierdzono ani nie wykluczono żadnej
-  branży `(do weryfikacji)`. Nie formułuję twierdzenia typu „biuro specjalizuje się w IT/transporcie",
-  dopóki nie znajdę potwierdzenia w materiałach własnych biura `(do weryfikacji)`.
-- **Interpretacja:** brak deklarowanej specjalizacji nie jest sygnałem negatywnym — wiele małych biur
-  obsługuje klientów wielobranżowo `(założenie metodologiczne)`.
+- **Wynik (pass 2 — REAL): nie znaleziono deklarowanej specjalizacji branżowej** (IT / transport /
+  e-commerce / budownictwo). W autoprezentacji (Oferteo „O nas") biuro pozycjonuje się **przez formę
+  prawną klienta** (spółki z o.o., spółki akcyjne, fundacje, stowarzyszenia), a katalog pkt.pl wymienia
+  jako obsługiwanych klientów „firmy jednoosobowe, firmy krajowe, spółki cywilne, spółki jawne, spółki
+  partnerskie" — **bez wskazania branży (IT/transport)**.
+- **Interpretacja:** profil wskazuje na **biuro ogólne (wielobranżowe)**, bez deklarowanej niszy
+  branżowej. To **nie** jest sygnał negatywny — wiele małych biur obsługuje klientów wielobranżowo — ale
+  oznacza, że **nie potwierdzono** specjalizacji w obsłudze spółek IT czy transportowych; należy to
+  doprecyzować bezpośrednio u biura, jeśli jest istotne dla zleceniodawcy.
+- **Źródła:** Oferteo `https://www.oferteo.pl/kr-office-sp-z-o-o/firma/6659698`; pkt.pl
+  `https://www.pkt.pl/firma/kr-office-sp-z-o-o-9383553` (dostęp 2026-08-15).
 
 ### 4.4. Ubezpieczenie OC biura
 
-- **Wymóg celu:** jeśli pojawi się wzmianka o ubezpieczeniu OC biura rachunkowego, należy ją uwzględnić
-  w raporcie.
-- **Status na etapie DRAFT:** **nie znaleziono informacji o OC** — nie otwierano strony WWW, regulaminów
-  ani ogłoszeń, w których taka wzmianka mogłaby wystąpić `(do weryfikacji)`. Brak wzmianki **nie jest
-  równoznaczny** z brakiem polisy — to wyłącznie brak danych na etapie DRAFT `(założenie metodologiczne)`.
-- **Czego NIE robię:** nie wymyślam zakresu ani limitu (sumy gwarancyjnej) polisy OC. Takie dane będzie
-  można podać dopiero po ich faktycznym znalezieniu w pass 2 `(do weryfikacji)`.
+- **Wymóg celu:** jeśli pojawi się wzmianka o ubezpieczeniu OC biura rachunkowego, należy ją uwzględnić.
+- **Wynik (pass 2 — REAL): znaleziono wzmiankę o ubezpieczeniu OC biura.** W profilu pkt.pl (serwis
+  Favore), w sekcji „Informacje dodatkowe", widnieje włączone pole **„Firma ubezpieczona OC"** — deklaracja,
+  że biuro jest ubezpieczone od odpowiedzialności cywilnej.
+- **Charakter informacji:** to **samo-deklaracja właściciela profilu** (checkbox w katalogu firm), a nie
+  dokument polisy. Serwis nie podaje **zakresu, sumy gwarancyjnej, ubezpieczyciela ani numeru polisy** —
+  nie wiadomo zatem, na jakich warunkach i do jakiej kwoty **klienci są ubezpieczeni** w razie błędu biura.
+- **Sprawdzone również:** w pozostałych otwartych źródłach (Oferteo, GoWork, aleo.com, odpis KRS) **nie
+  znaleziono** dodatkowych informacji o OC (zakres / suma / ubezpieczyciel). To jedyna publicznie dostępna
+  wzmianka.
+- **Czego NIE robię:** nie wymyślam zakresu ani limitu polisy OC — takie dane nie zostały nigdzie
+  opublikowane. Rekomendacja: przed współpracą poprosić biuro o kopię polisy OC (zakres + suma gwarancyjna).
+- **Źródło:** pkt.pl `https://www.pkt.pl/firma/kr-office-sp-z-o-o-9383553` (dostęp 2026-08-15).
 
 ### 4.5. Certyfikaty i uprawnienia
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (uziemiona) | Status |
 |---|---|---|
-| Certyfikat księgowy / licencja doradcy podatkowego | do ustalenia | (do weryfikacji — np. w rejestrach branżowych / materiałach biura) |
-| Członkostwo w organizacjach branżowych | do ustalenia | (do weryfikacji) |
-| Inne uprawnienia (np. pełnomocnictwo, biegły rewident) | do ustalenia | (do weryfikacji) |
+| Certyfikat księgowy (MF / C.I.K.) | **nie znaleziono** wpisu dla KR OFFICE / Katarzyny Pydynowskiej w sprawdzonych źródłach | `(brak danych publicznych)` |
+| Wpis na listę doradców podatkowych | **nie znaleziono** w sprawdzonych źródłach | `(brak danych publicznych)` |
+| Członkostwo w organizacjach branżowych | **nie stwierdzono** (brak danych) | `(brak danych publicznych)` |
 
-- **Czego szukam:** publicznych potwierdzeń uprawnień (np. wpis na listę doradców podatkowych, certyfikat
-  księgowy MF, członkostwo w Stowarzyszeniu Księgowych w Polsce). Na etapie DRAFT **nie stwierdzam** żadnego
-  certyfikatu `(do weryfikacji)`.
+- **Co sprawdzono:** listę certyfikowanych biur rachunkowych C.I.K. dla powiatu Warszawa
+  (`cik.org.pl/biura/warszawa-25`, dostęp 2026-08-15) — **brak** pozycji „KR OFFICE" na sprawdzonych
+  stronach listy; profile Oferteo, pkt.pl, GoWork i aleo.com nie deklarują certyfikatów ani uprawnień.
+  Uwaga: lista C.I.K. jest wielostronicowa, a certyfikat/uprawnienia mogą istnieć bez publikacji
+  w katalogach — dlatego to „brak danych publicznych", a nie potwierdzony „brak uprawnień".
 
 ### 4.6. Doświadczenie kadry
 
-- **Szukana informacja:** doświadczenie i wykształcenie osób zarządzających/księgowych (np. prezes
-  Katarzyna Pydynowska) — staż w księgowości, uprawnienia, historia zatrudnienia.
-- **Status na etapie DRAFT:** doświadczenie kadry **nieznane** — wymaga weryfikacji w materiałach biura,
-  profilach zawodowych lub opisie firmy `(do weryfikacji)`. Młody wiek spółki (rejestracja 2024-09-11) nie
-  przesądza o braku doświadczenia jej właścicieli — to odrębna kwestia do sprawdzenia
-  `(założenie metodologiczne)`.
+- **Kadra (potwierdzone):** jedyny członek zarządu i wspólnik — **Katarzyna Pydynowska** (prezes
+  zarządu), zidentyfikowana w KRS (API MS) i spójna w lustrach (patrz M1). Lustro aleo.com podaje wiek
+  „40 lat" (dane pomocnicze, nie urzędowe).
+- **Doświadczenie / wykształcenie / uprawnienia księgowe:** **nie opublikowane** w sprawdzonych źródłach —
+  brak publicznych informacji o stażu w księgowości, wykształceniu czy uprawnieniach zawodowych
+  `(brak danych publicznych)`. Młody wiek spółki (rejestracja 2024-09-11) nie przesądza o braku
+  doświadczenia właścicielki — to odrębna, nieweryfikowalna publicznie kwestia.
 
 ### 4.7. Kanały kontaktu
 
-| Pole | Wartość (wstępna) | Status |
+| Pole | Wartość (uziemiona) | Źródło (dostęp 2026-08-15) |
 |---|---|---|
-| Telefon | do ustalenia | (do weryfikacji) |
-| E-mail | do ustalenia | (do weryfikacji) |
-| Strona WWW | do ustalenia | (do weryfikacji) |
-| Profil Facebook / inne social media | do ustalenia (powiązane z M3) | (do weryfikacji) |
-| Adres stacjonarny | ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa | (do weryfikacji w KRS) |
+| Adres stacjonarny | ul. Stefana Batorego 18 lok. 108, 02-591 Warszawa | KRS (API MS) — M1; Oferteo/pkt.pl/GoWork |
+| E-mail | K.PYDYNOWSKA@GMAIL.COM (adres z odpisu KRS) | KRS (API MS) — M1 |
+| Telefon | **nie opublikowany** w otwartych źródłach | `(brak danych publicznych)` |
+| Strona WWW | **nie zidentyfikowano** własnej strony WWW biura | wyszukiwanie + profile katalogowe |
+| Forma kontaktu (Oferteo) | „czat, e-mail, telefon" (preferowana forma) — bez jawnego numeru telefonu | Oferteo |
+| Facebook / social media | **brak profilu firmowego** (powiązane z M3) | M3 (sprawdzone) |
 
-- **Czego szukam:** aktualnych, publicznie dostępnych kanałów kontaktu. Brak łatwo dostępnego kontaktu
-  (np. brak telefonu/e-maila w źródłach publicznych) byłby odnotowany jako utrudnienie — na etapie DRAFT
-  nie stwierdzam takiego braku, bo źródeł nie otwierano `(do weryfikacji)`.
+- **Wniosek:** dostępne kanały to **adres siedziby** i **e-mail z odpisu KRS**; brak publicznie jawnego
+  **numeru telefonu** oraz **własnej strony WWW**. To ograniczenie dostępności kontaktu (nie sygnał
+  negatywny) — rekomendacja: zweryfikować telefon bezpośrednio przed nawiązaniem współpracy.
 
 ### 4.8. Analiza i ocena ryzyka — M4
 
-**Ocena: Średnie.** Na etapie DRAFT jakość usług jest **nieznana**: oferta, specjalizacja, certyfikaty,
-doświadczenie kadry i kanały kontaktu mają status `(do weryfikacji)`, a wzmianka o OC **nie została
-znaleziona** (z braku otwarcia źródeł). Brak danych wynika z nieprzeprowadzenia weryfikacji, a nie ze
-stwierdzonego problemu; nie odnotowano żadnego sygnału negatywnego. Po uziemieniu w pass 2 ocena może zostać
-obniżona do **Niskiej** (jeśli oferta i specjalizacja będą spójne z profilem klienta, potwierdzone i wystąpi
-wzmianka o OC) lub podniesiona do **Wysokiej** (w razie rażąco niekompletnej oferty, braku kontaktu lub
-sprzeczności).
+**Ocena: Średnie.** Po stronie pozytywnej: oferta jest **uziemiona** (prowadzenie ksiąg rachunkowych +
+kompleksowa obsługa księgowo-kadrowa, spójna z PKD 69.20.Z z M1) i **znaleziono deklarację o ubezpieczeniu
+OC biura** (pkt.pl). Ocena nie jest jednak „Niska", bo: (1) deklaracja OC to **samo-deklaracja bez
+szczegółów** (brak zakresu/sumy/ubezpieczyciela), (2) **nie potwierdzono specjalizacji branżowej**
+(IT/transport), (3) **brak publicznych danych** o certyfikatach i doświadczeniu kadry oraz (4)
+**ograniczony kontakt** (brak jawnego telefonu i strony WWW). To niepełne dane/jedna wzmianka do
+weryfikacji, a nie stwierdzone negatywne sygnały — stąd **Średnie**, a nie Wysoka. Po uzupełnieniu (kopia
+polisy OC, potwierdzenie specjalizacji/kadry/telefonu) ocena może zostać obniżona do **Niskiej**.
+
 
 ---
 
@@ -440,109 +527,142 @@ formułuję **rekomendację** dla zleceniodawcy oraz wskazuję otwarte kwestie d
 (REAL). Synteza opiera się wyłącznie na ustaleniach sekcji M1–M5 i jest spójna z sekcjami
 „Podsumowanie tabelaryczne" i „Czerwone Flagi".
 
-> **Uwaga (pass 1 — DRAFT/stub):** żadne źródło urzędowe ani opinia nie zostały jeszcze otwarte, więc
-> wszystkie dane mają status `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`. Końcowa
-> ocena ryzyka ma charakter **warunkowy** i zostanie zaktualizowana po uziemieniu źródeł w pass 2.
+> **Uwaga (pass 2 — w toku):** sekcja M5 nadal nie ma otwartych źródeł, więc jej dane mają status
+> `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`; sekcja M4 została już uziemiona.
+> Końcowa ocena ryzyka ma charakter **warunkowy** i zostanie zaktualizowana po uziemieniu źródeł w pass 2.
 
 ### 6.2. Synteza ocen cząstkowych (M1–M5)
 
-| Obszar | Ocena cząstkowa (DRAFT) | Kluczowe zastrzeżenie / status |
+| Obszar | Ocena cząstkowa | Kluczowe zastrzeżenie / status |
 |---|---|---|
-| M1 — Identyfikacja i metryka | Średnie | dane wstępne `(do weryfikacji w KRS)`; rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł |
-| M2 — Status prawny i podatkowy | Średnie | czynny VAT / VIES / status KRS / dłużnicy niezweryfikowane; BIG poza dostępem `(brak danych publicznych)` |
-| M3 — Reputacja | Średnie | opinie nie zebrane `(do weryfikacji)`; brak sfabrykowanych ocen i treści |
-| M4 — Jakość usług i specjalizacja | Średnie | oferta / specjalizacja / OC / kadra nieznane `(do weryfikacji)`; wzmianka o OC nie znaleziona |
+| M1 — Identyfikacja i metryka | Średnie | identyfikacja potwierdzona; rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł |
+| M2 — Status prawny i podatkowy | Średnie | czynny VAT / ważny VIES / aktywny KRS potwierdzone; sygnał przywrócenia VAT (2025-06-27); BIG poza dostępem `(brak danych publicznych)` |
+| M3 — Reputacja | Średnie | 0 opinii na Google Maps/GoWork/Oferteo/Facebook + lustra (sprawdzone 2026-08-15); brak sfabrykowanych ocen i treści — brak opinii = ograniczenie, nie sygnał negatywny |
+| M4 — Jakość usług i specjalizacja | Średnie | oferta uziemiona (księgi rachunkowe + kadry-płace, PKD 69.20.Z); deklaracja OC (pkt.pl) bez szczegółów; specjalizacja branżowa nie potwierdzona; certyfikaty/kadra/telefon — brak danych publicznych |
 | M5 — Stabilność finansowa | Średnie | sprawozdania / historia zmian / powiązania nieznane `(do weryfikacji)`; młody wiek, minimalny kapitał |
 
-- **Wniosek z syntezy:** wszystkie obszary otrzymały ocenę **Średnie** z tego samego powodu — dane są
-  **niezweryfikowane** (nie otwarto źródeł), a nie dlatego, że stwierdzono problem. To spójny obraz
-  niepewności informacyjnej typowej dla etapu DRAFT `(założenie metodologiczne)`.
-- **Kierunek zmiany w pass 2:** jeśli źródła urzędowe potwierdzą „czysty" status (czynny VAT, brak wpisów
-  w KRZ/MSiG, spójna struktura kapitałowa), a opinie z ostatnich 12 miesięcy będą merytorycznie pozytywne,
-  ocena może spaść do **Niskiej**. Negatywne wpisy w rejestrach, wzorzec negatywnych opinii lub rażące
-  braki (np. deklarowane OC bez potwierdzenia, brak kontaktu) podniosłyby ocenę do **Wysokiej**.
+- **Wniosek z syntezy:** wszystkie obszary otrzymały ocenę **Średnie**. Dla M1 i M2 wynika to z
+  **pojedynczych zastrzeżeń/niepełnych danych** mimo pozytywnego potwierdzenia w rejestrach; dla M3
+  z **braku opinii** (0 opinii — ograniczenie danych, nie sygnał negatywny); dla M4 z **niepełnych danych
+  o jakości usług** (oferta i deklaracja OC potwierdzone, ale brak szczegółów polisy, specjalizacji,
+  certyfikatów i telefonu); dla M5 z danych **niezweryfikowanych** (nie otwarto źródeł). To spójny obraz
+  niepewności informacyjnej `(założenie metodologiczne)`.
+- **Kierunek zmiany w pass 2:** jeśli kolejne źródła potwierdzą „czysty" status (brak wpisów w KRZ/BIG,
+  spójna struktura kapitałowa, potwierdzenie szczegółów polisy OC i sprawozdania bez negatywnych sygnałów),
+  ocena może spaść do **Niskiej**. Negatywne wpisy w rejestrach, pojawienie się negatywnych opinii lub
+  rażące braki podniosłyby ocenę do **Wysokiej**.
 
 ### 6.3. Rekomendacja
 
-- **Na etapie DRAFT rekomendacja ma charakter warunkowy.** Dokument jest użyteczny jako wstępne rozpoznanie
-  (identyfikacja podmiotu, mapa obszarów ryzyka i źródeł), ale **nie może być jedyną podstawą decyzji**
-  o nawiązaniu współpracy — wszystkie kluczowe ustalenia mają status `(do weryfikacji)`.
-- **Przed podjęciem decyzji należy dokończyć pass 2 (REAL):** potwierdzić status czynnego VAT (Biała
-  Lista / API MF), status KRS i brak wpisów w KRZ/MSiG, zebrać opinie z ostatnich 12 miesięcy (Google
-  Maps, GoWork, Oferteo, Facebook), ustalić specjalizację i ewentualne OC biura, sprawdzić sprawozdania
-  finansowe oraz rozstrzygnąć rozbieżność udziałów vs kapitał (pełny odpis KRS).
-- **Wstępnie (DRAFT):** nie stwierdzono jednoznacznych czerwonych flag; identyfikatory są wewnętrznie
-  spójne, a młody wiek spółki i minimalny kapitał zakładowy to ograniczenia danych, a nie dowód
-  nierzetelności. Kontynuacja due diligence jest uzasadniona.
+- **Rekomendacja ma charakter warunkowy.** Dokument jest użyteczny jako rozpoznanie (identyfikacja podmiotu,
+  status prawno-podatkowy, reputacja i jakość usług są już sprawdzone), ale **nie może być jedyną podstawą
+  decyzji** o nawiązaniu współpracy — kluczowy obszar M5 wciąż ma status `(do weryfikacji)`, a część danych
+  M4 (szczegóły polisy OC, certyfikaty, kadra, telefon) pozostaje niepubliczna.
+- **Przed podjęciem decyzji należy dokończyć pass 2 (REAL):** sprawdzić sprawozdania finansowe (M5) oraz
+  rozstrzygnąć rozbieżność udziałów vs kapitał (pełny odpis KRS) i wyjaśnić przyczynę wcześniejszego
+  wykreślenia z rejestru VAT (sygnał z M2). W zakresie M4 pozostało do uzupełnienia u samego biura: kopia
+  polisy OC (zakres/suma), potwierdzenie specjalizacji i doświadczenia kadry oraz aktualny telefon.
+  Reputacja (M3) została już sprawdzona — 0 opinii na dostępnych platformach.
+- **Wstępnie:** nie stwierdzono potwierdzonych negatywnych wpisów w rejestrach; identyfikatory są
+  wewnętrznie spójne, a status VAT/VIES/KRS pozytywny. Sygnały do obserwacji (przywrócenie VAT, rozbieżność
+  udziałów, młody wiek, minimalny kapitał) uzasadniają **ostrożność**, ale nie są dowodem nierzetelności.
+  Kontynuacja due diligence jest uzasadniona.
 
 ### 6.4. Czerwone Flagi i końcowa ocena ryzyka
 
-- **Czerwone Flagi:** sekcja „Czerwone Flagi" (poniżej) zbiera wszystkie zidentyfikowane sygnały. Na
-  etapie DRAFT nie stwierdzono **potwierdzonych** czerwonych flag; jedyny sygnał do obserwacji to
-  rozbieżność liczby udziałów vs kapitał zakładowy (do rozstrzygnięcia na pełnym odpisie KRS).
-- **Końcowa ocena ryzyka: Średnie.** Uzasadnienie: dane ze wszystkich obszarów (M1–M5) są niezweryfikowane
-  `(do weryfikacji)`, a komercyjne BIG oraz młody wiek spółki dodatkowo ograniczają dostępność informacji.
-  Nie jest to ocena „Wysoka" (brak stwierdzonych negatywnych wpisów) ani „Niska" (brak pozytywnego
-  potwierdzenia danych urzędowych i reputacji). Ocena zostanie zaktualizowana w pass 2 (real).
+- **Czerwone Flagi:** sekcja „Czerwone Flagi" (poniżej) zbiera wszystkie zidentyfikowane sygnały. Nie
+  stwierdzono **potwierdzonych** czerwonych flag; sygnały do obserwacji to rozbieżność liczby udziałów vs
+  kapitał zakładowy (M1/M5) oraz przywrócenie rejestracji VAT (M2).
+- **Końcowa ocena ryzyka: Średnie.** Uzasadnienie: M1–M2 są potwierdzone w rejestrach, ale niosą pojedyncze
+  zastrzeżenia; M3 wykazuje **0 opinii** (ograniczenie danych); M4 ma uziemioną ofertę i deklarację OC, ale
+  niepełne dane (szczegóły polisy, specjalizacja, certyfikaty, kadra, telefon); M5 jest niezweryfikowane
+  `(do weryfikacji)`. Komercyjne BIG oraz młody wiek spółki dodatkowo ograniczają dostępność informacji.
+  Nie jest to ocena „Wysoka" (brak stwierdzonych negatywnych wpisów) ani „Niska" (brak pełnego potwierdzenia
+  reputacji, szczegółów OC i sprawozdań). Ocena zostanie zaktualizowana w pass 2 (real).
 
 ---
 
 ## Czerwone Flagi
 
-- **Nie stwierdzono jednoznacznych czerwonych flag** na etapie M1.
-- **Sygnał do obserwacji (nie flaga):** rozbieżność „91 udziałów = 4 550 zł" vs. „kapitał zakładowy 5 000 zł"
-  — może wskazywać na drugiego wspólnika lub niepełny odczyt; do rozstrzygnięcia na pełnym odpisie KRS.
-- **M2 — nie stwierdzono** negatywnych wpisów w rejestrach publicznych na etapie DRAFT. Rejestry (Biała
-  Lista, VIES, KRS, KRZ/MSiG) nie zostały jeszcze sprawdzone, a komercyjne BIG pozostają poza dostępem —
-  brak wpisów ma tu status `(do weryfikacji)` / `(brak danych publicznych)`, a nie potwierdzonego „czystego"
-  wyniku.
-- **M3 — nie stwierdzono** negatywnych opinii na etapie DRAFT. Źródła opinii (Google Maps, GoWork, Oferteo,
-  Facebook) nie zostały jeszcze otwarte — brak negatywnych wpisów ma status `(do weryfikacji)`, a nie
-  potwierdzonej „dobrej reputacji". Powtarzający się wzorzec negatywnych recenzji z ostatnich 12 miesięcy
-  byłby traktowany jako czerwona flaga — na ten moment takiego wzorca nie odnotowano.
-- **M4 — nie stwierdzono** negatywnych sygnałów jakościowych na etapie DRAFT. Strona WWW, oferta,
-  certyfikaty i kanały kontaktu nie zostały jeszcze otwarte/sprawdzone, a brak wzmianki o OC ma status
-  `(do weryfikacji)` — nie jest to potwierdzony „brak ubezpieczenia".
+- **M1 — identyfikacja potwierdzona** w rejestrach urzędowych (KRS — API MS; Biała Lista — API MF):
+  nazwa, KRS 0001126380, NIP 7011222044, REGON 529621586, adres Stefana Batorego 18/108, 02-591 Warszawa,
+  PKD 69.20.Z i kapitał 5 000 zł są wzajemnie spójne; działy 4–6 odpisu KRS puste (brak zastawów, kuratora,
+  postępowań). Nie stwierdzono jednoznacznej czerwonej flagi.
+- **Sygnał do obserwacji (nie potwierdzona flaga):** rozbieżność „91 udziałów = 4 550 zł" vs „kapitał
+  zakładowy 5 000 zł" — publiczny odpis KRS wykazuje jednego wspólnika (91 udziałów = 4 550 zł)
+  i jednocześnie „nie posiada całości udziałów", bez ujawnienia drugiego wspólnika; brakujące 9 udziałów
+  (450 zł) pozostaje niewyjaśnione.
+- **Sygnał do obserwacji (M2):** przywrócenie rejestracji VAT (Biała Lista: „Art. 96 ust. 9h", data
+  2025-06-27) — wskazuje na wcześniejsze wykreślenie z rejestru VAT i ponowne przywrócenie; przyczyna
+  wykreślenia nie jest ujawniona w API MF.
+- **M2 — status potwierdzony w rejestrach urzędowych (dostęp 2026-08-15):** Biała Lista VAT — status
+  „Czynny" (czynny podatnik VAT); VIES — numer VAT-UE PL7011222044 ważny; KRS — podmiot aktywny, działy
+  4–6 puste (brak upadłości/restrukturyzacji/likwidacji); MSiG — wyłącznie jeden wpis (rejestracyjny, MSiG
+  nr 185/2024). **Ograniczenia (nie potwierdzony brak wpisów):** KRZ nie zapytany bezpośrednio (interaktywna
+  wyszukiwarka); komercyjne BIG (KRD/ERIF/InfoMonitor) poza dostępem — `(brak danych publicznych)`.
+- **M3 — nie stwierdzono** negatywnych opinii. Źródła opinii (Google Maps, GoWork, Oferteo, Facebook) oraz
+  lustra (aleo.com, pkt.pl) zostały **sprawdzone 2026-08-15**: na żadnej platformie **nie ma ani jednej
+  opinii** (liczba opinii = 0), więc nie odnotowano żadnego negatywnego (ani pozytywnego) wpisu. Brak
+  opinii to ograniczenie danych (młody podmiot, rejestracja 2024-09-11), a nie potwierdzona „dobra
+  reputacja" ani czerwona flaga. Dezambiguacja: opinie innych firm o zbliżonej nazwie (np. KR Group
+  sp. z o.o.) NIE dotyczą badanego podmiotu.
+- **M4 — nie stwierdzono** negatywnych sygnałów jakościowych. Oferta została **uziemiona** w profilach
+  publicznych (Oferteo, pkt.pl — prowadzenie ksiąg rachunkowych + obsługa księgowo-kadrowa, spójna
+  z PKD 69.20.Z); **znaleziono deklarację „Firma ubezpieczona OC"** w profilu pkt.pl, ale bez szczegółów
+  polisy (zakres/suma/ubezpieczyciel). Do obserwacji: brak publicznych danych o certyfikatach
+  i doświadczeniu kadry oraz brak jawnego telefonu i własnej strony WWW — to ograniczenia dostępności
+  danych/kontaktu, a nie potwierdzone czerwone flagi.
 - **M5 — nie stwierdzono** negatywnych sygnałów finansowych na etapie DRAFT. Sprawozdania finansowe
   (KRS/MSiG), historia zmian i powiązania osobowe/kapitałowe nie zostały jeszcze otwarte/sprawdzone —
   brak danych ma status `(do weryfikacji)`, a nie potwierdzonej „stabilności finansowej". Młody wiek
   spółki (rejestracja 2024-09-11) i minimalny kapitał zakładowy (5 000 zł) to sygnał do obserwacji
   (ograniczenie danych / podwyższona uwaga), a nie czerwona flaga sam w sobie.
 
-- **M6 — synteza:** na etapie DRAFT końcowa ocena ryzyka = **Średnie** wynika z danych niezweryfikowanych `(do weryfikacji)` we wszystkich obszarach M1–M5, a nie ze stwierdzonych negatywnych wpisów. Żadna z sekcji nie wykazała **potwierdzonej** czerwonej flagi. Kluczowe do rozstrzygnięcia w pass 2: rozbieżność „91 udziałów = 4 550 zł" vs kapitał 5 000 zł (M1/M5), status czynnego VAT (M2), obecność i treść opinii z ostatnich 12 mies. (M3), specjalizacja i wzmianka o OC (M4) oraz sprawozdania finansowe (M5).
+- **M6 — synteza:** końcowa ocena ryzyka = **Średnie** wynika z pojedynczych zastrzeżeń w M1–M2 (przywrócenie
+  VAT, rozbieżność udziałów), braku opinii w M3 (0 opinii), niepełnych danych o jakości usług w M4 (deklaracja
+  OC bez szczegółów, brak specjalizacji/certyfikatów/telefonu) oraz danych niezweryfikowanych
+  `(do weryfikacji)` w M5, a nie ze stwierdzonych negatywnych wpisów. Żadna z sekcji nie wykazała
+  **potwierdzonej** czerwonej flagi. Kluczowe do rozstrzygnięcia w pass 2: rozbieżność „91 udziałów =
+  4 550 zł" vs kapitał 5 000 zł (M1/M5), przyczyna przywrócenia rejestracji VAT (M2), szczegóły polisy OC
+  i specjalizacja (M4) oraz sprawozdania finansowe (M5).
 
 ---
 
 ## Źródła
 
-W pass 1 (stub) nie otwierano jeszcze źródeł — z tego powodu **nie podaję dat dostępu** (daty dostępu
-zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródła do weryfikacji:
+W pass 1 (stub) nie otwierano źródeł. W pass 2 (REAL) uziemiono dotąd sekcje **M1**, **M2**, **M3**
+i **M4** — poniżej podano faktycznie otwarte źródła wraz z datami dostępu (2026-08-15). Sekcje M5–M6
+nadal zawierają planowane źródła do weryfikacji (daty dostępu zostaną dodane po ich faktycznym otwarciu):
 
-**M1 — Identyfikacja i metryka:**
-- KRS / e-KRS — ekrs.ms.gov.pl (odpis aktualny i pełny) — potwierdzenie nazwy, KRS, adresu, kapitału, zarządu, udziałowców, PKD.
-- Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — potwierdzenie NIP i statusu VAT (M2).
-- Rejestr REGON — potwierdzenie REGON.
+**M1 — Identyfikacja i metryka (uziemione w pass 2; dostęp 2026-08-15):**
+- KRS — odpis aktualny (API Ministerstwa Sprawiedliwości): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` — nazwa, forma prawna, KRS, NIP, REGON, adres, kapitał zakładowy, zarząd, wspólnik, PKD, data rejestracji, status pozycji (dostęp 2026-08-15).
+- KRS — odpis pełny (API Ministerstwa Sprawiedliwości): `https://api-krs.ms.gov.pl/api/krs/OdpisPelny/0001126380?format=json` — historia wpisów (rejestracja 2024-09-11 oraz wpisy NIP/REGON), umowa spółki, dane działów 1–6 (dostęp 2026-08-15).
+- Biała Lista podatników VAT — API MF: `https://wl-api.mf.gov.pl/api/search/nip/7011222044?date=2026-08-15` — potwierdzenie NIP 7011222044, REGON 529621586, KRS 0001126380, nazwy i adresu oraz status VAT „Czynny" (szczegóły statusu w M2) (dostęp 2026-08-15).
+- Lustra pomocnicze (potwierdzenie pełnego nazwiska prezesa/wspólnika, spójne z KRS): `https://rejestr.io/krs/1126380`, `https://aleo.com/pl/firma/kr-office-spolka-z-ograniczona-odpowiedzialnoscia`, `https://krs-pobierz.pl/kr-office-spolka-z-ograniczona-odpowiedzialnoscia-i0001126380` — wszystkie wykazują „Katarzyna Pydynowska" jako prezesa zarządu i wspólnika (91 udziałów = 4 550 zł) (dostęp 2026-08-15).
+- Lexlege — art. 96 ustawy o VAT (interpretacja pola „Art. 96 ust. 9h" = przywrócenie rejestracji VAT po wykreśleniu): `https://lexlege.pl/ustawa-o-podatku-od-towarow-i-uslug/art-96/` (dostęp 2026-08-15).
 
-**M2 — Status prawny i podatkowy:**
-- Biała Lista podatników VAT — podatki.gov.pl / API MF (`wl-api.mf.gov.pl`) — status czynnego podatnika VAT, data rejestracji, rachunek rozliczeniowy.
-- VIES — ec.europa.eu/taxation_customs/vies — status VAT-UE (PL7011222044).
-- KRS / e-KRS — ekrs.ms.gov.pl — status podmiotu, postępowania upadłościowe/restrukturyzacyjne/likwidacyjne.
-- Krajowy Rejestr Zadłużonych (KRZ) — krz.ms.gov.pl — ewentualne wpisy po NIP/KRS.
-- Monitor Sądowy i Gospodarczy (MSiG) — imsig.pl — ogłoszenia wymagane po KRS/NIP.
+**M2 — Status prawny i podatkowy (uziemione w pass 2; dostęp 2026-08-15):**
+- Biała Lista podatników VAT — API MF: `https://wl-api.mf.gov.pl/api/search/nip/7011222044?date=2026-08-15` — status „Czynny", data rejestracji jako podatnik VAT 2024-10-08, rachunek rozliczeniowy 52 1160 2202 0000 0006 3037 1440, pola przywrócenia rejestracji („Art. 96 ust. 9h", 2025-06-27) (dostęp 2026-08-15).
+- VIES (VAT-UE) — API Komisji Europejskiej: `https://ec.europa.eu/taxation_customs/vies/rest-api/ms/PL/vat/7011222044` — `isValid: true` (ważny numer VAT-UE PL7011222044), nazwa i adres spójne z KRS/Białą Listą (dostęp 2026-08-15).
+- KRS — odpis aktualny i pełny (API MS): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` oraz `https://api-krs.ms.gov.pl/api/krs/OdpisPelny/0001126380?format=json` — status pozycji 1 (aktywny), działy 4–6 puste (brak upadłości/restrukturyzacji/likwidacji) (dostęp 2026-08-15; szczegóły w bloku M1).
+- Monitor Sądowy i Gospodarczy (MSiG): `https://www.imsig.pl/szukaj?krs=0001126380` — status „aktywna", 1 ogłoszenie (wpis nr 1 z 11.09.2024, opublikowane w MSiG nr 185/2024 z 23.09.2024) (dostęp 2026-08-15).
+- Krajowy Rejestr Zadłużonych (KRZ): `https://krz.ms.gov.pl` / `https://prs.ms.gov.pl/krz/` — interaktywna wyszukiwarka; bezpośrednie zapytanie programowe nie zostało wykonane (jawne ograniczenie) (dostęp do portalu 2026-08-15).
 - KRD / ERIF / BIG InfoMonitor — dostęp komercyjny (konto/opłata); jawne ograniczenie, bez zgadywania zawartości.
 
-**M3 — Reputacja:**
-- Google Maps — google.com/maps — profil/wizytówka firmy, liczba i treść opinii, oceny, daty (priorytet ostatnich 12 mies.).
-- GoWork — gowork.pl — opinie o pracodawcy (o ile wpis istnieje).
-- Oferteo — oferteo.pl — opinie klientów o usługach księgowych.
-- Facebook — facebook.com — profil firmowy, recenzje i oceny (o ile istnieje).
+**M3 — Reputacja (uziemione w pass 2; dostęp 2026-08-15):**
+- GoWork — profil firmy („Profil nieoficjalny", 0 opinii, 0/5): `https://www.gowork.pl/opinie_czytaj,26859439` (dostęp 2026-08-15).
+- Oferteo — profil firmy („Wykonawca nie ma jeszcze opinii", 0 opinii): `https://www.oferteo.pl/kr-office-sp-z-o-o/firma/6659698` (dostęp 2026-08-15).
+- Google Maps — próba odczytu wizytówki/opinii (strona JS, brak treści do odczytu; brak znalezionych opinii w wyszukiwaniu): `https://www.google.com/maps/search/KR+Office+Stefana+Batorego+18+Warszawa` (dostęp 2026-08-15).
+- Facebook — nie znaleziono publicznego profilu firmowego (fanpage) ani recenzji dla NIP 7011222044 w wynikach wyszukiwania (dostęp 2026-08-15).
+- Lustra pomocnicze (0 opinii, spójne z kotwicą NIP/KRS): `https://aleo.com/pl/firma/kr-office-spolka-z-ograniczona-odpowiedzialnoscia` (0 opinii, 0/5.0) oraz `https://www.pkt.pl/firma/kr-office-sp-z-o-o-9383553` (0,0 / 0 opinii) (dostęp 2026-08-15).
 
-**M4 — Jakość usług i specjalizacja:**
-- Strona WWW biura (adres do ustalenia) — oferta, specjalizacja (IT/transport/inne), cennik, kanały kontaktu, ewentualna wzmianka o OC.
-- KRS / e-KRS — ekrs.ms.gov.pl — PKD 69.20.Z, skład zarządu (kadra) i ewentualne wpisy o uprawnieniach.
-- Rejestry branżowe (np. lista doradców podatkowych, certyfikat księgowy MF) — certyfikaty i uprawnienia kadry.
-- Profile firmy / wizytówki usługowe — Google Maps, Oferteo, Facebook — opis oferty i specjalizacji (pokrywa się z M3).
-- Ogłoszenia / materiały własne biura — ewentualna wzmianka o ubezpieczeniu OC biura.
+**M4 — Jakość usług i specjalizacja (uziemione w pass 2; dostęp 2026-08-15):**
+- Oferteo — profil firmy (autoprezentacja „O nas" + kategorie usług): `https://www.oferteo.pl/kr-office-sp-z-o-o/firma/6659698` — oferta: prowadzenie ksiąg rachunkowych spółek z o.o./akcyjnych, fundacji, stowarzyszeń; kompleksowa obsługa księgowo-kadrowa; kategorie: pełna/uproszczona księgowość, kadry i płace, rejestracja spółek; preferowana forma kontaktu „czat, e-mail, telefon" (dostęp 2026-08-15).
+- pkt.pl (Favore) — profil firmy: `https://www.pkt.pl/firma/kr-office-sp-z-o-o-9383553` — szczegółowy zakres usług (księgowość, płace, kadry, doradztwo podatkowe/biznesowe), PKD 69.20.Z, **deklaracja „Firma ubezpieczona OC"** (bez szczegółów polisy), rodzaje klientów, rok założenia 2024 (dostęp 2026-08-15).
+- GoWork — profil firmy („Profil nieoficjalny"): `https://www.gowork.pl/opinie_czytaj,26859439` — dane firmowe spójne z kotwicą NIP/KRS, branża „Księgowość i podatki" (dostęp 2026-08-15).
+- aleo.com — profil firmy: `https://aleo.com/pl/firma/kr-office-spolka-z-ograniczona-odpowiedzialnoscia` — KRS 0001126380, PKD 69.20.Z, zarząd: Katarzyna Pydynowska (prezes, „40 lat"), wspólnik 91 udziałów (dostęp 2026-08-15).
+- KRS — odpis aktualny/pełny (API MS): `https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/0001126380?format=json` — PKD 69.20.Z, skład zarządu (kadra), adres i e-mail (szczegóły w bloku M1; dostęp 2026-08-15).
+- C.I.K. — lista certyfikowanych biur rachunkowych (powiat Warszawa): `https://www.cik.org.pl/biura/warszawa-25` — sprawdzona pod kątem KR OFFICE (brak pozycji na sprawdzonych stronach listy); certyfikat/uprawnienia niepotwierdzone (dostęp 2026-08-15).
 
 **M5 — Stabilność finansowa:**
 - KRS / e-KRS — ekrs.ms.gov.pl — sprawozdania finansowe (Repozytorium Dokumentów Finansowych), kapitał zakładowy, data rejestracji (wiek firmy), historia zmian (działy 1 i 2), powiązania osobowe/kapitałowe.
@@ -561,20 +681,32 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 
 - **Metoda:** OSINT na źródłach publicznych i urzędowych; priorytet dla źródeł pierwotnych (KRS, Biała Lista,
   VIES, KRZ/MSiG); lustra (rejestr.io, aleo.com itp.) wyłącznie pomocniczo.
-- **Ograniczenia (pass 1):** wszystkie dane M1–M5 mają status rozpoznania wstępnego i nie zostały jeszcze
-  potwierdzone w rejestrze urzędowym, w źródłach opinii ani w materiałach o ofercie/jakości usług i
-  stabilności finansowej. Rejestry publiczne (Biała Lista, VIES, KRS, KRZ, MSiG), portale opinii (Google
-  Maps, GoWork, Oferteo, Facebook), strona WWW / materiały o ofercie oraz sprawozdania finansowe (KRS/MSiG)
-  zostaną sprawdzone w pass 2.
+- **Ograniczenia (pass 2 — w toku):** sekcje M1 (identyfikacja i metryka) oraz M2 (status prawny
+  i podatkowy) zostały uziemione w rejestrach urzędowych (KRS — API MS; Biała Lista — API MF; VIES — KE;
+  MSiG), sekcja M3 (reputacja) została sprawdzona w portalach opinii (Google Maps, GoWork, Oferteo,
+  Facebook + lustra aleo.com/pkt.pl — wynik: 0 opinii, dostęp 2026-08-15), a sekcja M4 (jakość usług)
+  została sprawdzona w profilach publicznych (Oferteo, pkt.pl, GoWork, aleo.com — oferta, deklaracja OC,
+  kanały kontaktu, dostęp 2026-08-15). Dane M5 (stabilność finansowa) mają nadal status rozpoznania
+  wstępnego i nie zostały jeszcze potwierdzone — zostaną sprawdzone w kolejnych krokach pass 2.
+- **Ograniczenie — struktura właścicielska (M1):** publiczny odpis KRS (aktualny i pełny) wykazuje jednego
+  wspólnika (91 udziałów = 4 550 zł) przy kapitale 5 000 zł i wskazaniu „nie posiada całości udziałów",
+  lecz nie ujawnia drugiego wspólnika — 9 udziałów (450 zł) pozostaje niewyjaśnione; wymaga pełnego odpisu
+  z ujawnieniem wszystkich wspólników lub dokumentów spółki.
+- **Ograniczenie — KRZ (M2):** portal KRZ (`krz.ms.gov.pl` / `prs.ms.gov.pl/krz/`) jest interaktywną
+  wyszukiwarką, z której nie pobrano wyniku programowo — bezpośrednie potwierdzenie „braku wpisu" w KRZ
+  nie zostało wykonane; jako sygnał zastępczy użyto odpisu KRS (działy 4–6 puste).
 - **Ograniczenie — komercyjne BIG:** KRD, ERIF i BIG InfoMonitor wymagają logowania/opłat, więc ich zawartość
   jest poza zasięgiem tego raportu — odnotowane jako jawne ograniczenie, bez zgadywania zawartości.
-- **Ograniczenie — reputacja:** młody wiek spółki (rejestracja 2024-09-11) i mała skala działalności mogą
-  oznaczać niewielką liczbę opinii lub brak profilu na części portali; brak opinii będzie traktowany jako
-  ograniczenie danych, nie jako opinia negatywna.
-- **Ograniczenie — jakość usług i OC:** oferta, specjalizacja i certyfikaty są weryfikowane na podstawie
-  materiałów własnych biura (strona WWW, ogłoszenia), które mogą być niekompletne lub nieaktualne. Wzmianka
-  o ubezpieczeniu OC nie została na etapie DRAFT znaleziona (nie otwierano źródeł) — to brak danych, a nie
-  potwierdzenie braku polisy; zakres/suma OC nie są zgadywane.
+- **Ograniczenie — reputacja (M3, zweryfikowane):** sprawdzenie z 2026-08-15 potwierdziło **0 opinii** na
+  wszystkich czterech platformach (Google Maps, GoWork, Oferteo, Facebook) i w lustrach (aleo.com, pkt.pl) —
+  spójne z młodym wiekiem spółki (rejestracja 2024-09-11) i małą skalą działalności; brak opinii traktowany
+  jako ograniczenie danych, nie jako opinia negatywna.
+- **Ograniczenie — jakość usług i OC (M4, zweryfikowane):** oferta i specjalizacja opierają się na
+  autoprezentacji biura w katalogach firm (Oferteo, pkt.pl), które mogą być niekompletne lub nieaktualne;
+  nie potwierdzono ich regulaminem ani umową. Wzmianka o OC („Firma ubezpieczona OC" w pkt.pl) to
+  samo-deklaracja bez zakresu/sumy gwarancyjnej/ubezpieczyciela — nie jest to dokument polisy; zakres
+  i suma OC nie są zgadywane. Certyfikaty, doświadczenie kadry, telefon i strona WWW nie są publicznie
+  dostępne w sprawdzonych źródłach — odnotowane jako `(brak danych publicznych)`.
 - **Ograniczenie — stabilność finansowa:** młoda spółka (rejestracja 2024-09-11) może nie mieć jeszcze
   złożonych sprawozdań finansowych w KRS/MSiG; brak sprawozdań traktowany jako ograniczenie danych, a nie
   domniemanie negatywne. Kapitał zakładowy 5 000 zł (minimum ustawowe) sam w sobie nie przesądza o kondycji,
@@ -583,4 +715,4 @@ zostaną dodane w pass 2 dla źródeł faktycznie otwartych). Planowane źródł
 - **Zasada „brak danych ≠ dane negatywne":** młody wiek spółki może oznaczać brak sprawozdań/opinii — będzie
   to odnotowywane jako ograniczenie, a nie domniemanie negatywne.
 
-- **Ograniczenie — synteza ryzyka (M6):** końcowa ocena ryzyka i rekomendacja na etapie DRAFT są **warunkowe** — opierają się wyłącznie na danych o statusie `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)` i mogą ulec zmianie po uziemieniu źródeł w pass 2. Niniejszy dokument nie stanowi rekomendacji do zawarcia umowy bez dalszej weryfikacji.
+- **Ograniczenie — synteza ryzyka (M6):** końcowa ocena ryzyka i rekomendacja na tym etapie są **warunkowe** — M1–M2 opierają się na potwierdzonych danych rejestrowych z pojedynczymi zastrzeżeniami, a M3–M5 na danych o statusie `(do weryfikacji)` / `(założenie)` / `(brak danych publicznych)`; mogą ulec zmianie po uziemieniu źródeł w pass 2. Niniejszy dokument nie stanowi rekomendacji do zawarcia umowy bez dalszej weryfikacji.

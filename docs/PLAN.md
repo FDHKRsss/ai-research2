@@ -55,23 +55,23 @@ niepoparta źródłem lub poza celem.
 
 ## Milestones (cała funkcjonalność; każdy = stub + real)
 
-- [ ] **M1 -- Identyfikacja podmiotu i metryka** — potwierdzenie KRS/NIP/REGON, forma prawna, kapitał, zarząd,
+- [x] **M1 -- Identyfikacja podmiotu i metryka** — potwierdzenie KRS/NIP/REGON, forma prawna, kapitał, zarząd,
       udziałowcy, data rejestracji, adres, PKD. (służy celowi: rozróżnienie podmiotu i podstawa dalszych rejestrów)
   - [x] M1 -- stub
-  - [ ] M1 -- real
-- [ ] **M2 -- Status prawny i podatkowy** — Biała Lista VAT (czynny podatnik VAT), VIES, status w KRS,
+  - [x] M1 -- real
+- [x] **M2 -- Status prawny i podatkowy** — Biała Lista VAT (czynny podatnik VAT), VIES, status w KRS,
       publiczne rejestry dłużników: Krajowy Rejestr Zadłużonych (KRZ), MSiG; komercyjne (KRD/ERIF/BIG
       InfoMonitor) — z jawnym opisem ograniczeń dostępu. (służy celowi: status prawny)
   - [x] M2 -- stub
-  - [ ] M2 -- real
-- [ ] **M3 -- Reputacja** — opinie Google Maps, GoWork, Oferteo, Facebook; merytoryka, oceny, daty,
+  - [x] M2 -- real
+- [x] **M3 -- Reputacja** — opinie Google Maps, GoWork, Oferteo, Facebook; merytoryka, oceny, daty,
       priorytet ostatnich 12 mies.; liczba opinii. (służy celowi: reputacja)
   - [x] M3 -- stub
-  - [ ] M3 -- real
-- [ ] **M4 -- Jakość usług i specjalizacja** — oferta, specjalizacja (IT / transport / inne), PKD,
+  - [x] M3 -- real
+- [x] **M4 -- Jakość usług i specjalizacja** — oferta, specjalizacja (IT / transport / inne), PKD,
       ubezpieczenie OC biura, certyfikaty, doświadczenie kadry, kanały kontaktu. (służy celowi: jakość usług)
   - [x] M4 -- stub
-  - [ ] M4 -- real
+  - [x] M4 -- real
 - [ ] **M5 -- Stabilność finansowa** — sprawozdania finansowe (KRS/MSiG), kapitał zakładowy, wiek firmy,
       historia zmian, powiązania osobowe/kapitałowe. (służy celowi: stabilność finansowa z OBJECTIVE)
   - [x] M5 -- stub

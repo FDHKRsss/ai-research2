@@ -80,7 +80,7 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
 - `docs/ARCHITECTURE.md` — niniejszy projekt i decyzje.
 - `docs/CONTEXT.md` — trwałe dyrektywy (nie zmieniać treści celu; tylko ewentualnie doprecyzować esencję).
 
-## Stan wdrożenia (pass 1 — DRAFT/stub)
+## Stan wdrożenia (pass 1 — DRAFT/stub zakończony; pass 2 — REAL w toku)
 
 - **M1 -- stub:** gotowy i przetestowany (11 testów zielonych: `python -m unittest tests.test_m1_stub -v`).
   W `raport/KR-OFFICE-OSINT.md` obecne i kompletne: metryka dokumentu, podsumowanie tabelaryczne (wiersz M1),
@@ -108,5 +108,40 @@ W tym projekcie nie ma kodu. Wytwarzane pliki:
   `(do weryfikacji)`; brak sfabrykowanego potwierdzenia stanu faktycznego; ocena ryzyka M6 = Średnie,
   spójna między sekcją a podsumowaniem. Dodany wiersz M6 w podsumowaniu oraz wpisy w Czerwonych Flagach,
   Źródłach i Metodologii.
-- **Pass 1 (DRAFT/stub) zakończony** — kompletny dokument M1–M6 gotowy. **Pozostała praca (pass 2 —
-  real):** do wykonania uziemienie źródłami (URL + data dostępu) wszystkich sekcji M1 → M6.
+- **M1 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M1 (Identyfikacja i metryka)
+  zweryfikowana w źródłach urzędowych: KRS (API MS — odpis aktualny i pełny, `api-krs.ms.gov.pl`) oraz
+  Biała Lista VAT (API MF, `wl-api.mf.gov.pl`). Potwierdzone: nazwa, forma prawna (sp. z o.o.), KRS
+  0001126380, NIP 7011222044, REGON 529621586, adres Stefana Batorego 18/108, 02-591 Warszawa, kapitał
+  5 000 zł, rejestracja 2024-09-11, PKD 69.20.Z, prezes/wspólnik Katarzyna Pydynowska (91 udziałów =
+  4 550 zł). Rozbieżność udziałów vs kapitał (brak 9 udziałów / 450 zł) potwierdzona w odpisie KRS
+  („nie posiada całości udziałów") i pozostaje otwarta; dodatkowo odnotowany sygnał przywrócenia
+  rejestracji VAT (Biała Lista: „Art. 96 ust. 9h", 2025-06-27) do analizy w M2. Ocena ryzyka M1 =
+  Średnie, spójna między sekcją a podsumowaniem. Zaktualizowane w tym samym kroku: metryka dokumentu,
+  wiersz M1 w podsumowaniu, Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
+- **M2 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M2 (Status prawny i podatkowy)
+  zweryfikowana w źródłach urzędowych: Biała Lista VAT (API MF — status „Czynny", data rejestracji jako
+  podatnik VAT 2024-10-08, rachunek rozliczeniowy 52 1160 2202 0000 0006 3037 1440, pola przywrócenia
+  „Art. 96 ust. 9h" / 2025-06-27), VIES (API KE — `isValid: true` dla PL7011222044), KRS (status aktywny,
+  działy 4–6 puste — brak upadłości/restrukturyzacji/likwidacji) oraz MSiG (status „aktywna", 1 wpis
+  rejestracyjny). KRZ — bezpośrednie zapytanie programowe nie wykonane (interaktywna wyszukiwarka);
+  komercyjne BIG (KRD/ERIF/InfoMonitor) poza dostępem — jawne ograniczenia. Ocena ryzyka M2 = Średnie,
+  spójna między sekcją a podsumowaniem. Zaktualizowane w tym samym kroku: metryka dokumentu, wiersz M2
+  w podsumowaniu, Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
+- **M3 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M3 (Reputacja) sprawdzona
+  w portalach opinii (dostęp 2026-08-15): **0 opinii** na Google Maps, GoWork, Oferteo, Facebook oraz
+  w lustrach (aleo.com, pkt.pl) — brak merytoryki, ocen i dat do analizy; dezambiguacja przez NIP 7011222044 /
+  KRS 0001126380 (np. KR Group sp. z o.o. to inny podmiot). Brak opinii = ograniczenie danych (młody podmiot,
+  rejestracja 2024-09-11), nie sygnał negatywny; ocena ryzyka M3 = Średnie, spójna między sekcją
+  a podsumowaniem. Zaktualizowane w tym samym kroku: metryka dokumentu, wiersz M3 w podsumowaniu, Czerwone
+  Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
+- **M4 -- real:** gotowy i uziemiony. W `raport/KR-OFFICE-OSINT.md` sekcja M4 (Jakość usług
+  i specjalizacja) sprawdzona w profilach publicznych (dostęp 2026-08-15): oferta uziemiona (prowadzenie
+  ksiąg rachunkowych spółek z o.o./akcyjnych, fundacji, stowarzyszeń + kompleksowa obsługa księgowo-kadrowa —
+  Oferteo, pkt.pl; PKD 69.20.Z spójne z KRS), specjalizacja branżowa (IT/transport) nie potwierdzona (profil
+  ogólny), znaleziona deklaracja OC („Firma ubezpieczona OC" w pkt.pl) bez szczegółów polisy, certyfikaty/
+  doświadczenie kadry/telefon/www — jawne `(brak danych publicznych)`. Ocena ryzyka M4 = Średnie, spójna
+  między sekcją a podsumowaniem. Zaktualizowane w tym samym kroku: metryka dokumentu, wiersz M4
+  w podsumowaniu, Czerwone Flagi, Źródła (URL + data dostępu 2026-08-15) i Metodologia.
+- **Pass 1 (DRAFT/stub) zakończony** — kompletny dokument M1–M6 gotowy. **Pass 2 (REAL) w toku:**
+  uziemiono źródłami sekcje **M1**, **M2**, **M3** i **M4**; **pozostała praca:** do wykonania uziemienie
+  źródłami (URL + data dostępu) sekcji **M5 → M6**.

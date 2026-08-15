@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M3 (stub) deliverable: raport/KR-OFFICE-OSINT.md.
+"""Tests for the M3 deliverable section: raport/KR-OFFICE-OSINT.md.
 
-These tests validate the M3 -- Reputacja section against the requirement contract
-in docs/PLAN.md / docs/ARCHITECTURE.md (research deliverable, no application code
-exists in this project).
-
-M3 contract (PLAN.md): opinie Google Maps, GoWork, Oferteo, Facebook; merytoryka,
-oceny, daty (priorytet ostatnich 12 mies.) oraz liczba opinii. W pass 1 (stub)
-wszystko musi być oznaczone "(do weryfikacji)" / "(brak danych publicznych)" /
-"(założenie)" -- zero fabrykacji ocen, liczby opinii ani treści recenzji.
+NOTE: M3 has progressed from stub to REAL in pass 2. The section's contract
+(opinie Google Maps / GoWork / Oferteo / Facebook; merytoryka / oceny / daty /
+liczba opinii; 12-month priority window; disambiguation by NIP/KRS/address) is
+still validated here, together with the pass-2 grounding (verified 0 opinii,
+URLs + access dates). This mirrors tests/test_m2_stub.py, which keeps validating
+the M2 contract after M2 -- real landed.
 """
 import re
 import unittest
@@ -41,6 +39,21 @@ def _section(text: str, heading: str) -> str:
     return rest[:nxt]
 
 
+def _sources_block(text: str, milestone: str) -> str:
+    """Return the '**M# — ...' source block from the Źródła section."""
+    sec = _section(text, "Źródła")
+    start = sec.find(f"**{milestone} —")
+    if start == -1:
+        return ""
+    header_end = start + len(f"**{milestone} —")
+    nxt = None
+    for m in ("M1", "M2", "M3", "M4", "M5", "M6"):
+        idx = sec.find(f"**{m} —", header_end)
+        if idx != -1 and (nxt is None or idx < nxt):
+            nxt = idx
+    return sec[start:nxt] if nxt is not None else sec[start:]
+
+
 def _summary_rows(text: str):
     """Parse the '## Podsumowanie tabelaryczne' markdown table into rows of cells."""
     sec = _section(text, "Podsumowanie tabelaryczne")
@@ -55,7 +68,7 @@ def _summary_rows(text: str):
     return rows
 
 
-class TestM3StubDeliverable(unittest.TestCase):
+class TestM3Deliverable(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.text = _load()
@@ -79,7 +92,7 @@ class TestM3StubDeliverable(unittest.TestCase):
             self.assertIn(platform, self.m3, f"M3 missing required platform: {platform}")
 
     def test_04_m3_addresses_merytoryka_oceny_daty_liczba_opinii(self):
-        for marker in ("merytoryk", "ocen", "dat", "liczbę opinii"):
+        for marker in ("merytoryk", "ocen", "dat", "liczba opinii"):
             self.assertIn(marker, self.m3, f"M3 missing analysis dimension marker: {marker}")
 
     def test_05_m3_states_12_month_priority_window_with_correct_dates(self):
@@ -89,46 +102,33 @@ class TestM3StubDeliverable(unittest.TestCase):
         self.assertIn("2026-08-15", self.m3, "M3 12-month window must end 2026-08-15")
 
     def test_06_m3_disambiguates_by_nip_krs_and_address(self):
-        # The goal/context requires disambiguation by identifiers, not just the name.
         for marker in ("NIP 7011222044", "KRS 0001126380"):
             self.assertIn(marker, self.m3, f"M3 missing disambiguation identifier: {marker}")
         self.assertIn("Stefana Batorego 18", self.m3, "M3 must anchor the address street")
         self.assertIn("02-591 Warszawa", self.m3, "M3 must anchor the address city/zip")
 
-    # -- honesty / no fabrication in the DRAFT --------------------------------
+    # -- pass 2 (REAL): grounded, verified 0 opinions -------------------------
 
-    def test_07_m3_draft_disclaimer_sources_not_opened(self):
-        self.assertTrue(
-            any(m in self.m3 for m in (
-                "nie otwierano",
-                "nie otwarto",
-                "nie zostały jeszcze otwarte",
-                "nie zostało jeszcze otwarte",
-            )),
-            "M3 DRAFT must state that the opinion sources have not been opened yet",
-        )
+    def test_07_m3_records_zero_opinions_honestly(self):
+        self.assertIn("0 opinii", self.m3, "M3 must record the verified 0-opinion result")
+        self.assertIn("sprawdzone 2026-08-15", self.m3,
+                      "M3 must record the 2026-08-15 check date")
+        self.assertNotIn("80%", self.m3, "M3 must not copy the exemplar's '80%' rating")
 
-    def test_08_m3_flags_everything_for_verification(self):
-        self.assertGreaterEqual(self.m3.count("(do weryfikacji"), 3,
-                                "M3 must flag multiple findings as '(do weryfikacji)'")
-        self.assertTrue(
-            any(m in self.m3 for m in ("do sprawdzenia", "do ustalenia")),
-            "M3 must mark the platforms as 'do sprawdzenia'/'do ustalenia'",
-        )
+    def test_08_m3_sources_grounded_with_access_dates(self):
+        sec = _section(self.text, "Źródła")
+        for platform in PLATFORMS:
+            self.assertIn(platform, sec, f"Źródła section missing M3 source: {platform}")
+        block = _sources_block(self.text, "M3")
+        self.assertTrue(block, "Źródła must contain an M3 source block")
+        self.assertIn("2026-08-15", block,
+                      "M3 (REAL) source block must carry the access date 2026-08-15")
 
-    def test_09_m3_no_fabricated_opinion_metrics(self):
-        # No invented review counts, scores or copied exemplar percentages in the stub.
-        self.assertIsNone(
-            re.search(r"\d+\s*opinii", self.m3),
-            "M3 must not fabricate a review count (e.g. '5 opinii')",
-        )
-        self.assertNotIn("80%", self.m3, "M3 stub must not copy the exemplar's '80%' rating")
-        self.assertIn("nieznana na etapie DRAFT", self.m3,
-                      "M3 must mark unknown ratings/review counts as 'nieznana na etapie DRAFT'")
-        self.assertTrue(
-            any(m in self.m3 for m in ("fabrykuję", "sfabrykowanych")),
-            "M3 must state it does not fabricate ratings/review contents",
-        )
+    def test_09_no_post_dated_access_dates(self):
+        dates = re.findall(r"\b20\d{2}-\d{2}-\d{2}\b", self.text)
+        self.assertTrue(dates, "M3 REAL must carry access dates")
+        for d in dates:
+            self.assertLessEqual(d, "2026-08-15", f"access date must not be post-dated: {d}")
 
     # -- risk consistency ------------------------------------------------------
 
@@ -143,43 +143,17 @@ class TestM3StubDeliverable(unittest.TestCase):
         )
         self.assertIn("Średnie", risk_cell, "summary M3 risk cell must match M3 section (Średnie)")
 
-    def test_11_m3_summary_row_is_honest_unverified(self):
-        m3 = [r for r in _summary_rows(self.text) if r and "M3" in r[0]]
-        findings = m3[0][1]
-        self.assertIn("do zebrania i weryfikacji", findings,
-                      "M3 summary findings must flag opinions as not yet gathered/verified")
-        self.assertIn("nieznane na etapie DRAFT", findings,
-                      "M3 summary findings must say the details are unknown in the DRAFT")
-
     # -- cross-cutting hygiene -------------------------------------------------
 
-    def test_12_m3_red_flags_honest(self):
+    def test_11_m3_red_flags_honest(self):
         sec = _section(self.text, "Czerwone Flagi")
         self.assertIn("M3", sec, "Czerwone Flagi section must address M3")
         self.assertIn("nie stwierdzono", sec,
                       "M3 red-flags entry must be honest (no negative findings)")
-        self.assertTrue(
-            any(m in sec for m in ("nie zostały jeszcze otwarte", "nie zostały jeszcze sprawdzone")),
-            "M3 red-flags entry must note the opinion sources have not been opened yet",
-        )
+        self.assertIn("0 opinii", sec,
+                      "M3 red-flags entry must record the 0-opinion result")
 
-    def test_13_m3_sources_planned_no_fabricated_dates(self):
-        sec = _section(self.text, "Źródła")
-        for platform in PLATFORMS:
-            self.assertIn(platform, sec, f"Źródła section missing planned M3 source: {platform}")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
-        )
-
-    def test_14_document_status_note_mentions_m3(self):
-        self.assertIn("M3 — Reputacja", self.text,
-                      "document status note should record M3 as complete")
-
-    def test_15_m3_no_todo_placeholders(self):
-        # Only standalone placeholder markers count ("metodologia" contains "todo").
+    def test_12_m3_no_todo_placeholders(self):
         self.assertIsNone(
             re.search(r"\b(todo|tbd|lorem|placeholder|fixme)\b", self.text, re.IGNORECASE),
             "deliverable must not contain TODO/TBD/lorem/placeholder markers",

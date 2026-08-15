@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Tests for the M4 (stub) deliverable: raport/KR-OFFICE-OSINT.md.
+"""Tests for the M4 deliverable section: raport/KR-OFFICE-OSINT.md.
 
-These tests validate the M4 -- Jakość usług i specjalizacja section against the
-requirement contract in docs/PLAN.md / docs/ARCHITECTURE.md (research deliverable,
-no application code exists in this project).
-
-M4 contract (PLAN.md): oferta, specjalizacja (IT / transport / inne), PKD,
-ubezpieczenie OC biura, certyfikaty, doświadczenie kadry, kanały kontaktu.
-W pass 1 (stub) wszystko musi być oznaczone "(do weryfikacji)" / "(brak danych
-publicznych)" / "(założenie)" -- zero fabrykacji oferty/specjalizacji/OC.
+NOTE: M4 has progressed from stub to REAL in pass 2. The section's contract
+(oferta, specjalizacja IT/transport/inne, PKD, ubezpieczenie OC biura,
+certyfikaty, doświadczenie kadry, kanały kontaktu, disambiguation by NIP/KRS)
+is still validated here, together with the pass-2 grounding (concrete offer +
+OC self-declaration + URLs + access dates). The detailed REAL grounding is
+validated in tests/test_m4_real.py; this file keeps the durable contract checks
+(mirroring tests/test_m2_stub.py).
 """
 import re
 import unittest
@@ -41,6 +40,21 @@ def _section(text: str, heading: str) -> str:
     return rest[:nxt]
 
 
+def _sources_block(text: str, milestone: str) -> str:
+    """Return the '**M# — ...' source block from the Źródła section."""
+    sec = _section(text, "Źródła")
+    start = sec.find(f"**{milestone} —")
+    if start == -1:
+        return ""
+    header_end = start + len(f"**{milestone} —")
+    nxt = None
+    for m in ("M1", "M2", "M3", "M4", "M5", "M6"):
+        idx = sec.find(f"**{m} —", header_end)
+        if idx != -1 and (nxt is None or idx < nxt):
+            nxt = idx
+    return sec[start:nxt] if nxt is not None else sec[start:]
+
+
 def _summary_rows(text: str):
     """Parse the '## Podsumowanie tabelaryczne' markdown table into rows of cells."""
     sec = _section(text, "Podsumowanie tabelaryczne")
@@ -55,7 +69,7 @@ def _summary_rows(text: str):
     return rows
 
 
-class TestM4StubDeliverable(unittest.TestCase):
+class TestM4Deliverable(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.text = _load()
@@ -77,7 +91,6 @@ class TestM4StubDeliverable(unittest.TestCase):
     def test_03_m4_covers_offer_and_scope(self):
         for marker in ("Oferta i zakres usług", "księgowość", "kadry", "69.20.Z"):
             self.assertIn(marker, self.m4, f"M4 missing offer/scope marker: {marker}")
-        # PKD must be cross-referenced back to M1 (single source of truth).
         self.assertIn("powiązane z M1", self.m4,
                       "M4 must cross-reference PKD back to M1")
 
@@ -85,15 +98,18 @@ class TestM4StubDeliverable(unittest.TestCase):
         for marker in ("Specjalizacja", "IT", "transport", "inne"):
             self.assertIn(marker, self.m4, f"M4 missing specialization marker: {marker}")
 
-    def test_05_m4_covers_oc_insurance_and_honesty(self):
-        # OC is required by the goal; the stub must record "no info found" honestly.
-        for marker in ("ubezpieczenie OC", "nie znaleziono informacji o OC",
+    def test_05_m4_covers_oc_insurance_honestly(self):
+        # OC is required by the goal. In pass 2 a self-declaration was found in pkt.pl;
+        # the section must record it honestly and refuse to invent scope/limit.
+        for marker in ("ubezpieczenie OC", "Firma ubezpieczona OC",
                        "nie wymyślam zakresu ani limitu"):
             self.assertIn(marker, self.m4, f"M4 missing OC marker: {marker}")
 
     def test_06_m4_covers_certificates_experience_contact(self):
         for marker in ("Certyfikaty i uprawnienia", "Doświadczenie kadry", "Kanały kontaktu"):
             self.assertIn(marker, self.m4, f"M4 missing service-quality marker: {marker}")
+        self.assertIn("Pydynowska", self.m4,
+                      "M4 must identify the kadra (prezes Katarzyna Pydynowska)")
 
     def test_07_m4_disambiguates_by_nip_krs_address(self):
         for marker in ("NIP 7011222044", "KRS 0001126380"):
@@ -101,35 +117,30 @@ class TestM4StubDeliverable(unittest.TestCase):
         self.assertIn("Stefana Batorego 18", self.m4, "M4 must anchor the address street")
         self.assertIn("02-591 Warszawa", self.m4, "M4 must anchor the address city/zip")
 
-    # -- honesty / no fabrication in the DRAFT --------------------------------
+    # -- pass 2 (REAL): grounded offer / OC -----------------------------------
 
-    def test_08_m4_draft_disclaimer_sources_not_opened(self):
+    def test_08_m4_grounded_with_sources_and_access_dates(self):
+        self.assertIn("2026-08-15", self.m4, "M4 REAL must carry the access date 2026-08-15")
+        self.assertIn("ksiąg rachunkowych", self.m4,
+                      "M4 REAL must ground the offer (prowadzenie ksiąg rachunkowych)")
+        block = _sources_block(self.text, "M4")
+        self.assertTrue(block, "Źródła must contain an M4 source block")
+        self.assertIn("2026-08-15", block,
+                      "M4 (REAL) source block must carry the access date 2026-08-15")
         self.assertTrue(
-            any(m in self.m4 for m in ("nie otwierano", "nie otwarto")),
-            "M4 DRAFT must state that the WWW/offer/certificate sources have not been opened",
+            any(d in block for d in ("oferteo.pl", "pkt.pl", "gowork.pl", "aleo.com")),
+            "M4 (REAL) source block must cite a concrete public profile",
         )
 
-    def test_09_m4_flags_everything_for_verification(self):
-        self.assertGreaterEqual(self.m4.count("(do weryfikacji"), 3,
-                                "M4 must flag multiple findings as '(do weryfikacji)'")
-        self.assertIn("do ustalenia", self.m4,
-                      "M4 must mark unknown fields as 'do ustalenia'")
-
-    def test_10_m4_no_fabricated_offer_specialization_or_oc(self):
-        # Specialization must stay unknown; OC scope/limit must not be invented.
-        self.assertIn("specjalizacja **nieznana**", self.m4,
-                      "M4 must state specialization is unknown in the DRAFT")
-        self.assertIn("fabrykuję", self.m4,
-                      "M4 must state it does not fabricate offer/specialization/OC")
-        # The section must explicitly decline to assert a positive specialization.
-        self.assertIn("formułuję twierdzenia", self.m4,
-                      "M4 must decline to claim a positive specialization")
-        # No invented OC coverage amount / limit in the M4 section.
-        self.assertNotIn("suma gwarancyjna w wysokości", self.m4)
+    def test_09_no_post_dated_access_dates(self):
+        dates = re.findall(r"\b20\d{2}-\d{2}-\d{2}\b", self.text)
+        self.assertTrue(dates, "M4 REAL must carry access dates")
+        for d in dates:
+            self.assertLessEqual(d, "2026-08-15", f"access date must not be post-dated: {d}")
 
     # -- risk consistency ------------------------------------------------------
 
-    def test_11_m4_risk_rating_consistent_summary_vs_section(self):
+    def test_10_m4_risk_rating_consistent_summary_vs_section(self):
         self.assertIn("Ocena: Średnie", self.m4, "M4 section must state Ocena: Średnie")
         m4 = [r for r in _summary_rows(self.text) if r and "M4" in r[0]]
         self.assertTrue(m4, "summary table must contain an M4 row")
@@ -140,45 +151,17 @@ class TestM4StubDeliverable(unittest.TestCase):
         )
         self.assertIn("Średnie", risk_cell, "summary M4 risk cell must match M4 section (Średnie)")
 
-    def test_12_m4_summary_row_is_honest_unverified(self):
-        m4 = [r for r in _summary_rows(self.text) if r and "M4" in r[0]]
-        findings = m4[0][1]
-        self.assertIn("OC", findings, "M4 summary findings must mention OC")
-        self.assertIn("do ustalenia", findings,
-                      "M4 summary findings must flag service quality as not yet established")
-        self.assertIn("Nieznane na etapie DRAFT", findings,
-                      "M4 summary findings must say the details are unknown in the DRAFT")
-
     # -- cross-cutting hygiene -------------------------------------------------
 
-    def test_13_m4_red_flags_honest(self):
+    def test_11_m4_red_flags_honest(self):
         sec = _section(self.text, "Czerwone Flagi")
         self.assertIn("M4", sec, "Czerwone Flagi section must address M4")
         self.assertIn("nie stwierdzono", sec,
                       "M4 red-flags entry must be honest (no negative findings)")
-        self.assertTrue(
-            any(m in sec for m in ("nie zostały jeszcze otwarte", "nie zostały jeszcze sprawdzone")),
-            "M4 red-flags entry must note the quality sources have not been opened yet",
-        )
+        self.assertIn("ubezpieczona OC", sec,
+                      "M4 red-flags entry must record the OC self-declaration")
 
-    def test_14_m4_sources_planned_no_fabricated_dates(self):
-        sec = _section(self.text, "Źródła")
-        for marker in ("M4 — Jakość usług i specjalizacja", "Strona WWW",
-                       "Rejestry branżowe", "OC"):
-            self.assertIn(marker, sec, f"Źródła section missing planned M4 source: {marker}")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
-        self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
-        )
-
-    def test_15_document_status_note_mentions_m4(self):
-        self.assertIn("M4 — Jakość usług i specjalizacja", self.text,
-                      "document status note should record M4 as complete")
-
-    def test_16_m4_no_todo_placeholders(self):
-        # Only standalone placeholder markers count ("metodologia" contains "todo").
+    def test_12_m4_no_todo_placeholders(self):
         self.assertIsNone(
             re.search(r"\b(todo|tbd|lorem|placeholder|fixme)\b", self.text, re.IGNORECASE),
             "deliverable must not contain TODO/TBD/lorem/placeholder markers",

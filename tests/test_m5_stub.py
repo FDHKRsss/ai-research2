@@ -42,6 +42,21 @@ def _section(text: str, heading: str) -> str:
     return rest[:nxt]
 
 
+def _sources_block(text: str, milestone: str) -> str:
+    """Return the '**M# — ...' source block from the Źródła section."""
+    sec = _section(text, "Źródła")
+    start = sec.find(f"**{milestone} —")
+    if start == -1:
+        return ""
+    header_end = start + len(f"**{milestone} —")
+    nxt = None
+    for m in ("M1", "M2", "M3", "M4", "M5", "M6"):
+        idx = sec.find(f"**{m} —", header_end)
+        if idx != -1 and (nxt is None or idx < nxt):
+            nxt = idx
+    return sec[start:nxt] if nxt is not None else sec[start:]
+
+
 def _summary_rows(text: str):
     """Parse the '## Podsumowanie tabelaryczne' markdown table into rows of cells."""
     sec = _section(text, "Podsumowanie tabelaryczne")
@@ -179,11 +194,12 @@ class TestM5StubDeliverable(unittest.TestCase):
         for marker in ("M5 — Stabilność finansowa", "ekrs.ms.gov.pl", "imsig.pl",
                        "Rejestr REGON", "Repozytorium Dokumentów Finansowych"):
             self.assertIn(marker, sec, f"Źródła section missing planned M5 source: {marker}")
-        self.assertIn("nie podaję dat dostępu", sec,
-                      "DRAFT sources must explicitly say no access dates yet")
+        # M5 is still DRAFT: its source block must not carry a fabricated access date.
+        block = _sources_block(self.text, "M5")
+        self.assertTrue(block, "Źródła must contain an M5 source block")
         self.assertIsNone(
-            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", sec),
-            "DRAFT sources section must not contain a fabricated access date",
+            re.search(r"\b20\d{2}-\d{2}-\d{2}\b", block),
+            "M5 (DRAFT) source block must not contain a fabricated access date",
         )
 
     def test_17_m5_methodology_limitation_present(self):

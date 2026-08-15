@@ -6,9 +6,9 @@ validates the M5-specific bookkeeping: PLAN.md must mark `M5 -- stub` done (and 
 must stay done), and ARCHITECTURE.md "Stan wdrożenia" must record the M5 stub as
 ready.
 
-NOTE: the *progression* snapshot (exactly which stubs are done, and what the
+NOTE: the *progression* snapshot (exactly which stubs/reals are done, and what the
 remaining work is) advances with each milestone and is owned by the current
-milestone's tracking test (see tests/test_m6_tracking.py). Here we only assert the
+milestone's tracking test (in pass 2: tests/test_m2_real.py). Here we only assert the
 M5 invariants plus "at least M1–M5 stubs remain done".
 """
 import re
@@ -23,6 +23,7 @@ ARCH = REPO / "docs" / "ARCHITECTURE.md"
 MILESTONE_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s*(M\d)\s*--\s*(stub|real)\s*$")
 
 ALL_MILESTONES = {f"M{i}" for i in range(1, 7)}
+ORDER = ("M1", "M2", "M3", "M4", "M5", "M6")
 # M1–M5 must remain done; later milestones may additionally be done (see the
 # current milestone's tracking test for the exact snapshot).
 MIN_DONE_STUBS = {"M1", "M2", "M3", "M4", "M5"}
@@ -82,10 +83,12 @@ class TestM5Tracking(unittest.TestCase):
             "M1/M2/M3/M4/M5 -- stub must remain checked (later milestones may also be done)",
         )
 
-    def test_04_plan_no_real_milestone_marked_done(self):
-        for (m, p), d in self.statuses.items():
-            if p == "real":
-                self.assertFalse(d, f"PLAN.md must not mark {m} -- real as done in pass 1")
+    def test_04_plan_real_milestones_done_in_order(self):
+        # Reals complete in order M1 -> M6: if M_k real is done, every earlier real is done.
+        done_real = {m for (m, p), d in self.statuses.items() if p == "real" and d}
+        done_idx = {i for i, m in enumerate(ORDER) if m in done_real}
+        self.assertEqual(done_idx, set(range(len(done_idx))),
+                         "real milestones must be completed in order (no gaps)")
 
     def test_05_plan_parent_m5_milestone_not_prematurely_done(self):
         found = False
